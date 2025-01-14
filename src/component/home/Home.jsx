@@ -1,5 +1,11 @@
+import HeroCarosul from './HeroCarosul';
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <HeroCarosul />
+    </div>
+  );
 };
 
 export default Home;

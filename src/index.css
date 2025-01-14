@@ -2,3 +2,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.carousel .thumbs-wrapper {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.carousel-slider {
+    height: 90vh;
+}
+
+.thumbs-wrapper>ul>li>img {
+    height: 7vh;
+    object-fit: cover;
+}
