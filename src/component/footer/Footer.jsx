@@ -3,7 +3,7 @@ import { Facebook, Linkedin, Github } from 'lucide-react';
 export default function Footer() {
   return (
     <footer className='bg-gray-100'>
-      <div className='mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8'>
+      <div className='mx-auto w-10/12 px-4 py-12 sm:px-6 lg:px-8'>
         <div className='flex flex-col items-center justify-between md:flex-row'>
           {/* Logo */}
           <div className='mb-6 md:mb-0'>
