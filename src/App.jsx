@@ -6,6 +6,7 @@ import Register from './component/footer/auth/Register';
 import { Toaster } from 'react-hot-toast';
 import AuthProvider from './provider/AuthProvider';
 import Login from './component/footer/auth/Login';
+import Dashboard from './component/dashboard/Dashboard';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -26,8 +27,9 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: 'about',
-    element: <div>About</div>,
+    path: 'dashboard',
+    element: <Dashboard />,
+    children: [],
   },
 ]);
 function App() {

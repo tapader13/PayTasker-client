@@ -24,7 +24,7 @@ export default function Navbar() {
           {/* Navigation for logged in users */}
           {isLoggedIn && (
             <Link
-              href='/dashboard'
+              to='/dashboard'
               className='text-sm font-medium text-gray-600 transition-colors hover:text-tertiary'
             >
               Dashboard
