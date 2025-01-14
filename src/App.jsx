@@ -4,6 +4,7 @@ import Home from './component/home/Home';
 import HomePage from './component/home/HomePage';
 import Register from './component/footer/auth/Register';
 import { Toaster } from 'react-hot-toast';
+import AuthProvider from './provider/AuthProvider';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -27,8 +28,10 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div>
-      <RouterProvider router={router} />
-      <Toaster />
+      <AuthProvider>
+        <RouterProvider router={router} />
+        <Toaster />
+      </AuthProvider>
     </div>
   );
 }
