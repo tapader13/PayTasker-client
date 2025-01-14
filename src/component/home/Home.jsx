@@ -1,3 +1,4 @@
+import CalculateEarning from './CalculateEarning';
 import HeroCarosul from './HeroCarosul';
 import MakingMoney from './MakingMoney';
 import Testimonial from './Testimonial';
@@ -7,9 +8,10 @@ const Home = () => {
   return (
     <div>
       <HeroCarosul />
-      <Testimonial />
       <Works />
+      <CalculateEarning />
       <MakingMoney />
+      <Testimonial />
     </div>
   );
 };

@@ -9,7 +9,7 @@ const testimonials = [
     name: 'Emily Rodriguez',
     role: 'Marketing Specialist',
     quote:
-      "The quality of work I've received has been consistently high. I highly recommend this platform to anyone looking for skilled professionals.",
+      'This platform is perfect for earning cash in my free time. The tasks are quick, simple, and the payments are always on time.',
     avatar: '/public/my-profit-tutor-ZfRWq1bRisE-unsplash.jpg',
     rating: 4,
   },
@@ -17,7 +17,7 @@ const testimonials = [
     name: 'John Doe',
     role: 'Web Developer',
     quote:
-      'The platform is intuitive, and the range of professionals available has been a lifesaver for our web development projects. Great experience overall!',
+      "The platform is intuitive, and I’ve been able to complete tasks effortlessly. It's a fantastic way to use my downtime productively.",
     avatar: '/public/images.jpeg',
     rating: 5,
   },
@@ -25,7 +25,7 @@ const testimonials = [
     name: 'Linda Smith',
     role: 'Content Writer',
     quote:
-      'I’ve been able to collaborate with incredible clients, and the work environment is supportive and professional. Highly recommend for any writer.',
+      'The micro-tasks here align perfectly with my skills. I can work whenever I want, and the earnings add up quickly.',
     avatar: '/public/images (4).jpeg',
     rating: 4,
   },
@@ -33,7 +33,7 @@ const testimonials = [
     name: 'David Lee',
     role: 'SEO Expert',
     quote:
-      "This platform helped me connect with clients who truly value SEO work. My business has expanded significantly thanks to the connections I've made.",
+      'This platform has helped me earn extra money by taking on quick tasks. It’s easy to use, and the payouts are reliable.',
     avatar: '/public/images (3).jpeg',
     rating: 5,
   },
@@ -41,7 +41,7 @@ const testimonials = [
     name: 'Olivia Williams',
     role: 'UX/UI Designer',
     quote:
-      "I found several long-term clients through this platform. The collaboration has been seamless, and I'm consistently challenged by exciting new projects.",
+      'I’ve found tasks that are exciting and match my expertise. The extra income has been a huge bonus for me.',
     avatar: '/public/images (2).jpeg',
     rating: 5,
   },
@@ -49,7 +49,7 @@ const testimonials = [
     name: 'James Brown',
     role: 'Virtual Assistant',
     quote:
-      'The flexibility this platform offers has allowed me to balance multiple clients while maintaining high-quality work. I highly recommend it to other assistants.',
+      'This platform makes it easy to earn by completing tasks on my own schedule. I love the flexibility it offers.',
     avatar: '/public/images (1).jpeg',
     rating: 4,
   },
