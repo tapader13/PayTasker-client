@@ -19,10 +19,10 @@ const Register = () => {
   const handleRegister = async (data) => {
     console.log(data);
     const manipulateData = { ...data };
-    if (data.role === 'buyer') {
+    if (data.role === 'worker') {
       manipulateData.coins = 10;
     }
-    if (data.role === 'worker') {
+    if (data.role === 'buyer') {
       manipulateData.coins = 50;
     }
     const { password, ...dat } = manipulateData;
@@ -197,7 +197,7 @@ const Register = () => {
             <select
               name='role'
               {...register('role', { required: 'Role is required' })}
-              defaultValue='buyer'
+              defaultValue='worker'
               className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
             >
               <option value='buyer'>Hire for Tasks (Buyer)</option>

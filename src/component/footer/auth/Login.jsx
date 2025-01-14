@@ -41,7 +41,7 @@ const Login = () => {
             name: user?.displayName,
             email: user?.email,
             profilePicture: user?.photoURL,
-            role: 'buyer',
+            role: 'worker',
             coins: 10,
           });
           if (response?.data?.success) {

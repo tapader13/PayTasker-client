@@ -1,17 +1,17 @@
-'use client';
-
 import { Github, LogOut } from 'lucide-react';
 
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import useAuth from '../../hooks/useAuth';
 
 // Simulating authentication state
-const isLoggedIn = false;
+
 const userCoins = 1500;
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  const { user: isLoggedIn, logoutUser } = useAuth();
+  const navigate = useNavigate();
   return (
     <header className='sticky top-0 z-50 w-full border-b bg-white'>
       <div className='mx-auto flex h-16 w-10/12 items-center justify-between px-4 sm:px-6 lg:px-8'>
@@ -64,9 +64,13 @@ export default function Navbar() {
             <div className='relative'>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className='flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-sm font-medium text-gray-600'
+                className='flex h-8 w-8 overflow-hidden items-center justify-center rounded-full bg-gray-200 text-sm font-medium text-gray-600'
               >
-                U
+                <img
+                  className='h-full w-full'
+                  src={isLoggedIn?.photoURL}
+                  alt=''
+                />
               </button>
               {isDropdownOpen && (
                 <div className='absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5'>
@@ -79,8 +83,9 @@ export default function Navbar() {
                   <button
                     className='block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-gray-100'
                     onClick={() => {
-                      // Add logout logic here
-                      console.log('Logging out...');
+                      logoutUser();
+                      setIsDropdownOpen(false);
+                      navigate('/login');
                     }}
                   >
                     <LogOut />
