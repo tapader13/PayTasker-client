@@ -3,12 +3,14 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import useAuth from './../../../hooks/useAuth';
 const Register = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { signUpUser, updateProfileUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const axiosPublic = useAxiosPublic();
@@ -21,18 +23,42 @@ const Register = () => {
     if (data.role === 'worker') {
       manipulateData.coins = 50;
     }
-    try {
-      setLoading(true);
-      const response = await axiosPublic.post('/users', manipulateData);
-      if (response?.data?.success) {
-        toast.success(response?.data?.message);
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error(error?.response?.data?.message);
-    } finally {
-      setLoading(false);
-    }
+
+    setLoading(true);
+    signUpUser(data.email, data.password)
+      .then(() => {
+        updateProfileUser({
+          displayName: data.name,
+          photoURL: data.profilePicture,
+        })
+          .then(async () => {
+            try {
+              const response = await axiosPublic.post('/users', manipulateData);
+              if (response?.data?.success) {
+                toast.success(response?.data?.message);
+              }
+            } catch (error) {
+              console.log(error);
+              toast.error(
+                error?.response?.data?.message || error.response?.message
+              );
+            } finally {
+              setLoading(false);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            setLoading(false);
+            toast.error(
+              error?.response?.data?.message || error.response?.message
+            );
+          });
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+        toast.error(error?.response?.data?.message || error?.message);
+      });
   };
   return (
     <div>

@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { auth } from '../firebase/firebase.config';
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import useAxiosPublic from '../hooks/useAxiosPublic';
+import { auth } from './../firebase/firebase.init';
 export const context = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -34,6 +35,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (usr) => {
       setUser(usr);
+      console.log(usr, 'user');
       if (usr) {
         axiosPublic.post('/jwt', { email: usr?.email }).then((data) => {
           // console.log(data, 4);
