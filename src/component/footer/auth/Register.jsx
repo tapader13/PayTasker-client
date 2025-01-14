@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import useAuth from './../../../hooks/useAuth';
+import { useNavigate } from 'react-router';
 const Register = () => {
   const {
     register,
@@ -14,6 +15,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
   const handleRegister = async (data) => {
     console.log(data);
     const manipulateData = { ...data };
@@ -23,7 +25,7 @@ const Register = () => {
     if (data.role === 'worker') {
       manipulateData.coins = 50;
     }
-
+    const { password, ...dat } = manipulateData;
     setLoading(true);
     signUpUser(data.email, data.password)
       .then(() => {
@@ -33,9 +35,10 @@ const Register = () => {
         })
           .then(async () => {
             try {
-              const response = await axiosPublic.post('/users', manipulateData);
+              const response = await axiosPublic.post('/users', dat);
               if (response?.data?.success) {
                 toast.success(response?.data?.message);
+                navigate('/dashboard');
               }
             } catch (error) {
               console.log(error);

@@ -33,7 +33,34 @@ const Login = () => {
   };
 
   const handleGoogleSignIn = () => {
-    // signIn('google', { callbackUrl: '/dashboard' });
+    signInWithGoogle()
+      .then(async (val) => {
+        try {
+          const { user } = val;
+          const response = await axiosPublic.post('/users', {
+            name: user?.displayName,
+            email: user?.email,
+            profilePicture: user?.photoURL,
+            role: 'buyer',
+            coins: 10,
+          });
+          if (response?.data?.success) {
+            toast.success(response?.data?.message);
+            navigate('/dashboard');
+          }
+        } catch (error) {
+          console.log(error);
+          toast.error(
+            error?.response?.data?.message || error.response?.message
+          );
+        } finally {
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error?.message);
+      });
   };
 
   return (
