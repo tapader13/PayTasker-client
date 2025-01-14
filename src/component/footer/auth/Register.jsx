@@ -2,6 +2,7 @@ import { Eye, EyeOff, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
 const Register = () => {
   const {
     register,
@@ -10,31 +11,28 @@ const Register = () => {
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const axiosPublic = useAxiosPublic();
   const handleRegister = async (data) => {
     console.log(data);
-    // setLoading(true);
-    // try {
-    //   const response = await fetch('/api/auth/register', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
-
-    //   if (response.ok) {
-    //     // Registration successful
-    //     console.log('Registration successful');
-    //   } else {
-    //     // Registration failed
-    //     const errorData = await response.json();
-    //     setServerError(errorData.message);
-    //   }
-    // } catch (error) {
-    //   // Handle registration error
-    //   console.error('Registration error:', error);
-    //   setServerError('An error occurred during registration.');
-    // }
+    const manipulateData = { ...data };
+    if (data.role === 'buyer') {
+      manipulateData.coins = 10;
+    }
+    if (data.role === 'worker') {
+      manipulateData.coins = 50;
+    }
+    try {
+      setLoading(true);
+      const response = await axiosPublic.post('/users', manipulateData);
+      if (response?.data?.success) {
+        toast.success(response?.data?.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <div>
