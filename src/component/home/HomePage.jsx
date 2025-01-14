@@ -4,7 +4,7 @@ import Footer from '../footer/Footer';
 
 const HomePage = () => {
   return (
-    <div>
+    <div className='font-inter'>
       <Navbar />
       <Outlet />
       <Footer />
