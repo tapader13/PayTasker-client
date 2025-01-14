@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
 import toast from 'react-hot-toast';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { useNavigate } from 'react-router';
 const Login = () => {
   const { signInWithGoogle, loginUser } = useAuth();
   const {
@@ -12,25 +14,16 @@ const Login = () => {
   } = useForm();
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
   const handleLogin = async (data) => {
     console.log(data);
 
     setLoading(true);
     loginUser(data.email, data.password)
-      .then(async () => {
-        try {
-          const response = await axiosPublic.post('/users', manipulateData);
-          if (response?.data?.success) {
-            toast.success(response?.data?.message);
-          }
-        } catch (error) {
-          console.log(error);
-          toast.error(
-            error?.response?.data?.message || error.response?.message
-          );
-        } finally {
-          setLoading(false);
-        }
+      .then(() => {
+        toast.success('Login successful');
+        navigate('/dashboard');
       })
       .catch((error) => {
         setLoading(false);
@@ -64,10 +57,6 @@ const Login = () => {
               name='email'
               {...register('email', {
                 required: 'Email is required',
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: 'Invalid email address',
-                },
               })}
               className={`mt-1 block w-full rounded-md border px-3 py-2 text-sm ${
                 errors.email ? 'border-red-500' : 'border-gray-300'
@@ -118,7 +107,7 @@ const Login = () => {
           <button
             type='submit'
             disabled={loading}
-            className='w-full rounded-md bg-[#00838C] py-2 text-sm font-semibold text-white transition-colors hover:bg-[#006d75] disabled:bg-gray-400'
+            className='w-full rounded-md bg-tertiary py-2 text-sm font-semibold text-white transition-colors hover:bg-tertiaryhover disabled:bg-gray-400'
           >
             {loading ? (
               <Loader2 className='mx-auto h-5 w-5 animate-spin' />
