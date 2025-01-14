@@ -11,6 +11,7 @@ export default {
         secondary: '#2D5240',
         tertiary: '#055240',
         quaternary: '#8A8D8C',
+        tertiaryhover: '#067a57',
       },
     },
   },
