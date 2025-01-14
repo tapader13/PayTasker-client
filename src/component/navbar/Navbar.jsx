@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 
 // Simulating authentication state
-const isLoggedIn = true;
+const isLoggedIn = false;
 const userCoins = 1500;
 
 export default function Navbar() {
@@ -17,7 +17,7 @@ export default function Navbar() {
       <div className='mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8'>
         {/* Logo */}
         <Link href='/' className='flex items-center'>
-          <span className='text-xl font-bold text-[#00838C]'>TaskApp</span>
+          <span className='text-xl font-bold text-tertiary'>PayTasker</span>
         </Link>
 
         <div className='flex items-center gap-4'>
@@ -25,7 +25,7 @@ export default function Navbar() {
           {isLoggedIn && (
             <Link
               href='/dashboard'
-              className='text-sm font-medium text-gray-600 transition-colors hover:text-[#00838C]'
+              className='text-sm font-medium text-gray-600 transition-colors hover:text-tertiary'
             >
               Dashboard
             </Link>
@@ -37,7 +37,7 @@ export default function Navbar() {
               <span className='text-sm font-medium text-gray-600'>
                 Available Coins:
               </span>
-              <span className='font-bold text-[#00838C]'>{userCoins}</span>
+              <span className='font-bold text-tertiary'>{userCoins}</span>
             </div>
           )}
 
@@ -83,6 +83,7 @@ export default function Navbar() {
                       console.log('Logging out...');
                     }}
                   >
+                    <LogOut />
                     Logout
                   </button>
                 </div>
