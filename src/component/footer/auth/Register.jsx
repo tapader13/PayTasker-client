@@ -1,11 +1,41 @@
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 import { useState } from 'react';
-
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [serverError, setServerError] = useState('');
+  const handleRegister = async (data) => {
+    console.log(data);
+    // setLoading(true);
+    // try {
+    //   const response = await fetch('/api/auth/register', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(data),
+    //   });
+
+    //   if (response.ok) {
+    //     // Registration successful
+    //     console.log('Registration successful');
+    //   } else {
+    //     // Registration failed
+    //     const errorData = await response.json();
+    //     setServerError(errorData.message);
+    //   }
+    // } catch (error) {
+    //   // Handle registration error
+    //   console.error('Registration error:', error);
+    //   setServerError('An error occurred during registration.');
+    // }
+  };
   return (
     <div>
       <div className='mx-auto max-w-md space-y-6 p-6'>
@@ -14,13 +44,7 @@ const Register = () => {
           <p className='text-gray-500'>Enter your information to get started</p>
         </div>
 
-        {serverError && (
-          <div className='rounded-md bg-red-50 p-4 text-sm text-red-500'>
-            {serverError}
-          </div>
-        )}
-
-        <form className='space-y-4'>
+        <form onSubmit={handleSubmit(handleRegister)} className='space-y-4'>
           {/* Name Field */}
           <div>
             <label className='block text-sm font-medium text-gray-700'>
@@ -29,14 +53,15 @@ const Register = () => {
             <input
               type='text'
               name='name'
-              //   value={formData.name}
-              //   onChange={handleChange}
+              {...register('name', { required: 'Name is required' })}
               className={`mt-1 block w-full rounded-md border px-3 py-2 text-sm ${
                 errors.name ? 'border-red-500' : 'border-gray-300'
               }`}
             />
             {errors.name && (
-              <p className='mt-1 text-sm text-red-500'>{errors.name}</p>
+              <p className='mt-1 text-sm text-red-500'>
+                {errors.name?.message}
+              </p>
             )}
           </div>
 
@@ -48,14 +73,21 @@ const Register = () => {
             <input
               type='email'
               name='email'
-              //   value={formData.email}
-              //   onChange={handleChange}
+              {...register('email', {
+                required: 'Email is required',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Invalid email address',
+                },
+              })}
               className={`mt-1 block w-full rounded-md border px-3 py-2 text-sm ${
                 errors.email ? 'border-red-500' : 'border-gray-300'
               }`}
             />
             {errors.email && (
-              <p className='mt-1 text-sm text-red-500'>{errors.email}</p>
+              <p className='mt-1 text-sm text-red-500'>
+                {errors.email?.message}
+              </p>
             )}
           </div>
 
@@ -67,15 +99,21 @@ const Register = () => {
             <input
               type='url'
               name='profilePicture'
-              //   value={formData.profilePicture}
-              //   onChange={handleChange}
+              {...register('profilePicture', {
+                required: 'profile picture is required',
+                pattern: {
+                  value:
+                    /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)$/,
+                  message: 'Invalid URL',
+                },
+              })}
               className={`mt-1 block w-full rounded-md border px-3 py-2 text-sm ${
                 errors.profilePicture ? 'border-red-500' : 'border-gray-300'
               }`}
             />
             {errors.profilePicture && (
               <p className='mt-1 text-sm text-red-500'>
-                {errors.profilePicture}
+                {errors.profilePicture?.message}
               </p>
             )}
           </div>
@@ -89,8 +127,18 @@ const Register = () => {
               <input
                 type={showPassword ? 'text' : 'password'}
                 name='password'
-                // value={formData.password}
-                // onChange={handleChange}
+                {...register('password', {
+                  required: 'Password is required',
+                  minLength: {
+                    value: 6,
+                    message: 'Password must be at least 6 characters',
+                  },
+                  pattern: {
+                    value: /^(?=.*[A-Z])(?=.*[a-z]).*$/,
+                    message:
+                      'Password must contain at least one uppercase letter, one lowercase letter',
+                  },
+                })}
                 className={`mt-1 block w-full rounded-md border px-3 py-2 pr-10 text-sm ${
                   errors.password ? 'border-red-500' : 'border-gray-300'
                 }`}
@@ -108,7 +156,9 @@ const Register = () => {
               </button>
             </div>
             {errors.password && (
-              <p className='mt-1 text-sm text-red-500'>{errors.password}</p>
+              <p className='mt-1 text-sm text-red-500'>
+                {errors.password?.message}
+              </p>
             )}
           </div>
 
@@ -119,19 +169,24 @@ const Register = () => {
             </label>
             <select
               name='role'
-              //   value={formData.role}
-              //   onChange={handleChange}
+              {...register('role', { required: 'Role is required' })}
+              defaultValue='buyer'
               className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
             >
               <option value='buyer'>Hire for Tasks (Buyer)</option>
               <option value='worker'>Work on Tasks (Worker)</option>
             </select>
+            {errors.role && (
+              <p className='mt-1 text-sm text-red-500'>
+                {errors.role?.message}
+              </p>
+            )}
           </div>
 
           <button
             type='submit'
             disabled={loading}
-            className='w-full rounded-md bg-[#00838C] py-2 text-sm font-semibold text-white transition-colors hover:bg-[#006d75] disabled:bg-gray-400'
+            className='w-full rounded-md bg-tertiary py-2 text-sm font-semibold text-white transition-colors hover:bg-tertiaryhover disabled:bg-gray-400'
           >
             {loading ? (
               <Loader2 className='mx-auto h-5 w-5 animate-spin' />
