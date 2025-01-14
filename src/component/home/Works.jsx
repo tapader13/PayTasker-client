@@ -5,8 +5,8 @@ const Works = () => {
   return (
     <SectionWrapper>
       <section className='py-16'>
-        <div className='container mx-auto px-4'>
-          <h2 className='mb-12 text-center text-3xl font-bold text-gray-900 md:text-4xl'>
+        <div className=''>
+          <h2 className='mb-12 text-center text-3xl font-extrabold text-gray-900 md:text-4xl'>
             How PayTasker Works
           </h2>
           <div className='grid gap-8 md:grid-cols-3'>

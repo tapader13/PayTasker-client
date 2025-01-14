@@ -59,7 +59,7 @@ const Testimonial = () => {
   return (
     <SectionWrapper>
       <div className=' py-16'>
-        <h2 className='mb-12 text-center text-3xl font-bold text-gray-900 md:text-4xl'>
+        <h2 className='mb-12 text-center text-3xl font-extrabold text-gray-900 md:text-4xl'>
           What Our Users Say
         </h2>
         <div>
