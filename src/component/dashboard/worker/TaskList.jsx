@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Loader2, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router';
 import moment from 'moment';
@@ -67,7 +67,7 @@ export default function TaskList() {
                   {task.task_title}
                 </h2>
                 <p className='mb-2 text-sm text-gray-600'>
-                  Posted by: {task.buyer_name}
+                  Posted by: {task.username}
                 </p>
                 <p className='mb-2 text-sm text-gray-600'>
                   Deadline:{' '}
