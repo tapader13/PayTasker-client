@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Coins } from 'lucide-react';
 import { Link } from 'react-router';
 
@@ -10,39 +9,6 @@ const pricingPlans = [
 ];
 
 export default function PricingCard() {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handlePurchase = async (coins, price) => {
-    // try {
-    //   setIsLoading(true);
-    //   const response = await fetch('/api/create-checkout-session', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       coins,
-    //       price,
-    //     }),
-    //   });
-    //   const { sessionId } = await response.json();
-    //   const stripe = await stripePromise;
-    //   // Redirect to Stripe Checkout
-    //   const { error } = await stripe.redirectToCheckout({
-    //     sessionId,
-    //   });
-    //   if (error) {
-    //     console.error('Error:', error);
-    //     alert('Payment failed. Please try again.');
-    //   }
-    // } catch (err) {
-    //   console.error('Error:', err);
-    //   alert('Something went wrong. Please try again.');
-    // } finally {
-    //   setIsLoading(false);
-    // }
-  };
-
   return (
     <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-4'>
       {pricingPlans.map((plan) => (
@@ -73,13 +39,11 @@ export default function PricingCard() {
             <p className='mt-1 text-sm text-gray-500'>one-time payment</p>
           </div>
 
-          <Link to={`/dashboard/payment`}>
-            <button
-              onClick={() => handlePurchase(plan.coins, plan.price)}
-              disabled={isLoading}
-              className='mt-6 w-full rounded-lg bg-[#00838C] px-4 py-2 text-white transition-colors hover:bg-[#006d75] disabled:bg-gray-400'
-            >
-              {isLoading ? 'Processing...' : 'Purchase Now'}
+          <Link
+            to={`/dashboard/payment?coins=${plan.coins}&price=${plan.price}`}
+          >
+            <button className='mt-6 w-full rounded-lg bg-[#00838C] px-4 py-2 text-white transition-colors hover:bg-[#006d75] disabled:bg-gray-400'>
+              {'Purchase Now'}
             </button>
           </Link>
         </div>
