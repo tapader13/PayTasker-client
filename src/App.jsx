@@ -14,6 +14,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import PrivateWorkerRoute from './private/PrivateWorkerRoute';
 import PrivateRoute from './private/PrivateRoute';
 import PrivateBuyerRoute from './private/PrivateBuyerRoute';
+import MyTask from './component/dashboard/buyer/MyTask';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -50,6 +51,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateBuyerRoute>
             <AddNewTask />
+          </PrivateBuyerRoute>
+        ),
+      },
+      {
+        path: 'my-task',
+        element: (
+          <PrivateBuyerRoute>
+            <MyTask />
           </PrivateBuyerRoute>
         ),
       },
