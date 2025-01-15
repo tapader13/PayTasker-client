@@ -1,17 +1,22 @@
-import { Loader2 } from 'lucide-react';
+import { Loader2, Upload } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import useUserInfo from '../../../hooks/useUserInfo';
+import toast from 'react-hot-toast';
+import axios from 'axios';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const AddNewTask = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     watch,
     formState: { errors },
   } = useForm();
   const [isUploading, setIsUploading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const { userInfo } = useUserInfo();
   const required_workers = watch('required_workers');
   const payable_amount = watch('payable_amount');
   const totalCost = (required_workers || 0) * (payable_amount || 0);
@@ -24,50 +29,56 @@ const AddNewTask = () => {
       setIsUploading(true);
       const formData = new FormData();
       formData.append('image', file);
-
-      // Replace with your actual ImageBB API key
       formData.append('key', import.meta.env.VITE_API_IMGBB_KEY);
 
       const response = await axios.post(
         'https://api.imgbb.com/1/upload',
-        formData
+        formData,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        }
       );
-      setValue('task_image_url', response.data.data.url);
+      setValue('task_image_url', response.data?.data?.display_url);
     } catch (error) {
       console.error('Error uploading image:', error);
-      alert('Failed to upload image. Please try again.');
+      toast.error('Failed to upload image. Please try again.');
     } finally {
       setIsUploading(false);
     }
   };
-
+  const axiosSecure = useAxiosSecure();
   const onSubmit = async (data) => {
     const totalCost = data.required_workers * data.payable_amount;
 
-    if (totalCost > user.coins) {
-      alert('Not enough coins available. Please purchase more coins.');
-      router.push('/dashboard/purchase');
+    if (totalCost > userInfo?.coins) {
+      toast.error('Not enough coins available. Please purchase more coins.');
+      //   router.push('/dashboard/purchase');
       return;
     }
 
     try {
       setIsSubmitting(true);
 
-      await axios.post('/api/tasks', {
+      const res = await axiosSecure.post('/tasks', {
         ...data,
         total_cost: totalCost,
       });
-
-      router.push('/dashboard/my-tasks');
+      if (res?.data?.success) {
+        toast.success(res?.data?.message);
+      }
+      //   router.push('/dashboard/my-tasks');
     } catch (error) {
       console.error('Error creating task:', error);
-      alert('Failed to create task. Please try again.');
+      toast.error(
+        error?.response?.data?.message ||
+          'Failed to create task. Please try again.'
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
   return (
-    <div>
+    <div className=''>
       <div className='mx-auto max-w-3xl'>
         <h1 className='mb-6 text-2xl font-bold'>Create New Task</h1>
         <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
@@ -79,7 +90,7 @@ const AddNewTask = () => {
               </label>
               <input
                 type='text'
-                {...register('task_title')}
+                {...register('task_title', { required: 'task title required' })}
                 className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
                 placeholder='e.g., Watch my YouTube video and leave a comment'
               />
@@ -96,7 +107,9 @@ const AddNewTask = () => {
                 Task Details
               </label>
               <textarea
-                {...register('task_detail')}
+                {...register('task_detail', {
+                  required: 'task details required',
+                })}
                 rows={4}
                 className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
                 placeholder='Provide detailed instructions for the task'
@@ -116,7 +129,10 @@ const AddNewTask = () => {
                 </label>
                 <input
                   type='number'
-                  {...register('required_workers', { valueAsNumber: true })}
+                  {...register('required_workers', {
+                    valueAsNumber: true,
+                    required: 'worker is required',
+                  })}
                   className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
                 />
                 {errors.required_workers && (
@@ -132,7 +148,10 @@ const AddNewTask = () => {
                 </label>
                 <input
                   type='number'
-                  {...register('payable_amount', { valueAsNumber: true })}
+                  {...register('payable_amount', {
+                    valueAsNumber: true,
+                    required: 'amount is required',
+                  })}
                   className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
                 />
                 {errors.payable_amount && (
@@ -154,7 +173,7 @@ const AddNewTask = () => {
                 </span>
               </div>
               <div className='mt-1 text-xs text-gray-500'>
-                Your available balance: {user.coins} coins
+                Your available balance: {userInfo?.coins} coins
               </div>
             </div>
 
@@ -165,7 +184,9 @@ const AddNewTask = () => {
               </label>
               <input
                 type='date'
-                {...register('completion_date')}
+                {...register('completion_date', {
+                  required: 'date is required',
+                })}
                 className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
               />
               {errors.completion_date && (
@@ -181,7 +202,9 @@ const AddNewTask = () => {
                 Submission Requirements
               </label>
               <textarea
-                {...register('submission_info')}
+                {...register('submission_info', {
+                  required: 'submission info required',
+                })}
                 rows={3}
                 className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
                 placeholder='e.g., Provide a screenshot of your comment and your YouTube username'
@@ -201,6 +224,9 @@ const AddNewTask = () => {
               <div className='mt-1 flex items-center gap-4'>
                 <input
                   type='file'
+                  {...register('image-upload', {
+                    required: 'image upload required',
+                  })}
                   accept='image/*'
                   onChange={handleImageUpload}
                   className='hidden'

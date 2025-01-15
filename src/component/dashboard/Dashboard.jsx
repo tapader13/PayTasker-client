@@ -146,7 +146,9 @@ const Dashboard = () => {
           </nav>
         </div>
         <div
-          className={`${isOpen ? 'ml-64' : 'ml-20'} px-4 mt-16 py-8 lg:px-8`}
+          className={`${
+            isOpen ? 'ml-64' : 'ml-20'
+          } px-4 w-full mt-16 py-8 lg:px-8`}
         >
           <Outlet />
         </div>

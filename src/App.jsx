@@ -9,6 +9,7 @@ import Login from './component/footer/auth/Login';
 import Dashboard from './component/dashboard/Dashboard';
 // import WorkerHome from './component/dashboard/WorkerHome';
 import DashboardHome from './component/dashboard/DashboardHome';
+import AddNewTask from './component/dashboard/buyer/AddNewTask';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: '',
         element: <DashboardHome />,
+      },
+      {
+        path: 'add-task',
+        element: <AddNewTask />,
       },
       // {
       //   path: 'worker-home',
