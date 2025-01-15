@@ -11,10 +11,10 @@ import {
   Users,
   Wallet,
 } from 'lucide-react';
-import useAuth from '../../hooks/useAuth';
-import useAxiosPublic from '../../hooks/useAxiosPublic';
-import { useEffect, useState } from 'react';
+
+import { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router';
+import useUserInfo from '../../hooks/useUserInfo';
 const navigationItems = {
   worker: [
     { name: 'Home', href: '/dashboard', icon: Home },
@@ -40,32 +40,21 @@ const navigationItems = {
   ],
 };
 const Dashboard = () => {
-  const axiosPublic = useAxiosPublic();
-  const { user: isLoggedIn } = useAuth();
   const [isOpen, setIsOpen] = useState(true);
-  const [user, setUser] = useState('');
+  const { userInfo } = useUserInfo();
   const loc = useLocation();
   const pathname = loc?.pathname;
-  const items = user?.role ? navigationItems[user.role] : [];
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        const response = await axiosPublic.get('/users/' + isLoggedIn?.email);
-        setUser(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getUser();
-  }, [isLoggedIn]);
-  console.log(user, 1, items);
+  const items = userInfo?.role ? navigationItems[userInfo.role] : [];
+
+  console.log(userInfo, 1, items);
+  console.log(isOpen);
   return (
     <div>
       <div className='fixed left-0 right-0 top-0 z-50 flex h-16 items-center border-b bg-white px-4'>
         <div className='flex w-64 items-center'>
-          <a href='/dashboard' className='text-xl font-bold text-tertiary'>
+          <Link to='/' className='text-xl font-bold text-tertiary'>
             PayTasker
-          </a>
+          </Link>
         </div>
 
         <div className='ml-auto flex items-center gap-4'>
@@ -75,23 +64,23 @@ const Dashboard = () => {
               <span className='text-sm font-medium text-gray-600'>
                 Available Coins:
               </span>
-              <span className='font-bold text-[#00838C]'>{user.coins}</span>
+              <span className='font-bold text-[#00838C]'>{userInfo.coins}</span>
             </div>
             <p className='text-xs mt-1 hidden sm:block text-gray-500 capitalize'>
-              {user.role}
+              {userInfo.role}
             </p>
           </div>
 
           {/* User Info */}
           <div className='flex flex-col justify-center gap-3'>
             <img
-              src={user.image}
-              alt={user.name}
+              src={userInfo.image}
+              alt={userInfo.name}
               className='h-8 w-8 rounded-full'
             />
 
             <p className='text-sm hidden sm:block font-medium text-gray-900'>
-              {user.name}
+              {userInfo.name}
             </p>
           </div>
 
@@ -112,8 +101,11 @@ const Dashboard = () => {
           >
             {/* Toggle Button */}
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className='absolute -right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-500 shadow-md hover:bg-gray-50'
+              onClick={() => {
+                console.log('Button clicked');
+                setIsOpen((prevState) => !prevState);
+              }}
+              className='absolute z-10 -right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-500 shadow-md hover:bg-gray-50'
             >
               {isOpen ? (
                 <ChevronLeft className='h-5 w-5' />
@@ -152,7 +144,9 @@ const Dashboard = () => {
             </div>
           </nav>
         </div>
-        <div className='flex-1 px-4 py-8 lg:px-8'>
+        <div
+          className={`${isOpen ? 'ml-64' : 'ml-20'} px-4 mt-16 py-8 lg:px-8`}
+        >
           <Outlet />
         </div>
       </div>
