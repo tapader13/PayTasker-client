@@ -13,6 +13,7 @@ import AddNewTask from './component/dashboard/buyer/AddNewTask';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import PrivateWorkerRoute from './private/PrivateWorkerRoute';
 import PrivateRoute from './private/PrivateRoute';
+import PrivateBuyerRoute from './private/PrivateBuyerRoute';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -46,7 +47,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'add-task',
-        element: <AddNewTask />,
+        element: (
+          <PrivateBuyerRoute>
+            <AddNewTask />
+          </PrivateBuyerRoute>
+        ),
       },
       // {
       //   path: 'worker-home',
