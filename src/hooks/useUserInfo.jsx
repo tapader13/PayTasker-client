@@ -17,6 +17,7 @@ const useUserInfo = () => {
     };
     getUser();
   }, [isLoggedIn]);
+  console.log(user, 56);
   return { userInfo: user };
 };
 

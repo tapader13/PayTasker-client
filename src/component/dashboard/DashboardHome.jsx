@@ -10,6 +10,7 @@ const DashboardHome = () => {
   if (userInfo?.role === 'buyer') {
     return <BuyerHome />;
   }
+  return <div>Unauthorized or role not assigned</div>;
 };
 
 export default DashboardHome;

@@ -3,6 +3,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ClipboardList,
+  History,
   Home,
   ListTodo,
   PlusCircle,
@@ -44,7 +45,7 @@ const Dashboard = () => {
   const { userInfo } = useUserInfo();
   const loc = useLocation();
   const pathname = loc?.pathname;
-  const items = userInfo?.role ? navigationItems[userInfo.role] : [];
+  const items = userInfo?.role ? navigationItems[userInfo?.role] : [];
 
   console.log(userInfo, 1, items);
   console.log(isOpen);
@@ -57,7 +58,7 @@ const Dashboard = () => {
           </Link>
         </div>
 
-        <div className='ml-auto flex items-center gap-4'>
+        <div className='ml-auto flex items-center gap-4 py-2'>
           {/* Available Coins */}
           <div className='flex flex-col items-end'>
             <div className='flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5'>
@@ -72,14 +73,14 @@ const Dashboard = () => {
           </div>
 
           {/* User Info */}
-          <div className='flex flex-col justify-center gap-3'>
+          <div className='flex flex-col justify-center gap-2'>
             <img
-              src={userInfo.image}
+              src={userInfo.profilePicture}
               alt={userInfo.name}
-              className='h-8 w-8 rounded-full'
+              className='h-6 w-6 rounded-full'
             />
 
-            <p className='text-sm hidden sm:block font-medium text-gray-900'>
+            <p className='text-sm hidden uppercase sm:block font-medium text-gray-900'>
               {userInfo.name}
             </p>
           </div>
