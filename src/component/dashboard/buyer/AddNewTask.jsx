@@ -16,11 +16,10 @@ const AddNewTask = () => {
   } = useForm();
   const [isUploading, setIsUploading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { userInfo } = useUserInfo();
   const required_workers = watch('required_workers');
   const payable_amount = watch('payable_amount');
   const totalCost = (required_workers || 0) * (payable_amount || 0);
-
+  const { userInfo, refetchUser } = useUserInfo();
   const handleImageUpload = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -70,6 +69,7 @@ const AddNewTask = () => {
       });
       if (res?.data?.success) {
         toast.success(res?.data?.message);
+        refetchUser();
       }
       //   router.push('/dashboard/my-tasks');
     } catch (error) {
