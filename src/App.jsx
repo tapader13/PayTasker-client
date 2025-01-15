@@ -55,7 +55,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'my-task',
+        path: 'my-tasks',
         element: (
           <PrivateBuyerRoute>
             <MyTask />
