@@ -58,10 +58,15 @@ const AddNewTask = () => {
 
     try {
       setIsSubmitting(true);
-
+      const {
+        'image-upload': imageUpload,
+        image_upload,
+        ...manipulateData
+      } = data;
       const res = await axiosSecure.post('/tasks', {
-        ...data,
-        total_cost: totalCost,
+        ...manipulateData,
+        // total_cost: totalCost,
+        buyerEmail: userInfo?.email,
       });
       if (res?.data?.success) {
         toast.success(res?.data?.message);
@@ -224,16 +229,16 @@ const AddNewTask = () => {
               <div className='mt-1 flex items-center gap-4'>
                 <input
                   type='file'
-                  {...register('image-upload', {
+                  {...register('image_upload', {
                     required: 'image upload required',
                   })}
                   accept='image/*'
                   onChange={handleImageUpload}
                   className='hidden'
-                  id='image-upload'
+                  id='image_upload'
                 />
                 <label
-                  htmlFor='image-upload'
+                  htmlFor='image_upload'
                   className='flex cursor-pointer items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50'
                 >
                   {isUploading ? (
