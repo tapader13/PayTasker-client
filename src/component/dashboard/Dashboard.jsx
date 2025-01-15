@@ -1,12 +1,64 @@
-import { Bell } from 'lucide-react';
-
+import {
+  Bell,
+  ChevronLeft,
+  ChevronRight,
+  ClipboardList,
+  Home,
+  ListTodo,
+  PlusCircle,
+  Settings,
+  ShoppingCart,
+  Users,
+  Wallet,
+} from 'lucide-react';
+import useAuth from '../../hooks/useAuth';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { useEffect, useState } from 'react';
+import { Link, Outlet, useLocation } from 'react-router';
+const navigationItems = {
+  worker: [
+    { name: 'Home', href: '/dashboard', icon: Home },
+    { name: 'Task List', href: '/dashboard/tasks', icon: ListTodo },
+    {
+      name: 'My Submissions',
+      href: '/dashboard/submissions',
+      icon: ClipboardList,
+    },
+    { name: 'Withdrawals', href: '/dashboard/withdrawals', icon: Wallet },
+  ],
+  buyer: [
+    { name: 'Home', href: '/dashboard', icon: Home },
+    { name: 'Add New Tasks', href: '/dashboard/add-task', icon: PlusCircle },
+    { name: "My Task's", href: '/dashboard/my-tasks', icon: ListTodo },
+    { name: 'Purchase Coin', href: '/dashboard/purchase', icon: ShoppingCart },
+    { name: 'Payment History', href: '/dashboard/payments', icon: History },
+  ],
+  admin: [
+    { name: 'Home', href: '/dashboard', icon: Home },
+    { name: 'Manage Users', href: '/dashboard/users', icon: Users },
+    { name: 'Manage Tasks', href: '/dashboard/manage-tasks', icon: Settings },
+  ],
+};
 const Dashboard = () => {
-  const user = {
-    name: 'John Doe',
-    role: 'Software Engineer',
-    image: '/assets/images/user.jpg',
-    coins: 2000,
-  };
+  const axiosPublic = useAxiosPublic();
+  const { user: isLoggedIn } = useAuth();
+  const [isOpen, setIsOpen] = useState(true);
+  const [user, setUser] = useState('');
+  const loc = useLocation();
+  const pathname = loc?.pathname;
+  const items = user?.role ? navigationItems[user.role] : [];
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const response = await axiosPublic.get('/users/' + isLoggedIn?.email);
+        setUser(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getUser();
+  }, [isLoggedIn]);
+  console.log(user, 1, items);
   return (
     <div>
       <div className='fixed left-0 right-0 top-0 z-50 flex h-16 items-center border-b bg-white px-4'>
@@ -25,7 +77,7 @@ const Dashboard = () => {
               </span>
               <span className='font-bold text-[#00838C]'>{user.coins}</span>
             </div>
-            <p className='text-xs hidden sm:block text-gray-500 capitalize'>
+            <p className='text-xs mt-1 hidden sm:block text-gray-500 capitalize'>
               {user.role}
             </p>
           </div>
@@ -52,8 +104,57 @@ const Dashboard = () => {
         </div>
       </div>
       <div className='flex'>
-        <div></div>
-        <div className='flex-1'></div>
+        <div>
+          <nav
+            className={`fixed bottom-0 left-0 top-16 z-40 bg-white transition-all duration-300 ${
+              isOpen ? 'w-64' : 'w-20'
+            }`}
+          >
+            {/* Toggle Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className='absolute -right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-500 shadow-md hover:bg-gray-50'
+            >
+              {isOpen ? (
+                <ChevronLeft className='h-5 w-5' />
+              ) : (
+                <ChevronRight className='h-5 w-5' />
+              )}
+            </button>
+
+            {/* Navigation Items */}
+            <div className='h-full border-r'>
+              <div className='space-y-1 p-4'>
+                {items?.map((item) => {
+                  const isActive = pathname === item.href;
+                  return (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                        isActive
+                          ? 'bg-[#00838C] text-white'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      <item.icon className='h-5 w-5 shrink-0' />
+                      <span
+                        className={`whitespace-nowrap transition-opacity ${
+                          isOpen ? 'opacity-100' : 'opacity-0'
+                        }`}
+                      >
+                        {item.name}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div className='flex-1 px-4 py-8 lg:px-8'>
+          <Outlet />
+        </div>
       </div>
     </div>
   );
