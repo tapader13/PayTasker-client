@@ -2,41 +2,60 @@ import { useState } from 'react';
 import TaskModal from './TaskModal';
 import TaskTable from './TaskTable';
 import useTasks from './../../../hooks/useTasks';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
+import useUserInfo from '../../../hooks/useUserInfo';
 
 const MyTask = () => {
   const [selectedTask, setSelectedTask] = useState(null);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const { tasks, loading } = useTasks();
+  const axiosSecure = useAxiosSecure();
+  const { refetchUser } = useUserInfo();
+  const { refetchTasks } = useTasks();
   const handleUpdate = (task) => {
     setSelectedTask(task);
     setIsUpdateModalOpen(true);
   };
 
   const handleDelete = async (taskId) => {
-    //   if (window.confirm('Are you sure you want to delete this task?')) {
-    //     try {
-    //       await axios.delete(`/api/tasks/${taskId}`);
-    //       setTasks(tasks.filter((task) => task.id !== taskId));
-    //     } catch (err) {
-    //       setError('Failed to delete task. Please try again.');
-    //     }
-    //   }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await axiosSecure.delete(`/tasks/${taskId}`);
+          if (response?.data?.success) {
+            toast.success(response?.data?.message);
+            refetchUser();
+            refetchTasks();
+          }
+        } catch (err) {
+          toast.error(err?.response?.data?.message);
+        }
+      }
+    });
   };
   const handleUpdateSubmit = async (updatedTask) => {
-    //   try {
-    //     const response = await axios.put(
-    //       `/api/tasks/${updatedTask.id}`,
-    //       updatedTask
-    //     );
-    //     setTasks(
-    //       tasks.map((task) =>
-    //         task.id === updatedTask.id ? response.data : task
-    //       )
-    //     );
-    //     setIsUpdateModalOpen(false);
-    //   } catch (err) {
-    //     setError('Failed to update task. Please try again.');
-    //   }
+    try {
+      const { _id, ...manipulate } = updatedTask;
+      const response = await axiosSecure.put(`/tasks/${_id}`, manipulate);
+      if (response?.data?.success) {
+        toast.success(response?.data?.message);
+        refetchTasks();
+        setIsUpdateModalOpen(false);
+        setSelectedTask(null);
+      }
+    } catch (err) {
+      toast.error(err?.response?.data?.message);
+    }
   };
   if (loading) return <div>Loading...</div>;
   return (

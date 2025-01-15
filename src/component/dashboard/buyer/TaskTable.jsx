@@ -58,7 +58,7 @@ const TaskTable = ({ tasks, onUpdate, onDelete }) => {
                     Update
                   </button>
                   <button
-                    onClick={() => onDelete(task.id)}
+                    onClick={() => onDelete(task._id)}
                     className='text-red-600 hover:text-red-900'
                   >
                     Delete
