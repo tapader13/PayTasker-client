@@ -11,6 +11,7 @@ import Dashboard from './component/dashboard/Dashboard';
 import DashboardHome from './component/dashboard/DashboardHome';
 import AddNewTask from './component/dashboard/buyer/AddNewTask';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import PrivateWorkerRoute from './private/PrivateWorkerRoute';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -32,7 +33,11 @@ const router = createBrowserRouter([
   },
   {
     path: 'dashboard',
-    element: <Dashboard />,
+    element: (
+      <PrivateWorkerRoute>
+        <Dashboard />
+      </PrivateWorkerRoute>
+    ),
     children: [
       {
         path: '',

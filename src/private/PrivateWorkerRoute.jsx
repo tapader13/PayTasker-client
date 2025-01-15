@@ -6,10 +6,10 @@ const PrivateWorkerRoute = ({ children }) => {
   if (loading) {
     return <div>Loading...</div>;
   }
-  if (userInfo && userInfo?.role === 'worker') {
+  if (userInfo) {
     return children;
   }
-  return <Navigate to={'/login'} replace state={{ from: location }} />;
+  return <Navigate to={'/login'} replace />;
 };
 
 export default PrivateWorkerRoute;
