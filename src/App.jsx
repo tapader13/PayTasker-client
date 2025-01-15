@@ -10,6 +10,7 @@ import Dashboard from './component/dashboard/Dashboard';
 // import WorkerHome from './component/dashboard/WorkerHome';
 import DashboardHome from './component/dashboard/DashboardHome';
 import AddNewTask from './component/dashboard/buyer/AddNewTask';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -48,13 +49,16 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+const queryClient = new QueryClient();
 function App() {
   return (
     <div>
-      <AuthProvider>
-        <RouterProvider router={router} />
-        <Toaster />
-      </AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <RouterProvider router={router} />
+          <Toaster />
+        </AuthProvider>
+      </QueryClientProvider>
     </div>
   );
 }
