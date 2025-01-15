@@ -32,7 +32,11 @@ const navigationItems = {
     { name: 'Add New Tasks', href: '/dashboard/add-task', icon: PlusCircle },
     { name: "My Task's", href: '/dashboard/my-tasks', icon: ListTodo },
     { name: 'Purchase Coin', href: '/dashboard/purchase', icon: ShoppingCart },
-    { name: 'Payment History', href: '/dashboard/payments', icon: History },
+    {
+      name: 'Payment History',
+      href: '/dashboard/paymentshistory',
+      icon: History,
+    },
   ],
   admin: [
     { name: 'Home', href: '/dashboard', icon: Home },
