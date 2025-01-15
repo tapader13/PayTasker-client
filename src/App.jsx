@@ -17,6 +17,7 @@ import PrivateBuyerRoute from './private/PrivateBuyerRoute';
 import MyTask from './component/dashboard/buyer/MyTask';
 import Parchase from './component/dashboard/buyer/Parchase';
 import Payment from './component/dashboard/Payment';
+import PaymentHistory from './component/dashboard/buyer/PaymentHistory';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -77,6 +78,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateBuyerRoute>
             <Payment />
+          </PrivateBuyerRoute>
+        ),
+      },
+      {
+        path: 'paymentshistory',
+        element: (
+          <PrivateBuyerRoute>
+            <PaymentHistory />
           </PrivateBuyerRoute>
         ),
       },
