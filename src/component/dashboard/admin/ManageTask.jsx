@@ -34,10 +34,7 @@ export default function ManageTask() {
   const confirmDeleteTask = async () => {
     try {
       const response = await axiosSecure.delete(
-        `/tasks-manage/${taskToDelete._id}`,
-        {
-          method: 'DELETE',
-        }
+        `/tasks-manage/${taskToDelete._id}`
       );
       if (response?.data?.success) {
         fetchTasksAgain();
