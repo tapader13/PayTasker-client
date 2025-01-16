@@ -14,13 +14,13 @@ export default function TaskTable({ tasks, onDeleteTask }) {
               Buyer
             </th>
             <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-              Reward
+              Amount
             </th>
             <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-              Status
+              Worker
             </th>
             <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-              Created At
+              Complete Date
             </th>
             <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
               Actions
@@ -31,34 +31,28 @@ export default function TaskTable({ tasks, onDeleteTask }) {
           {tasks.map((task) => (
             <tr key={task.id}>
               <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
-                {task.title}
+                {task.task_title}
               </td>
               <td className='px-6 py-4 text-sm text-gray-900'>
-                {task.description.length > 50
-                  ? `${task.description.substring(0, 50)}...`
-                  : task.description}
+                {task.task_detail.length > 50
+                  ? `${task.task_detail.substring(0, 50)}...`
+                  : task.task_detail}
               </td>
               <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
-                {task.buyer_name}
+                {task.buyerEmail}
               </td>
               <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
-                {task.reward} coins
+                {task.payable_amount}
               </td>
               <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
                 <span
-                  className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                    task.status === 'open'
-                      ? 'bg-green-100 text-green-800'
-                      : task.status === 'in_progress'
-                      ? 'bg-yellow-100 text-yellow-800'
-                      : 'bg-red-100 text-red-800'
-                  }`}
+                  className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full `}
                 >
-                  {task.status}
+                  {task.required_workers}
                 </span>
               </td>
               <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
-                {new Date(task.created_at).toLocaleDateString()}
+                {new Date(task.completion_date).toLocaleDateString()}
               </td>
               <td className='px-6 py-4 whitespace-nowrap text-sm font-medium'>
                 <button

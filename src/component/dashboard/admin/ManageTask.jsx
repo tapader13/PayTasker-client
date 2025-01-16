@@ -1,33 +1,31 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Loader2, AlertCircle } from 'lucide-react';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
+import TaskTable from './TaskTable';
+import ConfirmationModal from './ConfirmationModal';
+import toast from 'react-hot-toast';
 
-export default function ManageTasksPage() {
-  const [tasks, setTasks] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+export default function ManageTask() {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
-
-  useEffect(() => {
-    fetchTasks();
-  }, []);
+  const axiosSecure = useAxiosSecure();
 
   const fetchTasks = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch('/api/admin/tasks');
-      if (!response.ok) {
-        throw new Error('Failed to fetch tasks');
-      }
-      const data = await response.json();
-      setTasks(data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
+    const response = await axiosSecure.get('/tasks-manage');
+    return response?.data?.data;
   };
 
+  const {
+    data: tasks = [],
+    isLoading,
+    isError,
+    error,
+    refetch: fetchTasksAgain,
+  } = useQuery({
+    queryKey: ['manage-task'],
+    queryFn: fetchTasks,
+  });
   const handleDeleteTask = (task) => {
     setTaskToDelete(task);
     setShowConfirmModal(true);
@@ -35,16 +33,19 @@ export default function ManageTasksPage() {
 
   const confirmDeleteTask = async () => {
     try {
-      const response = await fetch(`/api/admin/tasks/${taskToDelete.id}`, {
-        method: 'DELETE',
-      });
-      if (!response.ok) {
-        throw new Error('Failed to delete task');
+      const response = await axiosSecure.delete(
+        `/tasks-manage/${taskToDelete._id}`,
+        {
+          method: 'DELETE',
+        }
+      );
+      if (response?.data?.success) {
+        fetchTasksAgain();
+        toast.success(response?.data?.message);
+        setShowConfirmModal(false);
       }
-      setTasks(tasks.filter((task) => task.id !== taskToDelete.id));
-      setShowConfirmModal(false);
     } catch (err) {
-      setError(err.message);
+      toast.error(err?.response?.data?.message);
     }
   };
 
@@ -56,12 +57,12 @@ export default function ManageTasksPage() {
     );
   }
 
-  if (error) {
+  if (isError) {
     return (
       <div className='flex h-[60vh] flex-col items-center justify-center text-center'>
         <AlertCircle className='h-10 w-10 text-red-500' />
         <h2 className='mt-4 text-xl font-semibold'>Error loading tasks</h2>
-        <p className='mt-2 text-gray-600'>{error}</p>
+        <p className='mt-2 text-gray-600'>{error.message}</p>
       </div>
     );
   }
