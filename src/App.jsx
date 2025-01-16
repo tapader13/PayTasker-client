@@ -20,6 +20,7 @@ import Payment from './component/dashboard/Payment';
 import PaymentHistory from './component/dashboard/buyer/PaymentHistory';
 import TaskList from './component/dashboard/worker/TaskList';
 import TaskDetailsPage from './component/dashboard/worker/TaskDetails';
+import MySubmissionsPage from './component/dashboard/worker/MySubmissions';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -96,6 +97,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateWorkerRoute>
             <TaskDetailsPage />
+          </PrivateWorkerRoute>
+        ),
+      },
+      {
+        path: 'mysubmissions',
+        element: (
+          <PrivateWorkerRoute>
+            <MySubmissionsPage />
           </PrivateWorkerRoute>
         ),
       },

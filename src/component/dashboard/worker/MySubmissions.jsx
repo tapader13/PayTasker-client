@@ -1,0 +1,132 @@
+import { useState, useEffect } from 'react';
+import { Loader2, AlertCircle } from 'lucide-react';
+
+export default function MySubmissionsPage() {
+  const [submissions, setSubmissions] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchSubmissions();
+  }, []);
+
+  const fetchSubmissions = async () => {
+    try {
+      setIsLoading(true);
+      // In a real application, you'd get the worker's email from the authenticated session
+      const workerEmail = 'worker@example.com';
+      const response = await fetch(
+        `/api/submissions?workerEmail=${workerEmail}`
+      );
+      if (!response.ok) {
+        throw new Error('Failed to fetch submissions');
+      }
+      const data = await response.json();
+      setSubmissions(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'pending':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'approved':
+        return 'bg-green-100 text-green-800';
+      case 'rejected':
+        return 'bg-red-100 text-red-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className='flex h-[60vh] items-center justify-center'>
+        <Loader2 className='h-10 w-10 animate-spin text-[#00838C]' />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className='flex h-[60vh] flex-col items-center justify-center text-center'>
+        <AlertCircle className='h-10 w-10 text-red-500' />
+        <h2 className='mt-4 text-xl font-semibold'>
+          Error loading submissions
+        </h2>
+        <p className='mt-2 text-gray-600'>{error}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className='container mx-auto px-4 py-8'>
+      <h1 className='mb-6 text-2xl font-bold'>My Submissions</h1>
+      {submissions.length === 0 ? (
+        <div className='rounded-lg border border-gray-200 bg-white p-6 text-center'>
+          <p className='text-gray-600'>
+            You haven&apos;t made any submissions yet.
+          </p>
+        </div>
+      ) : (
+        <div className='overflow-x-auto rounded-lg border border-gray-200 bg-white'>
+          <table className='min-w-full divide-y divide-gray-200'>
+            <thead className='bg-gray-50'>
+              <tr>
+                <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'>
+                  Task Title
+                </th>
+                <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'>
+                  Submission Date
+                </th>
+                <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'>
+                  Reward
+                </th>
+                <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'>
+                  Status
+                </th>
+              </tr>
+            </thead>
+            <tbody className='divide-y divide-gray-200 bg-white'>
+              {submissions.map((submission) => (
+                <tr key={submission.id}>
+                  <td className='whitespace-nowrap px-6 py-4'>
+                    <div className='text-sm font-medium text-gray-900'>
+                      {submission.task_title}
+                    </div>
+                  </td>
+                  <td className='whitespace-nowrap px-6 py-4'>
+                    <div className='text-sm text-gray-500'>
+                      {format(
+                        new Date(submission.current_date),
+                        'MMM d, yyyy HH:mm'
+                      )}
+                    </div>
+                  </td>
+                  <td className='whitespace-nowrap px-6 py-4'>
+                    <div className='text-sm text-gray-900'>
+                      {submission.payable_amount} coins
+                    </div>
+                  </td>
+                  <td className='whitespace-nowrap px-6 py-4'>
+                    <span
+                      className={`inline-flex rounded-full px-2 py-1 text-xs font-semibold ${getStatusColor(
+                        submission.status
+                      )}`}
+                    >
+                      {submission.status}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+}

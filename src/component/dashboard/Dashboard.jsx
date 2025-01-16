@@ -22,7 +22,7 @@ const navigationItems = {
     { name: 'Task List', href: '/dashboard/tasks', icon: ListTodo },
     {
       name: 'My Submissions',
-      href: '/dashboard/submissions',
+      href: '/dashboard/mysubmissions',
       icon: ClipboardList,
     },
     { name: 'Withdrawals', href: '/dashboard/withdrawals', icon: Wallet },
