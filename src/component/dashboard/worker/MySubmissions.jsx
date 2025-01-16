@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Loader2, AlertCircle } from 'lucide-react';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
+import moment from 'moment';
 
 export default function MySubmissionsPage() {
   const [submissions, setSubmissions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
     fetchSubmissions();
   }, []);
@@ -13,16 +16,11 @@ export default function MySubmissionsPage() {
   const fetchSubmissions = async () => {
     try {
       setIsLoading(true);
-      // In a real application, you'd get the worker's email from the authenticated session
-      const workerEmail = 'worker@example.com';
-      const response = await fetch(
-        `/api/submissions?workerEmail=${workerEmail}`
-      );
-      if (!response.ok) {
-        throw new Error('Failed to fetch submissions');
+      const response = await axiosSecure.get(`/worker-submissions`);
+      if (response?.data?.success) {
+        setSubmissions(response?.data?.data);
+        toast.success(response.data?.message);
       }
-      const data = await response.json();
-      setSubmissions(data);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -101,9 +99,8 @@ export default function MySubmissionsPage() {
                   </td>
                   <td className='whitespace-nowrap px-6 py-4'>
                     <div className='text-sm text-gray-500'>
-                      {format(
-                        new Date(submission.current_date),
-                        'MMM d, yyyy HH:mm'
+                      {moment(new Date(submission.current_date)).format(
+                        'MMM d, yyyy'
                       )}
                     </div>
                   </td>
