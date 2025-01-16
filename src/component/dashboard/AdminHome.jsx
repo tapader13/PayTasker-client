@@ -18,16 +18,24 @@ export default function AdminHome() {
     isLoading,
     isError,
     error,
+    refetch: refetchAdminHOme,
   } = useQuery({
     queryKey: 'adminData',
     queryFn: fetchAdminData,
   });
   console.log(adminData, 78);
 
-  const handleApprovePayment = async (requestId) => {
+  const handleApprovePayment = async (requestId, coin, worker_email) => {
     try {
-      const response = await axiosSecure(`/approve-withdrawal/${requestId}`);
+      const response = await axiosSecure.patch(
+        `/approve-withdrawal/${requestId}`,
+        {
+          coins: coin,
+          email: worker_email,
+        }
+      );
       if (response?.data?.success) {
+        refetchAdminHOme();
         toast.success(response?.data?.message);
       }
     } catch (err) {

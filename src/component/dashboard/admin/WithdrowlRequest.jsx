@@ -79,7 +79,13 @@ export default function WithdrowalRequest({ requests, onApprovePayment }) {
                 </td>
                 <td className='px-6 py-4 whitespace-nowrap text-sm font-medium'>
                   <button
-                    onClick={() => onApprovePayment(request.id)}
+                    onClick={() =>
+                      onApprovePayment(
+                        request._id,
+                        request.withdrawal_coin,
+                        request.worker_email
+                      )
+                    }
                     className='bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out'
                   >
                     Approve Payment
