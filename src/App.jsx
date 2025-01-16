@@ -21,6 +21,7 @@ import PaymentHistory from './component/dashboard/buyer/PaymentHistory';
 import TaskList from './component/dashboard/worker/TaskList';
 import TaskDetailsPage from './component/dashboard/worker/TaskDetails';
 import MySubmissionsPage from './component/dashboard/worker/MySubmissions';
+import Withdrawals from './component/dashboard/worker/Withdrowals';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -105,6 +106,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateWorkerRoute>
             <MySubmissionsPage />
+          </PrivateWorkerRoute>
+        ),
+      },
+      {
+        path: 'withdrawals',
+        element: (
+          <PrivateWorkerRoute>
+            <Withdrawals />
           </PrivateWorkerRoute>
         ),
       },
