@@ -1,4 +1,16 @@
 export default function WithdrowalRequest({ requests, onApprovePayment }) {
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'pending':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'approved':
+        return 'bg-green-100 text-green-800';
+      case 'rejected':
+        return 'bg-red-100 text-red-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
   return (
     <div className='mt-8'>
       <h2 className='mb-4 text-xl font-semibold'>
@@ -24,7 +36,7 @@ export default function WithdrowalRequest({ requests, onApprovePayment }) {
                 Payment System
               </th>
               <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                Account Number
+                Status
               </th>
               <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
                 Date
@@ -52,9 +64,16 @@ export default function WithdrowalRequest({ requests, onApprovePayment }) {
                 <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
                   {request.payment_system}
                 </td>
-                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
-                  {request.account_number}
+                <td className={`px-6 py-4 whitespace-nowrap text-sm `}>
+                  <span
+                    className={`inline-flex rounded-full px-2 py-1 text-xs font-semibold ${getStatusColor(
+                      request.status
+                    )}`}
+                  >
+                    {request.status}
+                  </span>
                 </td>
+
                 <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
                   {new Date(request.withdraw_date).toLocaleDateString()}
                 </td>

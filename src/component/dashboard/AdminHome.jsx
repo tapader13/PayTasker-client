@@ -1,59 +1,39 @@
-import { useState, useEffect } from 'react';
 import { Loader2, AlertCircle } from 'lucide-react';
 import AdminStat from './admin/AdminState';
 import WithdrowalRequest from './admin/WithdrowlRequest';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
+import { useQuery } from '@tanstack/react-query';
 
 export default function AdminHome() {
-  const [stats, setStats] = useState(null);
-  const [withdrawalRequests, setWithdrawalRequests] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
   const axiosSecure = useAxiosSecure();
-  useEffect(() => {
-    fetchAdminData();
-  }, []);
 
   const fetchAdminData = async () => {
-    try {
-      setIsLoading(true);
-      const response = await axiosSecure.get('/admin-states');
-      if (response?.data?.success) {
-        setStats(response?.data?.states);
-        setWithdrawalRequests(response?.data?.withdrowReq);
-      }
-    } catch (err) {
-      setError(err?.response?.data?.message);
-    } finally {
-      setIsLoading(false);
-    }
+    const response = await axiosSecure.get('/admin-states');
+    return response.data;
   };
 
+  const {
+    data: adminData = {},
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: 'adminData',
+    queryFn: fetchAdminData,
+  });
+  console.log(adminData, 78);
+
   const handleApprovePayment = async (requestId) => {
-    // try {
-    //   const response = await fetch(
-    //     `/api/admin/approve-withdrawal/${requestId}`,
-    //     {
-    //       method: 'POST',
-    //     }
-    //   );
-    //   if (!response.ok) {
-    //     throw new Error('Failed to approve withdrawal');
-    //   }
-    //   // Update the local state to reflect the change
-    //   setWithdrawalRequests((prevRequests) =>
-    //     prevRequests.filter((request) => request.id !== requestId)
-    //   );
-    //   // Refresh the stats
-    //   const statsResponse = await fetch('/api/admin/stats');
-    //   if (statsResponse.ok) {
-    //     const updatedStats = await statsResponse.json();
-    //     setStats(updatedStats);
-    //   }
-    // } catch (err) {
-    //   console.error('Error approving withdrawal:', err);
-    //   // You might want to show an error message to the admin here
-    // }
+    try {
+      const response = await axiosSecure(`/approve-withdrawal/${requestId}`);
+      if (response?.data?.success) {
+        toast.success(response?.data?.message);
+      }
+    } catch (err) {
+      console.error('Error approving withdrawal:', err);
+      toast.error(err?.response?.data?.message);
+    }
   };
 
   if (isLoading) {
@@ -64,12 +44,12 @@ export default function AdminHome() {
     );
   }
 
-  if (error) {
+  if (isError) {
     return (
       <div className='flex h-[60vh] flex-col items-center justify-center text-center'>
         <AlertCircle className='h-10 w-10 text-red-500' />
         <h2 className='mt-4 text-xl font-semibold'>Error loading admin data</h2>
-        <p className='mt-2 text-gray-600'>{error}</p>
+        <p className='mt-2 text-gray-600'>{error.message}</p>
       </div>
     );
   }
@@ -77,9 +57,9 @@ export default function AdminHome() {
   return (
     <div className='container mx-auto px-4 py-8'>
       <h1 className='mb-6 text-2xl font-bold'>Admin Dashboard</h1>
-      <AdminStat stats={stats} />
+      <AdminStat stats={adminData?.states} />
       <WithdrowalRequest
-        requests={withdrawalRequests}
+        requests={adminData?.withdrowReq}
         onApprovePayment={handleApprovePayment}
       />
     </div>
