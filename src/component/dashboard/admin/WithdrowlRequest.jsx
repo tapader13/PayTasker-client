@@ -1,4 +1,4 @@
-export default function WithdrawalRequest({ requests, onApprovePayment }) {
+export default function WithdrowalRequest({ requests, onApprovePayment }) {
   return (
     <div className='mt-8'>
       <h2 className='mb-4 text-xl font-semibold'>

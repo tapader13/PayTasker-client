@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Loader2, AlertCircle } from 'lucide-react';
 import AdminStat from './admin/AdminState';
+import WithdrowalRequest from './admin/WithdrowlRequest';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 export default function AdminHome() {
   const [stats, setStats] = useState(null);
   const [withdrawalRequests, setWithdrawalRequests] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
     fetchAdminData();
   }, []);
@@ -15,20 +17,11 @@ export default function AdminHome() {
   const fetchAdminData = async () => {
     try {
       setIsLoading(true);
-      const [statsResponse, withdrawalsResponse] = await Promise.all([
-        fetch('/api/admin/stats'),
-        fetch('/api/admin/withdrawal-requests'),
-      ]);
-
-      if (!statsResponse.ok || !withdrawalsResponse.ok) {
-        throw new Error('Failed to fetch admin data');
+      const response = await axiosSecure.get('/admin-states');
+      if (response?.data?.success) {
+        setStats(response?.data?.states);
+        setWithdrawalRequests(response?.data?.withdrowReq);
       }
-
-      const statsData = await statsResponse.json();
-      const withdrawalsData = await withdrawalsResponse.json();
-
-      setStats(statsData);
-      setWithdrawalRequests(withdrawalsData);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -37,33 +30,30 @@ export default function AdminHome() {
   };
 
   const handleApprovePayment = async (requestId) => {
-    try {
-      const response = await fetch(
-        `/api/admin/approve-withdrawal/${requestId}`,
-        {
-          method: 'POST',
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error('Failed to approve withdrawal');
-      }
-
-      // Update the local state to reflect the change
-      setWithdrawalRequests((prevRequests) =>
-        prevRequests.filter((request) => request.id !== requestId)
-      );
-
-      // Refresh the stats
-      const statsResponse = await fetch('/api/admin/stats');
-      if (statsResponse.ok) {
-        const updatedStats = await statsResponse.json();
-        setStats(updatedStats);
-      }
-    } catch (err) {
-      console.error('Error approving withdrawal:', err);
-      // You might want to show an error message to the admin here
-    }
+    // try {
+    //   const response = await fetch(
+    //     `/api/admin/approve-withdrawal/${requestId}`,
+    //     {
+    //       method: 'POST',
+    //     }
+    //   );
+    //   if (!response.ok) {
+    //     throw new Error('Failed to approve withdrawal');
+    //   }
+    //   // Update the local state to reflect the change
+    //   setWithdrawalRequests((prevRequests) =>
+    //     prevRequests.filter((request) => request.id !== requestId)
+    //   );
+    //   // Refresh the stats
+    //   const statsResponse = await fetch('/api/admin/stats');
+    //   if (statsResponse.ok) {
+    //     const updatedStats = await statsResponse.json();
+    //     setStats(updatedStats);
+    //   }
+    // } catch (err) {
+    //   console.error('Error approving withdrawal:', err);
+    //   // You might want to show an error message to the admin here
+    // }
   };
 
   if (isLoading) {
@@ -88,7 +78,7 @@ export default function AdminHome() {
     <div className='container mx-auto px-4 py-8'>
       <h1 className='mb-6 text-2xl font-bold'>Admin Dashboard</h1>
       <AdminStat stats={stats} />
-      <WithdrawalRequestsTable
+      <WithdrowalRequest
         requests={withdrawalRequests}
         onApprovePayment={handleApprovePayment}
       />
