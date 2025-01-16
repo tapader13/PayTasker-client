@@ -15,13 +15,13 @@ export default function TaskSubmissionForm({ taskInfo }) {
 
     try {
       const submitData = {
-        task_id: taskInfo?.taskId,
-        task_title: taskInfo?.taskTitle,
-        payable_amount: taskInfo?.payableAmount,
+        task_id: taskInfo?._id,
+        task_title: taskInfo?.task_title,
+        payable_amount: taskInfo?.payable_amount,
         worker_email: user?.email,
         worker_name: user?.displayName,
         submission_details: submissionDetails,
-        buyer_name: taskInfo?.buyerName,
+        buyer_name: taskInfo?.username,
         buyer_email: taskInfo?.buyerEmail,
         current_date: new Date().toISOString(),
         status: 'pending',
@@ -32,7 +32,7 @@ export default function TaskSubmissionForm({ taskInfo }) {
       );
 
       if (response?.data?.success) {
-        toast.success('Your submission has been received successfully!');
+        toast.success(response?.data?.message);
         setSubmissionDetails('');
       }
     } catch (err) {
