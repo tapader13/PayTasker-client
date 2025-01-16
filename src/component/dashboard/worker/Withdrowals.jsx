@@ -57,7 +57,7 @@ export default function Withdrawals() {
           <h2 className='mb-4 text-xl font-semibold'>Withdrawal Form</h2>
           <WithdrowalForm
             workerEmail={userInfo?.email}
-            workerName={userInfo?.displayName}
+            workerName={userInfo?.name}
             availableCoins={userInfo?.coins}
           />
         </div>

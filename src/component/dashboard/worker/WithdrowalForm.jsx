@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
 
 const paymentSystems = ['Bkash', 'Rocket', 'Nagad', 'PayPal'];
 
@@ -8,53 +10,46 @@ export default function WithdrowalForm({
   workerName,
   availableCoins,
 }) {
-  const [coinsToWithdraw, setCoinsToWithdraw] = useState('');
-  const [withdrawalAmount, setWithdrawalAmount] = useState('0.00');
+  const [coinsToWithdraw, setCoinsToWithdraw] = useState(0);
+  const [withdrawalAmount, setWithdrawalAmount] = useState(0.0);
   const [paymentSystem, setPaymentSystem] = useState('');
   const [accountNumber, setAccountNumber] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
-
+  const axiosSecure = useAxiosSecure();
   const handleCoinsChange = (e) => {
     const coins = parseInt(e.target.value, 10);
     setCoinsToWithdraw(coins);
     setWithdrawalAmount((coins / 20 || 0).toFixed(2));
   };
-
+  console.log(coinsToWithdraw, withdrawalAmount);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setError(null);
-    setSuccess(false);
 
     try {
-      const response = await fetch('/api/withdrawals', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          worker_email: workerEmail,
-          worker_name: workerName,
-          withdrawal_coin: coinsToWithdraw,
-          withdrawal_amount: withdrawalAmount,
-          payment_system: paymentSystem,
-          account_number: accountNumber,
-        }),
-      });
+      const withdrowData = {
+        worker_email: workerEmail,
+        worker_name: workerName,
+        withdrawal_coin: coinsToWithdraw,
+        withdrawal_amount: withdrawalAmount,
+        payment_system: paymentSystem,
+        withdraw_date: new Date().toISOString(),
+        status: 'pending',
+      };
+      const response = await axiosSecure.post(
+        '/worker-withdrawals',
+        withdrowData
+      );
 
-      if (!response.ok) {
-        throw new Error('Failed to submit withdrawal request');
+      if (response?.data?.success) {
+        toast.success(response.data?.message);
+        setCoinsToWithdraw(0);
+        setWithdrawalAmount(0.0);
+        setPaymentSystem('');
+        setAccountNumber('');
       }
-
-      setSuccess(true);
-      setCoinsToWithdraw('');
-      setWithdrawalAmount('0.00');
-      setPaymentSystem('');
-      setAccountNumber('');
     } catch (err) {
-      setError(err.message);
+      toast.error(err?.response?.data?.message);
     } finally {
       setIsSubmitting(false);
     }
@@ -79,7 +74,7 @@ export default function WithdrowalForm({
           id='coinsToWithdraw'
           value={coinsToWithdraw}
           onChange={handleCoinsChange}
-          min='200'
+          min={200}
           max={availableCoins}
           className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-[#00838C] focus:outline-none focus:ring-1 focus:ring-[#00838C] sm:text-sm'
           required
@@ -93,7 +88,7 @@ export default function WithdrowalForm({
           Withdrawal Amount ($)
         </label>
         <input
-          type='text'
+          type='number'
           id='withdrawalAmount'
           value={withdrawalAmount}
           className='mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 shadow-sm sm:text-sm'
@@ -138,16 +133,7 @@ export default function WithdrowalForm({
           required
         />
       </div>
-      {error && (
-        <div className='rounded-md bg-red-50 p-4 text-sm text-red-700'>
-          {error}
-        </div>
-      )}
-      {success && (
-        <div className='rounded-md bg-green-50 p-4 text-sm text-green-700'>
-          Your withdrawal request has been submitted successfully!
-        </div>
-      )}
+
       {canWithdraw ? (
         <button
           type='submit'

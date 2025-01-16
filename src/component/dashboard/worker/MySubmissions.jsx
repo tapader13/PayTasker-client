@@ -19,7 +19,7 @@ export default function MySubmissionsPage() {
       const response = await axiosSecure.get(`/worker-submissions`);
       if (response?.data?.success) {
         setSubmissions(response?.data?.data);
-        toast.success(response.data?.message);
+        // toast.success(response.data?.message);
       }
     } catch (err) {
       setError(err.message);
