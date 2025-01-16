@@ -19,6 +19,7 @@ import Parchase from './component/dashboard/buyer/Parchase';
 import Payment from './component/dashboard/Payment';
 import PaymentHistory from './component/dashboard/buyer/PaymentHistory';
 import TaskList from './component/dashboard/worker/TaskList';
+import TaskDetailsPage from './component/dashboard/worker/TaskDetails';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -87,6 +88,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateWorkerRoute>
             <TaskList />
+          </PrivateWorkerRoute>
+        ),
+      },
+      {
+        path: 'task/:taskId',
+        element: (
+          <PrivateWorkerRoute>
+            <TaskDetailsPage />
           </PrivateWorkerRoute>
         ),
       },

@@ -3,26 +3,25 @@ import { Loader2, AlertCircle } from 'lucide-react';
 import { useParams } from 'react-router';
 import moment from 'moment';
 import TaskSubmissionForm from './TaskSubmissionForm';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 export default function TaskDetailsPage() {
   const { taskId } = useParams();
   const [task, setTask] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
     fetchTaskDetails();
   }, [taskId]);
-
+  console.log(taskId);
   const fetchTaskDetails = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(`/api/tasks/${taskId}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch task details');
+      const response = await axiosSecure.get(`/tasks-worker/${taskId}`);
+      if (response?.data?.success) {
+        setTask(response?.data?.data[0]);
       }
-      const data = await response.json();
-      setTask(data);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -61,7 +60,7 @@ export default function TaskDetailsPage() {
       </div>
     );
   }
-
+  console.log(task);
   return (
     <div className='container mx-auto px-4 py-8'>
       <h1 className='mb-6 text-3xl font-bold'>{task.task_title}</h1>
@@ -69,11 +68,11 @@ export default function TaskDetailsPage() {
         <div className='rounded-lg border bg-white p-6 shadow-sm'>
           <h2 className='mb-4 text-xl font-semibold'>Task Details</h2>
           <p className='mb-2'>
-            <span className='font-medium'>Posted by:</span> {task.buyer_name}
+            <span className='font-medium'>Posted by:</span> {task.username}
           </p>
           <p className='mb-2'>
             <span className='font-medium'>Deadline:</span>{' '}
-            {moment(new Date(task.completion_date).format('MMMM d, yyyy'))}
+            {moment(new Date(task.completion_date)).format('MMMM d, yyyy')}
           </p>
           <p className='mb-2'>
             <span className='font-medium'>Reward:</span> {task.payable_amount}{' '}

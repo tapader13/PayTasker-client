@@ -29,7 +29,7 @@ export default function TaskList() {
   const currentTasks = tasks.slice(indexOfFirstTask, indexOfLastTask);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  console.log(tasks);
   if (isLoading) {
     return (
       <div className='flex h-[60vh] items-center justify-center'>
@@ -60,7 +60,7 @@ export default function TaskList() {
           <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
             {currentTasks.map((task) => (
               <div
-                key={task.id}
+                key={task._id}
                 className='rounded-lg border border-gray-200 bg-white p-6 shadow-sm'
               >
                 <h2 className='mb-2 text-xl font-semibold'>
@@ -79,7 +79,7 @@ export default function TaskList() {
                 <p className='mb-4 text-sm text-gray-600'>
                   Workers needed: {task.required_workers}
                 </p>
-                <Link to={`task/${task.id}`}>
+                <Link to={`/dashboard/task/${task._id}`}>
                   <button className='w-full rounded-md bg-[#00838C] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#006d75]'>
                     View Details
                   </button>
