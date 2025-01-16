@@ -35,18 +35,18 @@ export default function ManageUser() {
   };
 
   const confirmRemoveUser = async () => {
-    // try {
-    //   const response = await fetch(`/api/admin/users/${userToDelete.id}`, {
-    //     method: 'DELETE',
-    //   });
-    //   if (!response.ok) {
-    //     throw new Error('Failed to delete user');
-    //   }
-    //   setUsers(users.filter((user) => user.id !== userToDelete.id));
-    //   setShowConfirmModal(false);
-    // } catch (err) {
-    //   setError(err.message);
-    // }
+    try {
+      const response = await axiosSecure.delete(
+        `/users-delete/${userToDelete._id}`
+      );
+      if (response?.data?.success) {
+        toast.success(response?.data?.message);
+        refetchAllUsers();
+        setShowConfirmModal(false);
+      }
+    } catch (err) {
+      toast.error(err?.response?.data?.message);
+    }
   };
 
   const handleUpdateRole = async (userId, newRole) => {
@@ -94,7 +94,7 @@ export default function ManageUser() {
         onClose={() => setShowConfirmModal(false)}
         onConfirm={confirmRemoveUser}
         title='Confirm User Deletion'
-        message={`Are you sure you want to delete the user ${userToDelete?.display_name}?`}
+        message={`Are you sure you want to delete the user ${userToDelete?.name}?`}
       />
     </div>
   );
