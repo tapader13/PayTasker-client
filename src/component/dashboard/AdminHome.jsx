@@ -23,7 +23,7 @@ export default function AdminHome() {
         setWithdrawalRequests(response?.data?.withdrowReq);
       }
     } catch (err) {
-      setError(err.message);
+      setError(err?.response?.data?.message);
     } finally {
       setIsLoading(false);
     }
