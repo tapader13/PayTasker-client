@@ -94,13 +94,7 @@ export default function TaskDetailsPage() {
             Submission Requirements
           </h2>
           <p className='mb-4 whitespace-pre-wrap'>{task.submission_info}</p>
-          <TaskSubmissionForm
-            taskId={task.id}
-            taskTitle={task.task_title}
-            payableAmount={task.payable_amount}
-            buyerName={task.buyer_name}
-            buyerEmail={task.buyer_email}
-          />
+          <TaskSubmissionForm taskInfo={task} />
         </div>
       </div>
     </div>

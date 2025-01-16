@@ -1,48 +1,42 @@
 import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
+import useAuth from '../../../hooks/useAuth';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
 
-export default function TaskSubmissionForm({
-  taskId,
-  taskTitle,
-  payableAmount,
-  buyerName,
-  buyerEmail,
-}) {
+export default function TaskSubmissionForm({ taskInfo }) {
   const [submissionDetails, setSubmissionDetails] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
-
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setError(null);
-    setSuccess(false);
 
     try {
-      const response = await fetch('/api/tasks/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          task_id: taskId,
-          task_title: taskTitle,
-          payable_amount: payableAmount,
-          submission_details: submissionDetails,
-          buyer_name: buyerName,
-          buyer_email: buyerEmail,
-        }),
-      });
+      const submitData = {
+        task_id: taskInfo?.taskId,
+        task_title: taskInfo?.taskTitle,
+        payable_amount: taskInfo?.payableAmount,
+        worker_email: user?.email,
+        worker_name: user?.displayName,
+        submission_details: submissionDetails,
+        buyer_name: taskInfo?.buyerName,
+        buyer_email: taskInfo?.buyerEmail,
+        current_date: new Date().toISOString(),
+        status: 'pending',
+      };
+      const response = await axiosSecure.post(
+        '/tasks-worker/submit',
+        submitData
+      );
 
-      if (!response.ok) {
-        throw new Error('Failed to submit task');
+      if (response?.data?.success) {
+        toast.success('Your submission has been received successfully!');
+        setSubmissionDetails('');
       }
-
-      setSuccess(true);
-      setSubmissionDetails('');
     } catch (err) {
-      setError(err.message);
+      toast.error(err?.response?.data?.message);
     } finally {
       setIsSubmitting(false);
     }
@@ -68,16 +62,7 @@ export default function TaskSubmissionForm({
           required
         ></textarea>
       </div>
-      {error && (
-        <div className='rounded-md bg-red-50 p-4 text-sm text-red-700'>
-          {error}
-        </div>
-      )}
-      {success && (
-        <div className='rounded-md bg-green-50 p-4 text-sm text-green-700'>
-          Your submission has been received successfully!
-        </div>
-      )}
+
       <button
         type='submit'
         disabled={isSubmitting}
