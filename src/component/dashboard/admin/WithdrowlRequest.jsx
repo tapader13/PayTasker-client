@@ -36,7 +36,7 @@ export default function WithdrowalRequest({ requests, onApprovePayment }) {
                 Payment System
               </th>
               <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                Status
+                Account Number
               </th>
               <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
                 Date
@@ -47,7 +47,7 @@ export default function WithdrowalRequest({ requests, onApprovePayment }) {
             </tr>
           </thead>
           <tbody className='divide-y divide-gray-200'>
-            {requests?.map((request) => (
+            {requests.map((request) => (
               <tr key={request.id}>
                 <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
                   {request.worker_name}
@@ -64,16 +64,17 @@ export default function WithdrowalRequest({ requests, onApprovePayment }) {
                 <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
                   {request.payment_system}
                 </td>
-                <td className={`px-6 py-4 whitespace-nowrap text-sm `}>
-                  <span
-                    className={`inline-flex rounded-full px-2 py-1 text-xs font-semibold ${getStatusColor(
-                      request.status
-                    )}`}
-                  >
-                    {request.status}
-                  </span>
+                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
+                  <td className={`px-6 py-4 whitespace-nowrap text-sm `}>
+                    <span
+                      className={`inline-flex rounded-full px-2 py-1 text-xs font-semibold ${getStatusColor(
+                        request.status
+                      )}`}
+                    >
+                      {request.status}
+                    </span>
+                  </td>
                 </td>
-
                 <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
                   {new Date(request.withdraw_date).toLocaleDateString()}
                 </td>
