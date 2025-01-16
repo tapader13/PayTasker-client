@@ -1,6 +1,6 @@
 export default function UserTable({ users, onRemoveUser, onUpdateRole }) {
   const roles = ['Admin', 'Buyer', 'Worker'];
-
+  console.log(users);
   return (
     <div className='overflow-x-auto'>
       <table className='min-w-full bg-white border border-gray-300'>
@@ -29,20 +29,18 @@ export default function UserTable({ users, onRemoveUser, onUpdateRole }) {
         <tbody className='divide-y divide-gray-200'>
           {users.map((user) => (
             <tr key={user.id}>
-              <td className='px-6 py-4 whitespace-nowrap'>
+              <td className='flex h-full py-4  items-center justify-center whitespace-nowrap'>
                 <img
-                  src={user.photo_url || '/placeholder-user.jpg'}
-                  alt={user.display_name}
-                  width={40}
-                  height={40}
-                  className='rounded-full'
+                  src={user.profilePicture || '/placeholder-user.jpg'}
+                  alt={user.name}
+                  className='rounded-full h-8 w-8'
                 />
               </td>
               <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
-                {user.display_name}
+                {user.name}
               </td>
               <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
-                {user.user_email}
+                {user.email}
               </td>
               <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
                 <select
@@ -58,7 +56,7 @@ export default function UserTable({ users, onRemoveUser, onUpdateRole }) {
                 </select>
               </td>
               <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
-                {user.coin}
+                {user.coins}
               </td>
               <td className='px-6 py-4 whitespace-nowrap text-sm font-medium'>
                 <button

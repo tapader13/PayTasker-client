@@ -22,6 +22,8 @@ import TaskList from './component/dashboard/worker/TaskList';
 import TaskDetailsPage from './component/dashboard/worker/TaskDetails';
 import MySubmissionsPage from './component/dashboard/worker/MySubmissions';
 import Withdrawals from './component/dashboard/worker/Withdrowals';
+import ManageUser from './component/dashboard/admin/ManageUser';
+import PrivateAdminRoute from './private/PrivateAdminRoute';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -115,6 +117,14 @@ const router = createBrowserRouter([
           <PrivateWorkerRoute>
             <Withdrawals />
           </PrivateWorkerRoute>
+        ),
+      },
+      {
+        path: 'manage-users',
+        element: (
+          <PrivateAdminRoute>
+            <ManageUser />
+          </PrivateAdminRoute>
         ),
       },
       {
