@@ -4,6 +4,7 @@ import UserTable from './UserTable';
 import ConfirmationModal from './ConfirmationModal';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 export default function ManageUser() {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -29,8 +30,8 @@ export default function ManageUser() {
   });
 
   const handleRemoveUser = (user) => {
-    // setUserToDelete(user);
-    // setShowConfirmModal(true);
+    setUserToDelete(user);
+    setShowConfirmModal(true);
   };
 
   const confirmRemoveUser = async () => {
@@ -49,25 +50,17 @@ export default function ManageUser() {
   };
 
   const handleUpdateRole = async (userId, newRole) => {
-    // try {
-    //   const response = await fetch(`/api/admin/users/${userId}/role`, {
-    //     method: 'PATCH',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({ role: newRole }),
-    //   });
-    //   if (!response.ok) {
-    //     throw new Error('Failed to update user role');
-    //   }
-    //   setUsers(
-    //     users.map((user) =>
-    //       user.id === userId ? { ...user, role: newRole } : user
-    //     )
-    //   );
-    // } catch (err) {
-    //   setError(err.message);
-    // }
+    try {
+      const response = await axiosSecure.patch(`/role-update/${userId}`, {
+        role: newRole,
+      });
+      if (response?.data?.success) {
+        toast.success(response?.data?.message);
+        refetchAllUsers();
+      }
+    } catch (err) {
+      toast.error(err?.response?.data?.message);
+    }
   };
 
   if (isLoading) {

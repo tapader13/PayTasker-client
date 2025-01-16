@@ -45,7 +45,7 @@ export default function UserTable({ users, onRemoveUser, onUpdateRole }) {
               <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
                 <select
                   value={user.role}
-                  onChange={(e) => onUpdateRole(user.id, e.target.value)}
+                  onChange={(e) => onUpdateRole(user._id, e.target.value)}
                   className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 >
                   {roles.map((role) => (
