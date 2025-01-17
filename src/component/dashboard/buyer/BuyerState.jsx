@@ -18,7 +18,7 @@ export default function BuyerState({ stats }) {
             />
           </svg>
         </div>
-        <p className='text-2xl font-bold'>{stats.totalTasks}</p>
+        <p className='text-2xl font-bold'>{stats.totalTaskCount}</p>
       </div>
       <div className='bg-white p-6 rounded-lg shadow-md'>
         <div className='flex items-center justify-between mb-2'>
@@ -56,7 +56,7 @@ export default function BuyerState({ stats }) {
             />
           </svg>
         </div>
-        <p className='text-2xl font-bold'>${stats.totalPayments.toFixed(2)}</p>
+        <p className='text-2xl font-bold'>${stats.totalPayment.toFixed(2)}</p>
       </div>
     </div>
   );
