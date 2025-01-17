@@ -1,6 +1,7 @@
 import useAxiosSecure from './../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import WorkerState from './worker/WorkerState';
+import ApprovedSubmissionTable from './worker/ApproveSubmissionTable';
 
 export default function WorkerHome() {
   const axiosSecure = useAxiosSecure();
@@ -10,7 +11,7 @@ export default function WorkerHome() {
     return res?.data;
   };
   const {
-    data: worker_data,
+    data: worker_data = [],
     isError,
     error,
     isLoading,
@@ -53,8 +54,8 @@ export default function WorkerHome() {
   return (
     <div className='container mx-auto px-4 py-8'>
       <h1 className='mb-6 text-2xl font-bold'>Worker Dashboard</h1>
-      <WorkerState stats={stats} />
-      <ApprovedSubmissionsTable submissions={approvedSubmissions} />
+      <WorkerState stats={worker_data?.states} />
+      <ApprovedSubmissionTable submissions={worker_data?.submissions} />
     </div>
   );
 }

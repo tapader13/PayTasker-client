@@ -1,4 +1,5 @@
 export default function ApprovedSubmissionTable({ submissions }) {
+  console.log(submissions);
   return (
     <div className='mt-8'>
       <h2 className='text-xl font-semibold mb-4'>Approved Submissions</h2>

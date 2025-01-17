@@ -20,7 +20,7 @@ export default function WorkerState({ stats }) {
             />
           </svg>
         </div>
-        <p className='text-2xl font-bold'>{stats.totalSubmissions}</p>
+        <p className='text-2xl font-bold'>{stats.totalSubmitCount}</p>
       </div>
       <div className='bg-white p-6 rounded-lg shadow-md'>
         <div className='flex items-center justify-between mb-2'>
@@ -41,7 +41,7 @@ export default function WorkerState({ stats }) {
             />
           </svg>
         </div>
-        <p className='text-2xl font-bold'>{stats.pendingSubmissions}</p>
+        <p className='text-2xl font-bold'>{stats.pendingSubmit}</p>
       </div>
       <div className='bg-white p-6 rounded-lg shadow-md'>
         <div className='flex items-center justify-between mb-2'>
@@ -60,7 +60,7 @@ export default function WorkerState({ stats }) {
             />
           </svg>
         </div>
-        <p className='text-2xl font-bold'>${stats.totalEarnings.toFixed(2)}</p>
+        <p className='text-2xl font-bold'>${stats.totalPayment.toFixed(2)}</p>
       </div>
     </div>
   );
