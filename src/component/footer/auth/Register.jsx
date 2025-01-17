@@ -11,7 +11,7 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { signUpUser, updateProfileUser } = useAuth();
+  const { signUpUser, updateProfileUser, signInWithGoogle } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const axiosPublic = useAxiosPublic();
@@ -61,6 +61,36 @@ const Register = () => {
         setLoading(false);
         console.log(error);
         toast.error(error?.response?.data?.message || error?.message);
+      });
+  };
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then(async (val) => {
+        try {
+          const { user } = val;
+          const response = await axiosPublic.post('/users', {
+            name: user?.displayName,
+            email: user?.email,
+            profilePicture: user?.photoURL,
+            role: 'worker',
+            coins: 10,
+          });
+          if (response?.data?.success) {
+            toast.success(response?.data?.message);
+            navigate('/dashboard');
+          }
+        } catch (error) {
+          console.log(error);
+          toast.error(
+            error?.response?.data?.message || error.response?.message
+          );
+        } finally {
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error?.message);
       });
   };
   return (
@@ -222,6 +252,30 @@ const Register = () => {
             )}
           </button>
         </form>
+        <div className='relative'>
+          <div className='absolute inset-0 flex items-center'>
+            <span className='w-full border-t' />
+          </div>
+          <div className='relative flex justify-center text-xs uppercase'>
+            <span className='bg-white px-2 text-gray-500'>
+              Or continue with
+            </span>
+          </div>
+        </div>
+        <button
+          onClick={handleGoogleSignIn}
+          className='flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50'
+        >
+          <svg
+            className='mr-2 h-5 w-5'
+            aria-hidden='true'
+            fill='currentColor'
+            viewBox='0 0 20 20'
+          >
+            <path d='M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z' />
+          </svg>
+          Sign in with Google
+        </button>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import SectionWrapper from '../wrapper/SectionWrapper';
 
 const MakingMoney = () => {
   return (
-    <div className='bg-gray-100 py-16'>
+    <div className='bg-gray-100  py-16'>
       <SectionWrapper>
         <h2 className='mb-12 text-center text-3xl font-extrabold text-gray-900 md:text-4xl'>
           Making money online is easy with PayTasker surveys

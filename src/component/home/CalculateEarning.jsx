@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'motion/react';
 
 export default function CalculateEarning() {
   const [tasksPerWeek, setTasksPerWeek] = useState(5);
@@ -9,7 +10,13 @@ export default function CalculateEarning() {
   const yearlyEarnings = monthlyEarnings * 12;
 
   return (
-    <section className=' py-16'>
+    <motion.section
+      initial={{ y: 100, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 1, ease: 'easeOut' }}
+      viewport={{ once: false, amount: 0.3 }}
+      className=' py-16'
+    >
       <div className='container mx-auto px-4'>
         <h2 className='mb-12 text-center text-3xl font-bold text-gray-900 md:text-4xl'>
           Calculate Your Potential Earnings
@@ -68,6 +75,6 @@ export default function CalculateEarning() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -1,10 +1,17 @@
 import { CheckCircle2, CreditCard, UserCircle2 } from 'lucide-react';
 import SectionWrapper from '../wrapper/SectionWrapper';
+import { motion } from 'motion/react';
 
 const Works = () => {
   return (
     <SectionWrapper>
-      <section className='py-16'>
+      <motion.section
+        initial={{ y: 100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
+        viewport={{ once: false, amount: 0.3 }}
+        className='py-16'
+      >
         <div className=''>
           <h2 className='mb-12 text-center text-3xl font-extrabold text-gray-900 md:text-4xl'>
             How PayTasker Works
@@ -49,7 +56,7 @@ const Works = () => {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
       ;
     </SectionWrapper>
   );

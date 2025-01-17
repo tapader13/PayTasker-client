@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Loader2, AlertCircle } from 'lucide-react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import toast from 'react-hot-toast';
 import moment from 'moment';
 
 export default function MySubmissionsPage() {

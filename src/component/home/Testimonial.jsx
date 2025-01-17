@@ -4,6 +4,7 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Star } from 'lucide-react';
 import SectionWrapper from '../wrapper/SectionWrapper';
+import { motion } from 'motion/react';
 const testimonials = [
   {
     name: 'Emily Rodriguez',
@@ -58,7 +59,13 @@ const testimonials = [
 const Testimonial = () => {
   return (
     <SectionWrapper>
-      <div className=' py-16'>
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
+        viewport={{ once: false, amount: 0.3 }}
+        className=' py-16'
+      >
         <h2 className='mb-12 text-center text-3xl font-extrabold text-gray-900 md:text-4xl'>
           What Our Users Say
         </h2>
@@ -110,7 +117,7 @@ const Testimonial = () => {
             ))}
           </Swiper>
         </div>
-      </div>
+      </motion.div>
     </SectionWrapper>
   );
 };

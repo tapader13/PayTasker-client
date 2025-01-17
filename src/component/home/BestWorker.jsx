@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Loader2, AlertCircle } from 'lucide-react';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import SectionWrapper from '../wrapper/SectionWrapper';
-
+import { motion } from 'motion/react';
 export default function BestWorker() {
   const [workers, setWorkers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -52,9 +52,13 @@ export default function BestWorker() {
         <h1 className='mb-12 text-center text-3xl font-bold text-gray-900 md:text-4xl'>
           Best Workers
         </h1>
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6'>
+        <div
+          //   whileTap={{ scale: 0.95 }}
+          className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6'
+        >
           {workers.map((worker) => (
-            <div
+            <motion.div
+              whileHover={{ scale: 1.1 }}
               key={worker._id}
               className='bg-white rounded-lg shadow-md overflow-hidden'
             >
@@ -74,7 +78,7 @@ export default function BestWorker() {
                   coins
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
