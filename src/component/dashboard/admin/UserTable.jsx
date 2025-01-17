@@ -1,4 +1,7 @@
+import useUserInfo from '../../../hooks/useUserInfo';
+
 export default function UserTable({ users, onRemoveUser, onUpdateRole }) {
+  const { userInfo: loginUser } = useUserInfo();
   const roles = ['Admin', 'Buyer', 'Worker'];
   console.log(users);
   return (
@@ -59,12 +62,14 @@ export default function UserTable({ users, onRemoveUser, onUpdateRole }) {
                 {user.coins}
               </td>
               <td className='px-6 py-4 whitespace-nowrap text-sm font-medium'>
-                <button
-                  onClick={() => onRemoveUser(user)}
-                  className='text-red-600 hover:text-red-900 focus:outline-none focus:underline'
-                >
-                  Remove
-                </button>
+                {user.role !== 'admin' && loginUser.email !== user.email && (
+                  <button
+                    onClick={() => onRemoveUser(user)}
+                    className='text-red-600 hover:text-red-900 focus:outline-none focus:underline'
+                  >
+                    Remove
+                  </button>
+                )}
               </td>
             </tr>
           ))}
