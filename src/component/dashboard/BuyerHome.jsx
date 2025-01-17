@@ -3,8 +3,9 @@ import BuyerState from './buyer/BuyerState';
 import TaskToReviewTable from './buyer/TaskToReviewTable';
 import SubmissionModal from './buyer/SubmissionModal';
 import ConfirmationModal from './admin/ConfirmationModal';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from './../../hooks/useAxiosSecure';
+import { toast } from 'react-hot-toast';
 
 export default function BuyerHome() {
   const [selectedSubmission, setSelectedSubmission] = useState(null);
@@ -46,30 +47,19 @@ export default function BuyerHome() {
   };
 
   const confirmSubmissionAction = async () => {
-    // try {
-    //   const response = await fetch(
-    //     `/api/buyer/submissions/${selectedSubmission.id}/${confirmAction}`,
-    //     {
-    //       method: 'POST',
-    //     }
-    //   );
-    //   if (!response.ok) {
-    //     throw new Error(`Failed to ${confirmAction} submission`);
-    //   }
-    //   // Update local state
-    //   setSubmissions(
-    //     submissions.filter((sub) => sub.id !== selectedSubmission.id)
-    //   );
-    //   // Refresh stats
-    //   const statsResponse = await fetch('/api/buyer/stats');
-    //   if (statsResponse.ok) {
-    //     const updatedStats = await statsResponse.json();
-    //     setStats(updatedStats);
-    //   }
-    //   setShowConfirmModal(false);
-    // } catch (err) {
-    //   setError(err.message);
-    // }
+    try {
+      const res = await axiosSecure.patch(`/${confirmAction}-submission`, {
+        id: selectedSubmission._id,
+      });
+      if (res?.data?.success) {
+        buyerHomeRefetch();
+        toast.success(res?.data?.message);
+        setShowConfirmModal(false);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.response?.data?.message || err?.message);
+    }
   };
 
   if (isLoading) {
