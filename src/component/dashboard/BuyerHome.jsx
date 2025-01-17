@@ -3,44 +3,30 @@ import BuyerState from './buyer/BuyerState';
 import TaskToReviewTable from './buyer/TaskToReviewTable';
 import SubmissionModal from './buyer/SubmissionModal';
 import ConfirmationModal from './admin/ConfirmationModal';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
 
 export default function BuyerHome() {
-  const [stats, setStats] = useState(null);
-  const [submissions, setSubmissions] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [selectedSubmission, setSelectedSubmission] = useState(null);
   const [showSubmissionModal, setShowSubmissionModal] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [confirmAction, setConfirmAction] = useState(null);
-
-  useEffect(() => {
-    fetchBuyerData();
-  }, []);
+  const axiosSecure = useAxiosSecure();
 
   const fetchBuyerData = async () => {
-    try {
-      setIsLoading(true);
-      const [statsResponse, submissionsResponse] = await Promise.all([
-        fetch('/api/buyer/stats'),
-        fetch('/api/buyer/submissions'),
-      ]);
-
-      if (!statsResponse.ok || !submissionsResponse.ok) {
-        throw new Error('Failed to fetch buyer data');
-      }
-
-      const statsData = await statsResponse.json();
-      const submissionsData = await submissionsResponse.json();
-
-      setStats(statsData);
-      setSubmissions(submissionsData);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
+    const resposne = await axiosSecure.get('/buyer-states');
+    return resposne?.data;
   };
+  const {
+    isError,
+    error,
+    isLoading,
+    data: buyer_data = [],
+    refetch: buyerHomeRefetch,
+  } = useQuery({
+    queryKey: ['buyer-state'],
+    queryFn: fetchBuyerData,
+  });
 
   const handleViewSubmission = (submission) => {
     setSelectedSubmission(submission);
@@ -60,34 +46,30 @@ export default function BuyerHome() {
   };
 
   const confirmSubmissionAction = async () => {
-    try {
-      const response = await fetch(
-        `/api/buyer/submissions/${selectedSubmission.id}/${confirmAction}`,
-        {
-          method: 'POST',
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`Failed to ${confirmAction} submission`);
-      }
-
-      // Update local state
-      setSubmissions(
-        submissions.filter((sub) => sub.id !== selectedSubmission.id)
-      );
-
-      // Refresh stats
-      const statsResponse = await fetch('/api/buyer/stats');
-      if (statsResponse.ok) {
-        const updatedStats = await statsResponse.json();
-        setStats(updatedStats);
-      }
-
-      setShowConfirmModal(false);
-    } catch (err) {
-      setError(err.message);
-    }
+    // try {
+    //   const response = await fetch(
+    //     `/api/buyer/submissions/${selectedSubmission.id}/${confirmAction}`,
+    //     {
+    //       method: 'POST',
+    //     }
+    //   );
+    //   if (!response.ok) {
+    //     throw new Error(`Failed to ${confirmAction} submission`);
+    //   }
+    //   // Update local state
+    //   setSubmissions(
+    //     submissions.filter((sub) => sub.id !== selectedSubmission.id)
+    //   );
+    //   // Refresh stats
+    //   const statsResponse = await fetch('/api/buyer/stats');
+    //   if (statsResponse.ok) {
+    //     const updatedStats = await statsResponse.json();
+    //     setStats(updatedStats);
+    //   }
+    //   setShowConfirmModal(false);
+    // } catch (err) {
+    //   setError(err.message);
+    // }
   };
 
   if (isLoading) {
@@ -98,7 +80,7 @@ export default function BuyerHome() {
     );
   }
 
-  if (error) {
+  if (isError) {
     return (
       <div className='flex h-[60vh] flex-col items-center justify-center text-center'>
         <svg
@@ -115,17 +97,17 @@ export default function BuyerHome() {
           />
         </svg>
         <h2 className='mt-4 text-xl font-semibold'>Error loading buyer data</h2>
-        <p className='mt-2 text-gray-600'>{error}</p>
+        <p className='mt-2 text-gray-600'>{error.message}</p>
       </div>
     );
   }
-
+  console.log(buyer_data);
   return (
     <div className='container mx-auto px-4 py-8'>
       <h1 className='mb-6 text-2xl font-bold'>Buyer Dashboard</h1>
-      <BuyerState stats={stats} />
+      <BuyerState stats={buyer_data?.states} />
       <TaskToReviewTable
-        submissions={submissions}
+        submissions={buyer_data?.submissions}
         onViewSubmission={handleViewSubmission}
         onApproveSubmission={handleApproveSubmission}
         onRejectSubmission={handleRejectSubmission}

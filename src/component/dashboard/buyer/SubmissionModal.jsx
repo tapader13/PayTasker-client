@@ -13,7 +13,10 @@ export default function SubmissionModal({ isOpen, onClose, submission }) {
           </h3>
           <div className='mt-2 px-7 py-3'>
             <p className='text-sm text-gray-500 mb-1'>
-              <strong>Worker:</strong> {submission.worker_name}
+              <strong>Worker Name:</strong> {submission.worker_name}
+            </p>
+            <p className='text-sm text-gray-500 mb-1'>
+              <strong>Buyer Name:</strong> {submission.buyer_name}
             </p>
             <p className='text-sm text-gray-500 mb-1'>
               <strong>Task:</strong> {submission.task_title}
@@ -23,10 +26,10 @@ export default function SubmissionModal({ isOpen, onClose, submission }) {
             </p>
             <p className='text-sm text-gray-500 mb-1'>
               <strong>Submission Date:</strong>{' '}
-              {new Date(submission.submission_date).toLocaleString()}
+              {new Date(submission.current_date).toLocaleString()}
             </p>
             <p className='text-sm text-gray-500 mt-4'>
-              <strong>Details:</strong>
+              <strong>Submission Details:</strong>
             </p>
             <p className='text-sm text-gray-700 mt-1'>
               {submission.submission_details}

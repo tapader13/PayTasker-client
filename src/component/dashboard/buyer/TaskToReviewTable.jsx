@@ -4,6 +4,7 @@ export default function TaskToReviewTable({
   onApproveSubmission,
   onRejectSubmission,
 }) {
+  console.log(submissions);
   return (
     <div className='mt-8'>
       <h2 className='text-xl font-semibold mb-4'>Tasks to Review</h2>
@@ -26,7 +27,7 @@ export default function TaskToReviewTable({
             </tr>
           </thead>
           <tbody className='divide-y divide-gray-200'>
-            {submissions.map((submission) => (
+            {submissions?.map((submission) => (
               <tr key={submission.id}>
                 <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
                   {submission.worker_name}
