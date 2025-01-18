@@ -23,7 +23,9 @@ const Login = () => {
     loginUser(data.email, data.password)
       .then(() => {
         toast.success('Login successful');
-        navigate('/dashboard');
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, 1000);
       })
       .catch((error) => {
         setLoading(false);
