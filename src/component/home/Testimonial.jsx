@@ -71,7 +71,7 @@ const Testimonial = () => {
         </h2>
         <div>
           <Swiper
-            slidesPerView={3}
+            slidesPerView={1}
             spaceBetween={30}
             //   centeredSlides={true}
             pagination={{
@@ -79,6 +79,11 @@ const Testimonial = () => {
             }}
             modules={[Pagination]}
             className='mySwiper'
+            breakpoints={{
+              426: { slidesPerView: 2 },
+              // 768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
           >
             {testimonials.map((testimonial, index) => (
               <SwiperSlide key={index}>
