@@ -13,7 +13,7 @@ import {
   Wallet,
 } from 'lucide-react';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router';
 import useUserInfo from '../../hooks/useUserInfo';
 import Footer from '../footer/Footer';
@@ -45,13 +45,65 @@ const navigationItems = {
     { name: 'Manage Tasks', href: '/dashboard/manage-tasks', icon: Settings },
   ],
 };
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
+import useAuth from '../../hooks/useAuth';
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(true);
   const { userInfo } = useUserInfo();
   const loc = useLocation();
+  const { user } = useAuth();
   const pathname = loc?.pathname;
   const items = userInfo?.role ? navigationItems[userInfo?.role] : [];
+  const axiosSecure = useAxiosSecure();
 
+  const fetchNotification = async () => {
+    const res = await axiosSecure.get('/notifications');
+    return res?.data?.data;
+  };
+  const { data: notifications = [] } = useQuery({
+    queryKey: ['notifications'],
+    queryFn: fetchNotification,
+    // enabled: !!user?.email,
+  });
+  const handleBellClick = () => {
+    if (notifications.length === 0) {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'info',
+        title: 'No new notifications',
+        showConfirmButton: false,
+        timer: 2000, // Auto-close after 2 seconds
+      });
+      return;
+    }
+
+    const notificationMessages = notifications
+      .map(
+        (notification) =>
+          `<div style="text-align: left; margin-bottom: 8px;">
+            <p><strong>${notification.message}</strong></p>
+            <p style="color: gray; font-size: 12px;">${new Date(
+              notification.time
+            ).toLocaleString()}</p>
+          </div>`
+      )
+      .join('');
+
+    Swal.fire({
+      title: 'Notifications',
+      html: `<div style="max-height: 200px; overflow-y: auto;">${notificationMessages}</div>`,
+      showConfirmButton: false,
+      timer: 4000, // Auto-close after 4 seconds
+      position: 'top-end',
+      background: '#fff',
+      width: '300px',
+      customClass: {
+        popup: 'swal-notification-popup',
+      },
+    });
+  };
   console.log(userInfo, 1, items);
   console.log(isOpen);
   return (
@@ -89,13 +141,24 @@ const Dashboard = () => {
               {userInfo.name}
             </p>
           </div>
-
+          <div className='relative'>
+            <button
+              onClick={handleBellClick}
+              className='relative rounded-full p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+            >
+              <Bell className='h-6 w-6' />
+              {notifications.length > 0 && (
+                <span className='absolute right-1 top-1 h-2 w-2 rounded-full bg-red-500' />
+              )}
+              <span className='sr-only'>Notifications</span>
+            </button>
+          </div>
           {/* Notification Bell */}
-          <button className='relative rounded-full p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500'>
+          {/* <button className='relative rounded-full p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500'>
             <Bell className='h-6 w-6' />
             <span className='absolute right-1 top-1 h-2 w-2 rounded-full bg-red-500' />
             <span className='sr-only'>Notifications</span>
-          </button>
+          </button> */}
         </div>
       </div>
       <div className='flex'>
