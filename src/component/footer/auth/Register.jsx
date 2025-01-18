@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import useAuth from './../../../hooks/useAuth';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 const Register = () => {
   const {
     register,
@@ -276,6 +276,9 @@ const Register = () => {
           </svg>
           Sign in with Google
         </button>
+        <span className='mt-6 block text-center text-sm text-gray-500'>
+          Already have an account? <Link to='/login'>Login</Link>
+        </span>
       </div>
     </div>
   );

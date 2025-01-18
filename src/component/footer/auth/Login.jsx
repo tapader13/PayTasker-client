@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 const Login = () => {
   const { signInWithGoogle, loginUser } = useAuth();
   const {
@@ -169,6 +169,9 @@ const Login = () => {
           </svg>
           Sign in with Google
         </button>
+        <span className='mt-6 block text-center text-sm text-gray-500'>
+          Don&apos;t have an account? <Link to='/register'>Sign up</Link>
+        </span>
       </div>
       ;
     </div>
