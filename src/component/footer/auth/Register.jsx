@@ -1,20 +1,58 @@
-import { Eye, EyeOff, Loader2 } from 'lucide-react';
+import { Eye, EyeOff, Loader2, Upload } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
-import useAuth from './../../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
 import { Link, useNavigate } from 'react-router';
+
 const Register = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
   const { signUpUser, updateProfileUser, signInWithGoogle } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [imagePreview, setImagePreview] = useState(null);
   const axiosPublic = useAxiosPublic();
+
+  const uploadImage = async (file) => {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+      const response = await fetch(
+        `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_API_IMGBB_KEY
+        }`,
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
+      const data = await response.json();
+      return data.data.url;
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      throw error;
+    }
+  };
+
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImagePreview(URL.createObjectURL(file));
+      try {
+        const imageUrl = await uploadImage(file);
+        setValue('profilePicture', imageUrl);
+      } catch (error) {
+        toast.error('Failed to upload image. Please try again.');
+      }
+    }
+  };
   const navigate = useNavigate();
   const handleRegister = async (data) => {
     console.log(data);
@@ -63,6 +101,7 @@ const Register = () => {
         toast.error(error?.response?.data?.message || error?.message);
       });
   };
+
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then(async (val) => {
@@ -93,6 +132,7 @@ const Register = () => {
         toast.error(error?.message);
       });
   };
+
   return (
     <div>
       <div className='mx-auto max-w-md space-y-6 p-6'>
@@ -109,7 +149,6 @@ const Register = () => {
             </label>
             <input
               type='text'
-              name='name'
               {...register('name', { required: 'Name is required' })}
               className={`mt-1 block w-full rounded-md border px-3 py-2 text-sm ${
                 errors.name ? 'border-red-500' : 'border-gray-300'
@@ -129,7 +168,6 @@ const Register = () => {
             </label>
             <input
               type='email'
-              name='email'
               {...register('email', {
                 required: 'Email is required',
                 pattern: {
@@ -148,26 +186,36 @@ const Register = () => {
             )}
           </div>
 
-          {/* Profile Picture URL Field */}
+          {/* Profile Picture Upload */}
           <div>
             <label className='block text-sm font-medium text-gray-700'>
-              Profile Picture URL
+              Profile Picture
             </label>
-            <input
-              type='url'
-              name='profilePicture'
-              {...register('profilePicture', {
-                required: 'profile picture is required',
-                pattern: {
-                  value:
-                    /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)$/,
-                  message: 'Invalid URL',
-                },
-              })}
-              className={`mt-1 block w-full rounded-md border px-3 py-2 text-sm ${
-                errors.profilePicture ? 'border-red-500' : 'border-gray-300'
-              }`}
-            />
+            <div className='mt-1 flex items-center'>
+              <input
+                type='file'
+                accept='image/*'
+                onChange={handleImageChange}
+                className='hidden'
+                id='profile-picture-upload'
+              />
+              <label
+                htmlFor='profile-picture-upload'
+                className='cursor-pointer rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+              >
+                <Upload className='mr-2 inline-block h-5 w-5' />
+                Upload Image
+              </label>
+              {imagePreview && (
+                <div className='ml-4'>
+                  <img
+                    src={imagePreview || '/placeholder.svg'}
+                    alt='Profile Preview'
+                    className='rounded-full h-12 w-12 object-cover'
+                  />
+                </div>
+              )}
+            </div>
             {errors.profilePicture && (
               <p className='mt-1 text-sm text-red-500'>
                 {errors.profilePicture?.message}
@@ -183,7 +231,6 @@ const Register = () => {
             <div className='relative'>
               <input
                 type={showPassword ? 'text' : 'password'}
-                name='password'
                 {...register('password', {
                   required: 'Password is required',
                   minLength: {
@@ -225,7 +272,6 @@ const Register = () => {
               I want to
             </label>
             <select
-              name='role'
               {...register('role', { required: 'Role is required' })}
               defaultValue='worker'
               className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
@@ -277,7 +323,7 @@ const Register = () => {
           Sign in with Google
         </button>
         <span className='mt-6 block text-center text-sm text-gray-500'>
-          Already have an account? <Link to='/login'>Login</Link>
+          Already have an account? <Link href='/login'>Login</Link>
         </span>
       </div>
     </div>
