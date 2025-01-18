@@ -10,10 +10,16 @@
 }
 
 .carousel-slider {
-    height: 90vh;
+    height: 90vh !important;
 }
 
 .thumbs-wrapper>ul>li>img {
     height: 7vh;
     object-fit: cover;
+}
+
+@media (max-width: 480px) {
+    .carousel-slider {
+        max-height: 60vh !important;
+    }
 }

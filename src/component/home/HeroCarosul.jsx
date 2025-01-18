@@ -26,8 +26,12 @@ const HeroCarosul = () => {
       <Carousel showArrows={true}>
         {objectCar.map((item, index) => (
           <div key={index} className='relative'>
-            <img src={item.image} alt={item.name} />
-            <div className='absolute top-0 left-0 w-full h-[90vh] bg-black bg-opacity-50 flex flex-col items-center justify-center text-white text-3xl font-bold'>
+            <img
+              className='w-full h-[60vh] md:h-[90vh] object-cover'
+              src={item.image}
+              alt={item.name}
+            />
+            <div className='absolute top-0 left-0 w-full h-[60vh] md:h-[90vh] bg-black bg-opacity-50 flex flex-col items-center justify-center text-white text-3xl font-bold'>
               <h1 className='mb-4 inline-block rounded-full bg-white/10 px-6 py-2 backdrop-blur-sm text-lg font-medium'>
                 {item.name}
               </h1>
