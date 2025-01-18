@@ -16,6 +16,7 @@ import {
 import { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router';
 import useUserInfo from '../../hooks/useUserInfo';
+import Footer from '../footer/Footer';
 const navigationItems = {
   worker: [
     { name: 'Home', href: '/dashboard', icon: Home },
@@ -152,9 +153,12 @@ const Dashboard = () => {
         <div
           className={`${
             isOpen ? 'ml-64' : 'ml-20'
-          } px-4 w-full mt-16 py-8 lg:px-8`}
+          }  w-full mt-16  flex flex-col min-h-screen`}
         >
-          <Outlet />
+          <div className='px-4 flex-1 py-8 lg:px-8'>
+            <Outlet />
+          </div>
+          <Footer />
         </div>
       </div>
     </div>
