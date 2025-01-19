@@ -128,9 +128,9 @@ const Dashboard = () => {
           PayTasker
         </Link>
 
-        <div className='ml-auto flex items-center gap-4'>
+        <div className='ml-auto  flex items-center gap-4'>
           {/* Profile Image & Role (Always in Header) */}
-          <div className='flex items-center gap-2'>
+          <div className='flex lg:hidden items-center gap-2'>
             <img
               src={userInfo.profilePicture}
               alt={userInfo.name}
@@ -140,7 +140,27 @@ const Dashboard = () => {
               {userInfo.role}
             </p>
           </div>
-
+          <div className='hidden lg:flex flex-col items-end'>
+            <div className='flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5'>
+              <span className='text-sm font-medium text-gray-600'>
+                Available Coins:
+              </span>
+              <span className='font-bold text-[#00838C]'>{userInfo.coins}</span>
+            </div>
+            <p className='text-xs mt-1 hidden sm:block text-gray-500 capitalize'>
+              {userInfo.role}
+            </p>
+          </div>
+          <div className='hidden lg:flex flex-col justify-center gap-2'>
+            <img
+              src={userInfo.profilePicture}
+              alt={userInfo.name}
+              className='h-6 w-6 rounded-full'
+            />
+            <p className='text-sm uppercase font-medium text-gray-900'>
+              {userInfo.name}
+            </p>
+          </div>
           {/* Notification Bell */}
           <div className='relative'>
             <button
@@ -160,7 +180,7 @@ const Dashboard = () => {
       {/* Sidebar for Large Screens */}
       <nav
         className={`hidden lg:flex fixed bottom-0 left-0 top-16 z-40 bg-white transition-all duration-300 ${
-          isOpen ? 'w-64' : 'w-20'
+          isOpen ? 'lg:w-64 lg:bg-orange-500' : 'lg:w-20 lg:bg-orange-500'
         }`}
       >
         <button
