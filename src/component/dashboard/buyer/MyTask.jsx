@@ -6,6 +6,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import useUserInfo from '../../../hooks/useUserInfo';
+import { Loader2 } from 'lucide-react';
 
 const MyTask = () => {
   const [selectedTask, setSelectedTask] = useState(null);
@@ -57,7 +58,12 @@ const MyTask = () => {
       toast.error(err?.response?.data?.message);
     }
   };
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className='flex h-[60vh] items-center justify-center'>
+        <Loader2 className='h-10 w-10 animate-spin text-tertiary' />
+      </div>
+    );
   return (
     <div>
       <div className='container mx-auto px-4 py-8'>
