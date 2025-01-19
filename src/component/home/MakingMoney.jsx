@@ -7,15 +7,15 @@ const MakingMoney = () => {
         <h2 className='mb-12 text-center text-3xl font-extrabold text-gray-900 md:text-4xl'>
           Making money online is easy with PayTasker surveys
         </h2>
-        <div className='flex gap-12 sm:flex-row flex-col'>
-          <div className='sm:w-1/2'>
+        <div className='flex gap-12 lg:flex-row flex-col'>
+          <div className='lg:w-1/2'>
             <img
               className='h-[73vh] w-full'
               src='/public/Survimo-is-a-great-way-to-make-money-online-2.jpg'
               alt=''
             />
           </div>
-          <div className='sm:w-1/2 text-[18px] leading-10 flex flex-col justify-between'>
+          <div className='lg:w-1/2 text-[18px] leading-10 flex flex-col justify-between'>
             <p>
               Earning money online from PayTasker Micro Task is easy and fun. We
               offer a free lifetime membership to all. Anyone can join and earn
