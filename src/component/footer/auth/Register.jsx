@@ -36,7 +36,7 @@ const Register = () => {
       const data = await response.json();
       return data.data.url;
     } catch (error) {
-      console.error('Error uploading image:', error);
+      // console.error('Error uploading image:', error);
       throw error;
     }
   };
@@ -55,7 +55,7 @@ const Register = () => {
   };
   const navigate = useNavigate();
   const handleRegister = async (data) => {
-    console.log(data);
+    // console.log(data);
     const manipulateData = { ...data };
     if (data.role === 'worker') {
       manipulateData.coins = 10;
@@ -79,7 +79,7 @@ const Register = () => {
                 navigate('/dashboard');
               }
             } catch (error) {
-              console.log(error);
+              // console.log(error);
               toast.error(
                 error?.response?.data?.message || error.response?.message
               );
@@ -88,7 +88,7 @@ const Register = () => {
             }
           })
           .catch((error) => {
-            console.log(error);
+            // console.log(error);
             setLoading(false);
             toast.error(
               error?.response?.data?.message || error.response?.message
@@ -97,7 +97,7 @@ const Register = () => {
       })
       .catch((error) => {
         setLoading(false);
-        console.log(error);
+        // console.log(error);
         toast.error(error?.response?.data?.message || error?.message);
       });
   };
@@ -119,7 +119,7 @@ const Register = () => {
             navigate('/dashboard');
           }
         } catch (error) {
-          console.log(error);
+          // console.log(error);
           toast.error(
             error?.response?.data?.message || error.response?.message
           );
@@ -128,7 +128,7 @@ const Register = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         toast.error(error?.message);
       });
   };

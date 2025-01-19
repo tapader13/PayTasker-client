@@ -7,7 +7,7 @@ export default function Withdrawals() {
   //     fetchWorkerData();
   //   }, []);
   const { userInfo } = useUserInfo();
-  console.log(userInfo, 1);
+  // console.log(userInfo, 1);
 
   //   if (isLoading) {
   //     return (

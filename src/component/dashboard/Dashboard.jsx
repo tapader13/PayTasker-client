@@ -72,7 +72,7 @@ const Dashboard = () => {
     queryFn: fetchNotification,
   });
   const handleBellClick = () => {
-    console.log(notifications);
+    // console.log(notifications);
     if (notifications.length === 0) {
       Swal.fire({
         position: 'top-end',

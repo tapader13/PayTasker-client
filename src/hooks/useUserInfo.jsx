@@ -18,7 +18,7 @@ const useUserInfo = () => {
       axiosPublic.get('/users/' + isLoggedIn?.email).then((res) => res.data),
     enabled: !!isLoggedIn?.email,
   });
-  console.log(user, 56);
+  // console.log(user, 56);
   return { userInfo: user, loading: isLoading, refetchUser: refetch };
   // useEffect(() => {
   //   const getUser = async () => {

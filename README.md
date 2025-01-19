@@ -4,11 +4,11 @@ Welcome to the Micro-Task and Earning Platform! This platform allows users to co
 
 ## Live Site URL
 
-- [Live Site URL](https://your-live-site.com)
+- [Live Site URL](https://as12-ea931.web.app)
 
 ## Admin Credentials
 
-**Admin Username:** <admin@example.com>  
+**Admin Username:** <admin@example.com>
 **Admin Password:** 1234qQ
 
 ## Features of the Website

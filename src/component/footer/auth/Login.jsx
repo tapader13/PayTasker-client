@@ -17,7 +17,7 @@ const Login = () => {
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const handleLogin = async (data) => {
-    console.log(data);
+    // console.log(data);
 
     setLoading(true);
     loginUser(data.email, data.password)
@@ -29,7 +29,7 @@ const Login = () => {
       })
       .catch((error) => {
         setLoading(false);
-        console.log(error);
+        // console.log(error);
         toast.error(error?.response?.data?.message || error?.message);
       });
   };
@@ -51,7 +51,7 @@ const Login = () => {
             navigate('/dashboard');
           }
         } catch (error) {
-          console.log(error);
+          // console.log(error);
           toast.error(
             error?.response?.data?.message || error.response?.message
           );
@@ -60,7 +60,7 @@ const Login = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         toast.error(error?.message);
       });
   };

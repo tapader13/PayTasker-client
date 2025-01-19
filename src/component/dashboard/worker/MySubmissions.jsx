@@ -15,7 +15,7 @@ export default function MySubmissionsPage() {
   useEffect(() => {
     fetchSubmissions();
   }, [currentPage]);
-  console.log(currentPage);
+  // console.log(currentPage);
   const fetchSubmissions = async () => {
     try {
       setIsLoading(true);
@@ -33,7 +33,7 @@ export default function MySubmissionsPage() {
       setIsLoading(false);
     }
   };
-  console.log(submissions, totalPages, 'complete');
+  // console.log(submissions, totalPages, 'complete');
   const getStatusColor = (status) => {
     switch (status) {
       case 'pending':

@@ -39,7 +39,7 @@ const AddNewTask = () => {
       );
       setValue('task_image_url', response.data?.data?.display_url);
     } catch (error) {
-      console.error('Error uploading image:', error);
+      // console.error('Error uploading image:', error);
       toast.error('Failed to upload image. Please try again.');
     } finally {
       setIsUploading(false);
@@ -73,7 +73,7 @@ const AddNewTask = () => {
       }
       //   router.push('/dashboard/my-tasks');
     } catch (error) {
-      console.error('Error creating task:', error);
+      // console.error('Error creating task:', error);
       toast.error(
         error?.response?.data?.message ||
           'Failed to create task. Please try again.'

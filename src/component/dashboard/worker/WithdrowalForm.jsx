@@ -21,7 +21,7 @@ export default function WithdrowalForm({
     setCoinsToWithdraw(coins);
     setWithdrawalAmount((coins / 20 || 0).toFixed(2));
   };
-  console.log(coinsToWithdraw, withdrawalAmount);
+  // console.log(coinsToWithdraw, withdrawalAmount);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);

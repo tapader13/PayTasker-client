@@ -23,7 +23,7 @@ export default function AdminHome() {
     queryKey: 'adminData',
     queryFn: fetchAdminData,
   });
-  console.log(adminData, 78);
+  // console.log(adminData, 78);
 
   const handleApprovePayment = async (requestId, coin, worker_email) => {
     try {
@@ -39,7 +39,7 @@ export default function AdminHome() {
         toast.success(response?.data?.message);
       }
     } catch (err) {
-      console.error('Error approving withdrawal:', err);
+      // console.error('Error approving withdrawal:', err);
       toast.error(err?.response?.data?.message);
     }
   };

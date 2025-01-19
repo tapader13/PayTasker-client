@@ -14,7 +14,7 @@ const useTasks = () => {
     queryFn: () => axiosSecure.get('/tasks').then((res) => res.data?.data),
     enabled: !!isLoggedIn?.email,
   });
-  console.log(tasks, 'tasks');
+  // console.log(tasks, 'tasks');
   return { tasks, loading: isLoading, refetchTasks: refetch };
 };
 

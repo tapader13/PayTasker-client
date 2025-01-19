@@ -39,10 +39,10 @@ const CheckoutForm = () => {
         price: price,
       })
       .then((response) => {
-        console.log(
-          'Payment intent client secret from server:',
-          response.data?.clientSecret
-        );
+        // console.log(
+        //   'Payment intent client secret from server:',
+        //   response.data?.clientSecret
+        // );
         setClientSecret(response.data?.clientSecret);
       });
   }, [axiosSecure, price]);

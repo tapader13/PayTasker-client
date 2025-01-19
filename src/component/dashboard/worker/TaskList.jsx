@@ -29,7 +29,7 @@ export default function TaskList() {
   const currentTasks = tasks.slice(indexOfFirstTask, indexOfLastTask);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  console.log(tasks);
+  // console.log(tasks);
   if (isLoading) {
     return (
       <div className='flex h-[60vh] items-center justify-center'>

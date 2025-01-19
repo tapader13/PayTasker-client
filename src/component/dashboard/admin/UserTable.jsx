@@ -3,7 +3,7 @@ import useUserInfo from '../../../hooks/useUserInfo';
 export default function UserTable({ users, onRemoveUser, onUpdateRole }) {
   const { userInfo: loginUser } = useUserInfo();
   const roles = ['Admin', 'Buyer', 'Worker'];
-  console.log(users);
+  // console.log(users);
   return (
     <div className='overflow-x-auto'>
       <table className='min-w-full bg-white border border-gray-300'>

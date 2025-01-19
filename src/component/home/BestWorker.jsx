@@ -25,7 +25,7 @@ export default function BestWorker() {
       setIsLoading(false);
     }
   };
-  console.log(workers, 567);
+  // console.log(workers, 567);
   if (isLoading) {
     return (
       <div className='flex h-[60vh] items-center justify-center'>

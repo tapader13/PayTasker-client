@@ -14,7 +14,7 @@ export default function TaskDetailsPage() {
   useEffect(() => {
     fetchTaskDetails();
   }, [taskId]);
-  console.log(taskId);
+  // console.log(taskId);
   const fetchTaskDetails = async () => {
     try {
       setIsLoading(true);
@@ -60,7 +60,7 @@ export default function TaskDetailsPage() {
       </div>
     );
   }
-  console.log(task);
+  // console.log(task);
   return (
     <div className='container mx-auto px-4 py-8'>
       <h1 className='mb-6 text-3xl font-bold'>{task.task_title}</h1>

@@ -4,7 +4,7 @@ export default function TaskToReviewTable({
   onApproveSubmission,
   onRejectSubmission,
 }) {
-  console.log(submissions);
+  // console.log(submissions);
   return (
     <div className='mt-8'>
       <h2 className='text-xl font-semibold mb-4'>Tasks to Review</h2>
