@@ -180,12 +180,12 @@ const Dashboard = () => {
       {/* Sidebar for Large Screens */}
       <nav
         className={`hidden lg:flex fixed bottom-0 left-0 top-16 z-40 bg-white transition-all duration-300 ${
-          isOpen ? 'lg:w-64 lg:bg-orange-500' : 'lg:w-20 lg:bg-orange-500'
+          isOpen ? 'lg:w-64 ' : 'lg:w-20 '
         }`}
       >
         <button
           onClick={() => setIsOpen((prevState) => !prevState)}
-          className='absolute -right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-500 shadow-md hover:bg-gray-50'
+          className='absolute z-10 -right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-500 shadow-md hover:bg-gray-50'
         >
           {isOpen ? (
             <ChevronLeft className='h-5 w-5' />
@@ -206,7 +206,7 @@ const Dashboard = () => {
         </div>
 
         {/* Navigation Items */}
-        <div className='h-full border-r p-4'>
+        <div className='h-full space-y-1 w-full border-r p-4'>
           {items?.map((item) => (
             <Link
               key={item.name}
@@ -270,8 +270,12 @@ const Dashboard = () => {
       )}
 
       {/* Main Content */}
-      <div className={`w-full mt-16 ${isOpen ? 'lg:ml-64' : 'lg:ml-20'}`}>
-        <div className='px-4 py-8 lg:px-8'>
+      <div
+        className={`w-full mt-16 flex flex-col min-h-screen ${
+          isOpen ? 'lg:ml-64' : 'lg:ml-20'
+        }`}
+      >
+        <div className='px-4  flex-1 py-8 lg:px-8'>
           <Outlet />
         </div>
         <Footer />
