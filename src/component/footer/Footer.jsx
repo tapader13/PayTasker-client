@@ -18,7 +18,7 @@ export default function Footer() {
           <div className='flex space-x-6'>
             {/* LinkedIn */}
             <a
-              href='https://www.linkedin.com/your-profile'
+              href='https://www.linkedin.com/in/minhaj-uddin-5b1a20338/'
               target='_blank'
               rel='noopener noreferrer'
               className='text-gray-400 hover:text-tertiary'
@@ -29,7 +29,7 @@ export default function Footer() {
 
             {/* Facebook */}
             <a
-              href='https://www.facebook.com/your-profile'
+              href='https://www.facebook.com/muhammad.minhaj.799316'
               target='_blank'
               rel='noopener noreferrer'
               className='text-gray-400 hover:text-tertiary'
@@ -40,7 +40,7 @@ export default function Footer() {
 
             {/* GitHub */}
             <a
-              href='https://github.com/your-profile'
+              href='https://github.com/tapader13'
               target='_blank'
               rel='noopener noreferrer'
               className='text-gray-400 hover:text-tertiary'
