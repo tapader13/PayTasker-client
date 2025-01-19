@@ -50,7 +50,7 @@ export default function UserTable({ users, onRemoveUser, onUpdateRole }) {
                 <>
                   {/* Show message across all three fields if logged-in admin */}
                   <td
-                    colSpan={4}
+                    colSpan={3}
                     className='px-6 py-4 text-sm text-gray-900 font-semibold text-center'
                   >
                     It&apos;s currently logged in as admin
@@ -81,9 +81,7 @@ export default function UserTable({ users, onRemoveUser, onUpdateRole }) {
                   <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
                     {user.coins}
                   </td>
-                  <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
-                    {/* Other field (if needed) */}
-                  </td>
+
                   <td className='px-6 py-4 whitespace-nowrap text-sm font-medium'>
                     <button
                       onClick={() => onRemoveUser(user)}
