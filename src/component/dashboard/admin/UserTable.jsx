@@ -45,32 +45,55 @@ export default function UserTable({ users, onRemoveUser, onUpdateRole }) {
               <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
                 {user.email}
               </td>
-              <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
-                <select
-                  value={user.role}
-                  onChange={(e) => onUpdateRole(user._id, e.target.value)}
-                  className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-                >
-                  {roles.map((role) => (
-                    <option key={role} value={role.toLowerCase()}>
-                      {role}
-                    </option>
-                  ))}
-                </select>
-              </td>
-              <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
-                {user.coins}
-              </td>
-              <td className='px-6 py-4 whitespace-nowrap text-sm font-medium'>
-                {user.role !== 'admin' && loginUser.email !== user.email && (
-                  <button
-                    onClick={() => onRemoveUser(user)}
-                    className='text-red-600 hover:text-red-900 focus:outline-none focus:underline'
+
+              {user.role === 'admin' && loginUser.email === user.email ? (
+                <>
+                  {/* Show message across all three fields if logged-in admin */}
+                  <td
+                    colSpan={4}
+                    className='px-6 py-4 text-sm text-gray-900 font-semibold text-center'
                   >
-                    Remove
-                  </button>
-                )}
-              </td>
+                    It&apos;s currently logged in as admin
+                  </td>
+                </>
+              ) : (
+                <>
+                  {/* Role Selection Field */}
+                  <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
+                    {!(
+                      user.role === 'admin' && loginUser.email === user.email
+                    ) && (
+                      <select
+                        value={user.role}
+                        onChange={(e) => onUpdateRole(user._id, e.target.value)}
+                        className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                      >
+                        {roles.map((role) => (
+                          <option key={role} value={role.toLowerCase()}>
+                            {role}
+                          </option>
+                        ))}
+                      </select>
+                    )}
+                  </td>
+
+                  {/* Normal fields for other users */}
+                  <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
+                    {user.coins}
+                  </td>
+                  <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
+                    {/* Other field (if needed) */}
+                  </td>
+                  <td className='px-6 py-4 whitespace-nowrap text-sm font-medium'>
+                    <button
+                      onClick={() => onRemoveUser(user)}
+                      className='text-red-600 hover:text-red-900 focus:outline-none focus:underline'
+                    >
+                      Remove
+                    </button>
+                  </td>
+                </>
+              )}
             </tr>
           ))}
         </tbody>

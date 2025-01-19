@@ -11,7 +11,7 @@ const MakingMoney = () => {
           <div className='lg:w-1/2'>
             <img
               className='h-[73vh] w-full'
-              src='/public/Survimo-is-a-great-way-to-make-money-online-2.jpg'
+              src='/Survimo-is-a-great-way-to-make-money-online-2.jpg'
               alt=''
             />
           </div>

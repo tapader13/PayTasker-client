@@ -4,19 +4,19 @@ const objectCar = [
   {
     name: 'Find Expert Freelancers',
     description: 'Get any task done, quickly and efficiently',
-    image: '/public/agnieszka-boeske-ky0ljKGar78-unsplash.jpg',
+    image: '/agnieszka-boeske-ky0ljKGar78-unsplash.jpg',
   },
   {
     name: 'Earn Money Your Way',
     description:
       'Join thousands of freelancers making money on their own terms',
-    image: '/public/hanvin-cheong-dUGwH0jO-Ck-unsplash.jpg',
+    image: '/hanvin-cheong-dUGwH0jO-Ck-unsplash.jpg',
   },
   {
     name: 'Safe & Secure Platform',
     description:
       'Protected payments and verified professionals at your service',
-    image: '/public/my-profit-tutor-ZfRWq1bRisE-unsplash.jpg',
+    image: '/my-profit-tutor-ZfRWq1bRisE-unsplash.jpg',
   },
 ];
 const HeroCarosul = () => {

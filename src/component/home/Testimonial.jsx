@@ -11,7 +11,7 @@ const testimonials = [
     role: 'Marketing Specialist',
     quote:
       'This platform is perfect for earning cash in my free time. The tasks are quick, simple, and the payments are always on time.',
-    avatar: '/public/my-profit-tutor-ZfRWq1bRisE-unsplash.jpg',
+    avatar: '/my-profit-tutor-ZfRWq1bRisE-unsplash.jpg',
     rating: 4,
   },
   {
@@ -19,7 +19,7 @@ const testimonials = [
     role: 'Web Developer',
     quote:
       "The platform is intuitive, and I’ve been able to complete tasks effortlessly. It's a fantastic way to use my downtime productively.",
-    avatar: '/public/images.jpeg',
+    avatar: '/images.jpeg',
     rating: 5,
   },
   {
@@ -27,7 +27,7 @@ const testimonials = [
     role: 'Content Writer',
     quote:
       'The micro-tasks here align perfectly with my skills. I can work whenever I want, and the earnings add up quickly.',
-    avatar: '/public/images (4).jpeg',
+    avatar: '/images (4).jpeg',
     rating: 4,
   },
   {
@@ -35,7 +35,7 @@ const testimonials = [
     role: 'SEO Expert',
     quote:
       'This platform has helped me earn extra money by taking on quick tasks. It’s easy to use, and the payouts are reliable.',
-    avatar: '/public/images (3).jpeg',
+    avatar: '/images (3).jpeg',
     rating: 5,
   },
   {
@@ -43,7 +43,7 @@ const testimonials = [
     role: 'UX/UI Designer',
     quote:
       'I’ve found tasks that are exciting and match my expertise. The extra income has been a huge bonus for me.',
-    avatar: '/public/images (2).jpeg',
+    avatar: '/images (2).jpeg',
     rating: 5,
   },
   {
@@ -51,7 +51,7 @@ const testimonials = [
     role: 'Virtual Assistant',
     quote:
       'This platform makes it easy to earn by completing tasks on my own schedule. I love the flexibility it offers.',
-    avatar: '/public/images (1).jpeg',
+    avatar: '/images (1).jpeg',
     rating: 4,
   },
 ];
