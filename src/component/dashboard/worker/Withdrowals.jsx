@@ -12,7 +12,7 @@ export default function Withdrawals() {
   //   if (isLoading) {
   //     return (
   //       <div className='flex h-[60vh] items-center justify-center'>
-  //         <Loader2 className='h-10 w-10 animate-spin text-[#00838C]' />
+  //         <Loader2 className='h-10 w-10 animate-spin text-tertiary' />
   //       </div>
   //     );
   //   }
@@ -40,13 +40,13 @@ export default function Withdrawals() {
           <div className='flex items-center justify-between'>
             <div>
               <p className='text-sm text-gray-600'>Available Coins</p>
-              <p className='text-2xl font-bold text-[#00838C]'>
+              <p className='text-2xl font-bold text-tertiary'>
                 {userInfo?.coins}
               </p>
             </div>
             <div>
               <p className='text-sm text-gray-600'>Withdrawal Amount</p>
-              <p className='text-2xl font-bold text-[#00838C]'>
+              <p className='text-2xl font-bold text-tertiary'>
                 <DollarSign className='mr-1 inline h-6 w-6' />
                 {withdrawalAmount}
               </p>

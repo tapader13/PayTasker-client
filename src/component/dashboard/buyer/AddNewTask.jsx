@@ -173,7 +173,7 @@ const AddNewTask = () => {
                 <span className='text-sm font-medium text-gray-700'>
                   Total Cost:
                 </span>
-                <span className='text-lg font-bold text-[#00838C]'>
+                <span className='text-lg font-bold text-tertiary'>
                   {totalCost} coins
                 </span>
               </div>
@@ -267,7 +267,7 @@ const AddNewTask = () => {
             <button
               type='submit'
               disabled={isSubmitting}
-              className='w-full rounded-md bg-[#00838C] py-2 text-sm font-semibold text-white transition-colors hover:bg-[#006d75] disabled:bg-gray-400'
+              className='w-full rounded-md bg-tertiary py-2 text-sm font-semibold text-white transition-colors hover:bg-tertiaryhover disabled:bg-gray-400'
             >
               {isSubmitting ? (
                 <Loader2 className='mx-auto h-5 w-5 animate-spin' />

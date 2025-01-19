@@ -22,7 +22,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
               onClick={() => onPageChange(index + 1)}
               className={`flex items-center justify-center w-10 h-10 rounded-full text-sm font-medium transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00838C] ${
                 currentPage === index + 1
-                  ? 'bg-[#00838C] text-white'
+                  ? 'bg-tertiary text-white'
                   : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-100'
               }`}
               aria-label={`Page ${index + 1}`}

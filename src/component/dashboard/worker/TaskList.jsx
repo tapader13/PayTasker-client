@@ -33,7 +33,7 @@ export default function TaskList() {
   if (isLoading) {
     return (
       <div className='flex h-[60vh] items-center justify-center'>
-        <Loader2 className='h-10 w-10 animate-spin text-[#00838C]' />
+        <Loader2 className='h-10 w-10 animate-spin text-tertiary' />
       </div>
     );
   }
@@ -73,14 +73,14 @@ export default function TaskList() {
                   Deadline:{' '}
                   {moment(new Date(task.completion_date)).format('MMM d, YYYY')}
                 </p>
-                <p className='mb-2 text-sm font-medium text-[#00838C]'>
+                <p className='mb-2 text-sm font-medium text-tertiary'>
                   Reward: {task.payable_amount} coins
                 </p>
                 <p className='mb-4 text-sm text-gray-600'>
                   Workers needed: {task.required_workers}
                 </p>
                 <Link to={`/dashboard/task/${task._id}`}>
-                  <button className='w-full rounded-md bg-[#00838C] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#006d75]'>
+                  <button className='w-full rounded-md bg-tertiary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-tertiaryhover'>
                     View Details
                   </button>
                 </Link>
@@ -96,7 +96,7 @@ export default function TaskList() {
                   onClick={() => paginate(index + 1)}
                   className={`mx-1 rounded-md px-3 py-1 ${
                     currentPage === index + 1
-                      ? 'bg-[#00838C] text-white'
+                      ? 'bg-tertiary text-white'
                       : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                   }`}
                 >

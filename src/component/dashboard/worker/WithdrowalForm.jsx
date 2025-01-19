@@ -138,7 +138,7 @@ export default function WithdrowalForm({
         <button
           type='submit'
           disabled={isSubmitting}
-          className='inline-flex w-full items-center justify-center rounded-md bg-[#00838C] px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-[#006d75] focus:outline-none focus:ring-2 focus:ring-[#00838C] focus:ring-offset-2 disabled:bg-gray-400'
+          className='inline-flex w-full items-center justify-center rounded-md bg-tertiary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-tertiaryhover focus:outline-none focus:ring-2 focus:ring-[#00838C] focus:ring-offset-2 disabled:bg-gray-400'
         >
           {isSubmitting ? (
             <>

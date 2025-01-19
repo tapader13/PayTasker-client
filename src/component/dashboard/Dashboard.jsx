@@ -145,7 +145,7 @@ const Dashboard = () => {
               <span className='text-sm font-medium text-gray-600'>
                 Available Coins:
               </span>
-              <span className='font-bold text-[#00838C]'>{userInfo.coins}</span>
+              <span className='font-bold text-tertiary'>{userInfo.coins}</span>
             </div>
             <p className='text-xs mt-1 hidden sm:block text-gray-500 capitalize'>
               {userInfo.role}
@@ -198,7 +198,7 @@ const Dashboard = () => {
         <div className='sm:hidden flex flex-col items-center py-4'>
           <div className='flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5'>
             <span className='text-sm font-medium text-gray-600'>Coins:</span>
-            <span className='font-bold text-[#00838C]'>{userInfo.coins}</span>
+            <span className='font-bold text-tertiary'>{userInfo.coins}</span>
           </div>
           <p className='text-sm mt-2 font-medium text-gray-900'>
             {userInfo.name}
@@ -213,7 +213,7 @@ const Dashboard = () => {
               to={item.href}
               className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                 pathname === item.href
-                  ? 'bg-[#00838C] text-white'
+                  ? 'bg-tertiary text-white'
                   : 'text-gray-700 hover:bg-gray-100'
               }`}
             >
@@ -246,7 +246,7 @@ const Dashboard = () => {
                 <span className='text-sm font-medium text-gray-600'>
                   Abailable Coins:
                 </span>
-                <span className='font-bold text-[#00838C]'>
+                <span className='font-bold text-tertiary'>
                   {userInfo.coins}
                 </span>
               </div>

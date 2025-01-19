@@ -29,7 +29,7 @@ export default function BestWorker() {
   if (isLoading) {
     return (
       <div className='flex h-[60vh] items-center justify-center'>
-        <Loader2 className='h-10 w-10 animate-spin text-[#00838C]' />
+        <Loader2 className='h-10 w-10 animate-spin text-tertiary' />
       </div>
     );
   }
@@ -70,7 +70,7 @@ export default function BestWorker() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className='group relative overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:shadow-xl'>
-                <div className='absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#00838C] transition-all duration-300 group-hover:scale-150'></div>
+                <div className='absolute -right-16 -top-16 h-40 w-40 rounded-full bg-tertiary transition-all duration-300 group-hover:scale-150'></div>
                 <div className='relative h-64 overflow-hidden'>
                   <img
                     src={worker.profilePicture || '/placeholder-user.jpg'}
@@ -90,7 +90,7 @@ export default function BestWorker() {
                     {worker.email}
                   </p>
                   <div className='flex items-center justify-between'>
-                    <span className='flex items-center text-[#00838C]'>
+                    <span className='flex items-center text-tertiary'>
                       <Award className='mr-2 h-5 w-5' />
                       <span className='font-bold'>{worker.coins}</span> coins
                     </span>
@@ -138,7 +138,7 @@ export default function BestWorker() {
     //           <div className='p-4'>
     //             <h2 className='text-xl font-semibold mb-2'>{worker.name}</h2>
     //             <p className='text-gray-600'>
-    //               <span className='font-bold text-[#00838C]'>
+    //               <span className='font-bold text-tertiary'>
     //                 {worker.coins}
     //               </span>{' '}
     //               coins

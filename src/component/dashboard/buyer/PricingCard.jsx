@@ -21,13 +21,13 @@ export default function PricingCard() {
           }`}
         >
           {plan.popular && (
-            <div className='absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#00838C] px-3 py-1 text-xs font-semibold text-white'>
+            <div className='absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-tertiary px-3 py-1 text-xs font-semibold text-white'>
               Most Popular
             </div>
           )}
 
           <div className='text-center'>
-            <Coins className='mx-auto h-8 w-8 text-[#00838C]' />
+            <Coins className='mx-auto h-8 w-8 text-tertiary' />
             <h3 className='mt-4 text-3xl font-bold'>{plan.coins}</h3>
             <p className='text-sm text-gray-500'>coins</p>
           </div>
@@ -42,7 +42,7 @@ export default function PricingCard() {
           <Link
             to={`/dashboard/payment?coins=${plan.coins}&price=${plan.price}`}
           >
-            <button className='mt-6 w-full rounded-lg bg-[#00838C] px-4 py-2 text-white transition-colors hover:bg-[#006d75] disabled:bg-gray-400'>
+            <button className='mt-6 w-full rounded-lg bg-tertiary px-4 py-2 text-white transition-colors hover:bg-tertiaryhover disabled:bg-gray-400'>
               {'Purchase Now'}
             </button>
           </Link>
