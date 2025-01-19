@@ -118,7 +118,7 @@ const Dashboard = () => {
       <div className='fixed left-0 right-0 top-0 z-50 flex h-16 items-center border-b bg-white px-4'>
         {/* Mobile Menu Button */}
         <button
-          className='sm:hidden mr-4 text-gray-700'
+          className='lg:hidden mr-4 text-gray-700'
           onClick={() => setIsMobileOpen(true)}
         >
           <Menu className='w-6 h-6' />
@@ -159,7 +159,7 @@ const Dashboard = () => {
 
       {/* Sidebar for Large Screens */}
       <nav
-        className={`hidden sm:flex fixed bottom-0 left-0 top-16 z-40 bg-white transition-all duration-300 ${
+        className={`hidden lg:flex fixed bottom-0 left-0 top-16 z-40 bg-white transition-all duration-300 ${
           isOpen ? 'w-64' : 'w-20'
         }`}
       >
@@ -250,7 +250,7 @@ const Dashboard = () => {
       )}
 
       {/* Main Content */}
-      <div className={`w-full mt-16 ${isOpen ? 'sm:ml-64' : 'sm:ml-20'}`}>
+      <div className={`w-full mt-16 ${isOpen ? 'lg:ml-64' : 'lg:ml-20'}`}>
         <div className='px-4 py-8 lg:px-8'>
           <Outlet />
         </div>
