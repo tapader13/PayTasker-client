@@ -25,6 +25,7 @@ import Withdrawals from './component/dashboard/worker/Withdrowals';
 import ManageUser from './component/dashboard/admin/ManageUser';
 import PrivateAdminRoute from './private/PrivateAdminRoute';
 import ManageTask from './component/dashboard/admin/ManageTask';
+import ErrorPage from './component/ErrorPage';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -149,6 +150,10 @@ const router = createBrowserRouter([
       //   element: <WorkerHome />,
       // },
     ],
+  },
+  {
+    path: '*',
+    element: <ErrorPage />,
   },
 ]);
 const queryClient = new QueryClient();
