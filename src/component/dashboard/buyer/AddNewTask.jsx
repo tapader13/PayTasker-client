@@ -38,8 +38,9 @@ const AddNewTask = () => {
           headers: { 'Content-Type': 'multipart/form-data' },
         }
       );
+      console.log(response, 111);
       if (response?.status === 200 && response?.data?.data?.display_url) {
-        setValue('task_image_url', response.data.data.display_url);
+        setValue('task_image_url', response?.data?.data?.display_url);
         toast.success('Image uploaded successfully!');
       } else {
         // Handle unexpected response structure or missing data
