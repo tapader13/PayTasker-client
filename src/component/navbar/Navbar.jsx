@@ -117,7 +117,7 @@ export default function Navbar() {
 
           {/* Join as Developer Button */}
           <Link
-            to='https://github.com/tapader13'
+            to='https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-tapader13'
             target='_blank'
             className='flex items-center gap-2 rounded-md bg-tertiary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-tertiaryhover'
           >
@@ -193,7 +193,7 @@ export default function Navbar() {
           )}
 
           <Link
-            to='https://github.com/tapader13'
+            to='https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-tapader13'
             target='_blank'
             className='flex items-center gap-2 rounded-md bg-tertiary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-tertiaryhover'
           >
