@@ -151,6 +151,10 @@ const router = createBrowserRouter([
       // },
     ],
   },
+  {
+    path: '*',
+    element: <ErrorPage />,
+  },
 ]);
 const queryClient = new QueryClient();
 function App() {
