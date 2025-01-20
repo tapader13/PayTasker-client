@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://server-drab-nine.vercel.app',
+  baseURL: 'http://localhost:5001',
 });
 const useAxiosPublic = () => {
   return instance;

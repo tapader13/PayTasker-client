@@ -37,7 +37,14 @@ const AddNewTask = () => {
           headers: { 'Content-Type': 'multipart/form-data' },
         }
       );
-      setValue('task_image_url', response.data?.data?.display_url);
+      if (response?.status === 200 && response?.data?.data?.display_url) {
+        setValue('task_image_url', response.data.data.display_url);
+        toast.success('Image uploaded successfully!');
+      } else {
+        // Handle unexpected response structure or missing data
+        throw new Error('Invalid response from the image upload service.');
+      }
+      // setValue('task_image_url', response.data?.data?.display_url);
     } catch (error) {
       // console.error('Error uploading image:', error);
       toast.error('Failed to upload image. Please try again.');
