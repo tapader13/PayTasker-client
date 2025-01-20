@@ -12,6 +12,7 @@ const AddNewTask = () => {
     handleSubmit,
     setValue,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
   const [isUploading, setIsUploading] = useState(false);
@@ -77,6 +78,7 @@ const AddNewTask = () => {
       if (res?.data?.success) {
         toast.success(res?.data?.message);
         refetchUser();
+        reset();
       }
       //   router.push('/dashboard/my-tasks');
     } catch (error) {
