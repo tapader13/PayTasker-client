@@ -5,6 +5,7 @@ import useUserInfo from '../../../hooks/useUserInfo';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { useNavigate } from 'react-router';
 
 const AddNewTask = () => {
   const {
@@ -41,7 +42,9 @@ const AddNewTask = () => {
       console.log(response, 111);
       if (response?.status === 200 && response?.data?.data?.display_url) {
         setValue('task_image_url', response?.data?.data?.display_url);
-        toast.success('Image uploaded successfully!');
+        setTimeout(() => {
+          toast.success('Image uploaded successfully!');
+        }, 1000);
       } else {
         // Handle unexpected response structure or missing data
         throw new Error('Invalid response from the image upload service.');
@@ -54,13 +57,14 @@ const AddNewTask = () => {
       setIsUploading(false);
     }
   };
+  const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const onSubmit = async (data) => {
     const totalCost = data.required_workers * data.payable_amount;
 
     if (totalCost > userInfo?.coins) {
       toast.error('Not enough coins available. Please purchase more coins.');
-      //   router.push('/dashboard/purchase');
+      navigate('/dashboard/purchase');
       return;
     }
 

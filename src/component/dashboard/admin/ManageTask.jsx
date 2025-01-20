@@ -73,7 +73,7 @@ export default function ManageTask() {
         onClose={() => setShowConfirmModal(false)}
         onConfirm={confirmDeleteTask}
         title='Confirm Task Deletion'
-        message={`Are you sure you want to delete the task "${taskToDelete?.title}"?`}
+        message={`Are you sure you want to delete the task "${taskToDelete?.task_title}"?`}
       />
     </div>
   );

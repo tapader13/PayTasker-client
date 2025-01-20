@@ -97,7 +97,7 @@ export default function PaymentHistoryPage() {
       {/* Payment Table */}
       <div className='rounded-lg border bg-white'>
         <div className='overflow-x-auto'>
-          <table className='min-w-full divide-y divide-gray-200'>
+          <table className='min-w-full overflow-x-auto divide-y divide-gray-200'>
             <thead className='bg-gray-50'>
               <tr>
                 <th
