@@ -3,7 +3,7 @@ import useAuth from './useAuth';
 import { useNavigate } from 'react-router';
 
 const instance = axios.create({
-  baseURL: 'https://as12-ea931.web.app',
+  baseURL: 'https://server-drab-nine.vercel.app',
 });
 const useAxiosSecure = () => {
   const { logoutUser } = useAuth();

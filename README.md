@@ -4,7 +4,7 @@ Welcome to the Micro-Task and Earning Platform! This platform allows users to co
 
 ## Live Site URL
 
-- [Live Site URL](https://as12-ea931.web.app)
+- [Live Site URL](https://server-drab-nine.vercel.app)
 
 ## Admin Credentials
 
@@ -39,17 +39,19 @@ Welcome to the Micro-Task and Earning Platform! This platform allows users to co
   - Moment (for date and time formatting)
   - SweetAlert (for pop-up notifications)
   - Motion (for animation)
-  
 - **Backend**:
+
   - Node.js (for server-side logic)
   - Express.js (for building RESTful APIs)
   - MongoDB (for database storage)
   - JWT (for secure authentication)
 
 - **Authentication**:
+
   - Firebase Authentication (for user authentication via email/password and Google)
 
 - **Payment Integration**:
+
   - Stripe API (for purchasing coins)
 
 - **Notification System**:
