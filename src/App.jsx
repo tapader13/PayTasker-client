@@ -26,6 +26,7 @@ import ManageUser from './component/dashboard/admin/ManageUser';
 import PrivateAdminRoute from './private/PrivateAdminRoute';
 import ManageTask from './component/dashboard/admin/ManageTask';
 import ErrorPage from './component/ErrorPage';
+import Success from './component/Success';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />,
+      },
+      {
+        path: '/success',
+        element: <Success />,
       },
     ],
   },
