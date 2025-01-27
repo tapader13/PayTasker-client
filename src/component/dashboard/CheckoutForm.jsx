@@ -118,7 +118,7 @@ const CheckoutForm = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='border p-4' onSubmit={handleSubmit}>
       <CardElement
         options={{
           style: {
@@ -126,7 +126,7 @@ const CheckoutForm = () => {
               fontSize: '16px',
               color: '#424770',
               '::placeholder': {
-                color: '#aab7c4',
+                color: '#067a57',
               },
             },
             invalid: {
@@ -136,7 +136,7 @@ const CheckoutForm = () => {
         }}
       />
       <button
-        className='bg-[#BB8506] text-white px-4 py-2 mt-4'
+        className='bg-tertiary text-white px-4 py-2 mt-4'
         type='submit'
         disabled={!stripe || !clientSecret}
       >
