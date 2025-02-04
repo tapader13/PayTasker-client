@@ -136,12 +136,6 @@ Visit **[http://localhost:3000](http://localhost:3000)** to see the app in actio
 
 ---
 
-## 🔗 Live Demo & Resources  
-
-🚀 **Live Project:** [PayTasker Live](https://as12-ea931.web.app/)
-
----
-
 ## 🤝 Contributing  
 
 Contributions are welcome!  
