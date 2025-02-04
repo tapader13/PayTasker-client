@@ -8,7 +8,7 @@ Welcome to **PayTasker**, a micro-task and earning platform that enables users t
 
 ## 🔗 Live Demo  
 
-🌍 **Live Site:** [PayTasker Live](https://server-drab-nine.vercel.app)  
+🌍 **Live Site:** [PayTasker Live](https://as12-ea931.web.app/)  
 
 ---
 
@@ -104,8 +104,8 @@ Welcome to **PayTasker**, a micro-task and earning platform that enables users t
 
 ### 1️⃣ Clone the Repository  
 ```sh
-git clone https://github.com/yourusername/paytasker.git
-cd paytasker
+git clone https://github.com/tapader13/PayTasker.git
+cd PayTasker
 ```
 
 ### 2️⃣ Install Dependencies  
@@ -138,7 +138,7 @@ Visit **[http://localhost:3000](http://localhost:3000)** to see the app in actio
 
 ## 🔗 Live Demo & Resources  
 
-🚀 **Live Project:** [PayTasker Live](https://server-drab-nine.vercel.app)
+🚀 **Live Project:** [PayTasker Live](https://as12-ea931.web.app/)
 
 ---
 
