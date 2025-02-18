@@ -44,8 +44,8 @@ export function FeaturesCompare() {
   ];
 
   return (
-    <section className='w-full py-12 md:py-24 lg:py-32 bg-gray-50'>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+    <section className='w-full py-16 bg-gray-1000'>
+      <div className='w-full'>
         <div className='flex flex-col items-center justify-center space-y-4 text-center'>
           <div className='space-y-2'>
             <h2 className='text-3xl font-bold tracking-tighter sm:text-5xl'>

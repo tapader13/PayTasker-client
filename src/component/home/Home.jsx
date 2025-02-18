@@ -4,6 +4,7 @@ import FeaturesCompare from './FeaturesCompare';
 import HeroCarosul from './HeroCarosul';
 import MakingMoney from './MakingMoney';
 import Testimonial from './Testimonial';
+import TopPick from './TopPick';
 import Works from './Works';
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
     <div>
       <HeroCarosul />
       <BestWorker />
+      <TopPick />
       <Works />
       <FeaturesCompare />
       <CalculateEarning />
