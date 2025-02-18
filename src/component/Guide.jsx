@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import useUserInfo from '../hooks/useUserInfo';
-import { Link } from 'react-router';
+import { Link, Navigate } from 'react-router';
+import { NavLink } from 'react-router';
 
 const steps = {
   worker: [
@@ -32,7 +33,6 @@ const steps = {
 
 export default function Guide() {
   const { userInfo } = useUserInfo();
-  console.log(userInfo?.role, 'userInfo');
 
   const renderSteps = (role) => {
     return steps[role].map((step, index) => (
@@ -42,10 +42,13 @@ export default function Guide() {
       </div>
     ));
   };
+  if (!userInfo?.role) {
+    return <Navigate to={'/login'} replace />;
+  }
 
   return (
     <div className='bg-gray-50 min-h-screen'>
-      <main className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24'>
+      <main className='w-full lg:w-10/12 mx-auto  py-16 sm:py-24'>
         <div className='text-center'>
           <h1 className='text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl'>
             How to Use PayTasker
