@@ -30,7 +30,6 @@ import Success from './component/Success';
 import Fail from './component/Fail';
 import Cancel from './component/Cancel';
 import About from './component/About';
-import Privacy from './component/Privacy';
 import AllTask from './component/AllTask';
 const router = createBrowserRouter([
   {
@@ -42,12 +41,12 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/about',
-        element: <About />,
+        path: 'alltask',
+        element: <AllTask />,
       },
       {
-        path: '/privacy',
-        element: <Privacy />,
+        path: '/about',
+        element: <About />,
       },
       {
         path: '/register',
@@ -83,10 +82,7 @@ const router = createBrowserRouter([
         path: '',
         element: <DashboardHome />,
       },
-      {
-        path: 'alltask',
-        element: <AllTask />,
-      },
+
       {
         path: 'add-task',
         element: (
