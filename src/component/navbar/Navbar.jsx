@@ -22,7 +22,7 @@ export default function Navbar() {
         </Link>
         <div className='flex items-center gap-3'>
           {isLoggedIn && (
-            <button className='flex md:hidden h-8 w-8 overflow-hidden items-center justify-center rounded-full bg-gray-200 text-sm font-medium text-gray-600'>
+            <button className='flex xl:hidden h-8 w-8 overflow-hidden items-center justify-center rounded-full bg-gray-200 text-sm font-medium text-gray-600'>
               <img
                 className='h-full w-full'
                 src={isLoggedIn?.photoURL}
@@ -32,14 +32,14 @@ export default function Navbar() {
           )}
           {/* Mobile Menu Button */}
           <button
-            className='md:hidden flex items-center'
+            className='xl:hidden flex items-center'
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
         {/* Desktop Navigation */}
-        <div className='hidden  md:flex items-center gap-4'>
+        <div className='hidden  xl:flex items-center gap-4'>
           {/* Navigation for logged in users */}
           {isLoggedIn && (
             <Link
@@ -49,7 +49,14 @@ export default function Navbar() {
               Dashboard
             </Link>
           )}
-
+          {isLoggedIn && (
+            <Link
+              to='/alltask'
+              className='text-sm font-medium text-gray-600 transition-colors hover:text-tertiary'
+            >
+              All Task
+            </Link>
+          )}
           {/* Available Coins for logged in users */}
           {isLoggedIn && (
             <div className='flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5'>
@@ -146,7 +153,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className='md:hidden absolute top-16 left-0 w-full bg-white shadow-md px-6 py-4 flex flex-col gap-4'>
+        <div className='xl:hidden absolute top-16 left-0 w-full bg-white shadow-md px-6 py-4 flex flex-col gap-4'>
           {isLoggedIn && (
             <Link
               to='/dashboard'
@@ -154,6 +161,16 @@ export default function Navbar() {
               className='text-sm font-medium text-gray-600 transition-colors hover:text-tertiary'
             >
               Dashboard
+            </Link>
+          )}
+
+          {isLoggedIn && (
+            <Link
+              to='/alltask'
+              onClick={() => setIsMobileMenuOpen(false)}
+              className='text-sm font-medium text-gray-600 transition-colors hover:text-tertiary'
+            >
+              All Task
             </Link>
           )}
 

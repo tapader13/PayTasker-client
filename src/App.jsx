@@ -31,6 +31,7 @@ import Fail from './component/Fail';
 import Cancel from './component/Cancel';
 import About from './component/About';
 import Privacy from './component/Privacy';
+import AllTask from './component/AllTask';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
       {
         path: '',
         element: <DashboardHome />,
+      },
+      {
+        path: 'alltask',
+        element: <AllTask />,
       },
       {
         path: 'add-task',
