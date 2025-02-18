@@ -35,6 +35,7 @@ import Guide from './component/Guide';
 import Profile from './component/dashboard/Profile';
 import OverviewWorker from './component/dashboard/OverviewWorker';
 import OverviewBuyer from './component/dashboard/OverviewBuyer';
+import OverviewAdmin from './component/dashboard/OverviewAdmin';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -108,6 +109,14 @@ const router = createBrowserRouter([
           <PrivateBuyerRoute>
             <OverviewBuyer />
           </PrivateBuyerRoute>
+        ),
+      },
+      {
+        path: 'overviewadmin',
+        element: (
+          <PrivateAdminRoute>
+            <OverviewAdmin />
+          </PrivateAdminRoute>
         ),
       },
       {

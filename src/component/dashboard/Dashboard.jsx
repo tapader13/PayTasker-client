@@ -54,7 +54,7 @@ const navigationItems = {
   admin: [
     { name: 'Home', href: '/dashboard', icon: Home },
     { name: 'Profile', href: '/dashboard/profile', icon: Users },
-    { name: 'Overview', href: '/dashboard/overview', icon: FileText },
+    { name: 'Overview', href: '/dashboard/overviewadmin', icon: FileText },
     { name: 'Manage Users', href: '/dashboard/manage-users', icon: Users },
     { name: 'Manage Tasks', href: '/dashboard/manage-tasks', icon: Settings },
   ],
