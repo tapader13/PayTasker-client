@@ -27,6 +27,8 @@ import PrivateAdminRoute from './private/PrivateAdminRoute';
 import ManageTask from './component/dashboard/admin/ManageTask';
 import ErrorPage from './component/ErrorPage';
 import Success from './component/Success';
+import Fail from './component/Fail';
+import Cancel from './component/Cancel';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
       {
         path: '/success',
         element: <Success />,
+      },
+      {
+        path: '/fail',
+        element: <Fail />,
+      },
+      {
+        path: '/cancel',
+        element: <Cancel />,
       },
     ],
   },

@@ -1,5 +1,6 @@
 import BestWorker from './BestWorker';
 import CalculateEarning from './CalculateEarning';
+import FeaturesCompare from './FeaturesCompare';
 import HeroCarosul from './HeroCarosul';
 import MakingMoney from './MakingMoney';
 import Testimonial from './Testimonial';
@@ -11,6 +12,7 @@ const Home = () => {
       <HeroCarosul />
       <BestWorker />
       <Works />
+      <FeaturesCompare />
       <CalculateEarning />
       <MakingMoney />
       <Testimonial />
