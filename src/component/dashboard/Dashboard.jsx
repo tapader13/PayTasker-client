@@ -41,7 +41,7 @@ const navigationItems = {
   buyer: [
     { name: 'Home', href: '/dashboard', icon: Home },
     { name: 'Profile', href: '/dashboard/profile', icon: Users },
-    { name: 'Overview', href: '/dashboard/overview', icon: FileText },
+    { name: 'Overview', href: '/dashboard/overviewbuyer', icon: FileText },
     { name: 'Add New Tasks', href: '/dashboard/add-task', icon: PlusCircle },
     { name: "My Task's", href: '/dashboard/my-tasks', icon: ListTodo },
     { name: 'Purchase Coin', href: '/dashboard/purchase', icon: ShoppingCart },

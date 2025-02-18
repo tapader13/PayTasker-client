@@ -34,6 +34,7 @@ import AllTask from './component/AllTask';
 import Guide from './component/Guide';
 import Profile from './component/dashboard/Profile';
 import OverviewWorker from './component/dashboard/OverviewWorker';
+import OverviewBuyer from './component/dashboard/OverviewBuyer';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -99,6 +100,14 @@ const router = createBrowserRouter([
           <PrivateWorkerRoute>
             <OverviewWorker />
           </PrivateWorkerRoute>
+        ),
+      },
+      {
+        path: 'overviewbuyer',
+        element: (
+          <PrivateBuyerRoute>
+            <OverviewBuyer />
+          </PrivateBuyerRoute>
         ),
       },
       {
