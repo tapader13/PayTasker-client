@@ -3,6 +3,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ClipboardList,
+  FileText,
   History,
   Home,
   ListTodo,
@@ -28,6 +29,7 @@ const navigationItems = {
   worker: [
     { name: 'Home', href: '/dashboard', icon: Home },
     { name: 'Profile', href: '/dashboard/profile', icon: Users },
+    { name: 'Overview', href: '/dashboard/overviewworker', icon: FileText },
     { name: 'Task List', href: '/dashboard/tasks', icon: ListTodo },
     {
       name: 'My Submissions',
@@ -39,6 +41,7 @@ const navigationItems = {
   buyer: [
     { name: 'Home', href: '/dashboard', icon: Home },
     { name: 'Profile', href: '/dashboard/profile', icon: Users },
+    { name: 'Overview', href: '/dashboard/overview', icon: FileText },
     { name: 'Add New Tasks', href: '/dashboard/add-task', icon: PlusCircle },
     { name: "My Task's", href: '/dashboard/my-tasks', icon: ListTodo },
     { name: 'Purchase Coin', href: '/dashboard/purchase', icon: ShoppingCart },
@@ -51,6 +54,7 @@ const navigationItems = {
   admin: [
     { name: 'Home', href: '/dashboard', icon: Home },
     { name: 'Profile', href: '/dashboard/profile', icon: Users },
+    { name: 'Overview', href: '/dashboard/overview', icon: FileText },
     { name: 'Manage Users', href: '/dashboard/manage-users', icon: Users },
     { name: 'Manage Tasks', href: '/dashboard/manage-tasks', icon: Settings },
   ],

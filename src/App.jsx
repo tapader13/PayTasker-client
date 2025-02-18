@@ -33,6 +33,7 @@ import About from './component/About';
 import AllTask from './component/AllTask';
 import Guide from './component/Guide';
 import Profile from './component/dashboard/Profile';
+import OverviewWorker from './component/dashboard/OverviewWorker';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -91,6 +92,14 @@ const router = createBrowserRouter([
       {
         path: 'profile',
         element: <Profile />,
+      },
+      {
+        path: 'overviewworker',
+        element: (
+          <PrivateWorkerRoute>
+            <OverviewWorker />
+          </PrivateWorkerRoute>
+        ),
       },
       {
         path: 'add-task',

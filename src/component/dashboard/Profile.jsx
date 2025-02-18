@@ -15,7 +15,7 @@ export default function Profile() {
   return (
     <div className='container mx-auto px-4 py-8'>
       <div className='bg-white p-6 rounded-lg shadow-lg'>
-        <div className='flex items-center space-x-6'>
+        <div className='flex items-center space-x-1 sm:space-x-6'>
           <img
             src={user.profilePicture}
             alt={user.name}
