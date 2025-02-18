@@ -2,6 +2,7 @@ import { ArrowRight } from 'lucide-react';
 import SectionWrapper from '../wrapper/SectionWrapper';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 
 export function TopPick() {
   const axiosPublic = useAxiosPublic();
@@ -23,10 +24,12 @@ export function TopPick() {
             <h2 className='text-left text-3xl font-bold text-gray-900 md:text-4xl '>
               Top Picks
             </h2>
-            {/* <button className='text-tertiary hover:text-tertiaryhover flex items-center focus:outline-none'>
-              View all
-              <ArrowRight className='ml-2 h-4 w-4' />
-            </button> */}
+            <Link to={'/alltask'}>
+              <button className='text-tertiary hover:text-tertiaryhover flex items-center focus:outline-none'>
+                View all
+                <ArrowRight className='ml-2 h-4 w-4' />
+              </button>
+            </Link>
           </div>
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pb-4'>
             {tasks?.map((pick) => (

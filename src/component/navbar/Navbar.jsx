@@ -15,7 +15,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   return (
     <header className='sticky top-0 z-50 w-full border-b bg-white'>
-      <div className='mx-auto w-full flex h-16 lg:w-10/12 items-center justify-between '>
+      <div className='mx-auto  flex h-16 w-10/12 items-center justify-between px-4 sm:px-6 lg:px-8'>
         {/* Logo */}
         <Link to='/' className='flex items-center'>
           <span className='text-2xl font-bold text-tertiary'>PayTasker</span>

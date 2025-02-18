@@ -33,7 +33,7 @@ const steps = {
 
 export default function Guide() {
   const { userInfo } = useUserInfo();
-
+  console.log(userInfo);
   const renderSteps = (role) => {
     return steps[role].map((step, index) => (
       <div key={index} className='flex items-start mt-4'>

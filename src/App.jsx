@@ -32,6 +32,7 @@ import Cancel from './component/Cancel';
 import About from './component/About';
 import AllTask from './component/AllTask';
 import Guide from './component/Guide';
+import Profile from './component/dashboard/Profile';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -87,7 +88,10 @@ const router = createBrowserRouter([
         path: '',
         element: <DashboardHome />,
       },
-
+      {
+        path: 'profile',
+        element: <Profile />,
+      },
       {
         path: 'add-task',
         element: (
