@@ -29,6 +29,7 @@ import ErrorPage from './component/ErrorPage';
 import Success from './component/Success';
 import Fail from './component/Fail';
 import Cancel from './component/Cancel';
+import About from './component/About';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/about',
+        element: <About />,
       },
       {
         path: '/register',

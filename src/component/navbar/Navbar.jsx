@@ -59,7 +59,24 @@ export default function Navbar() {
               <span className='font-bold text-tertiary'>{userCoins}</span>
             </div>
           )}
-
+          <Link
+            to='/'
+            className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+          >
+            Home
+          </Link>
+          <Link
+            to='/about'
+            className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+          >
+            About Us
+          </Link>
+          <Link
+            to='/privacy'
+            className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+          >
+            Privacy Policy
+          </Link>
           {/* Auth buttons for non-logged in users */}
           {!isLoggedIn && (
             <>
@@ -149,6 +166,27 @@ export default function Navbar() {
             </div>
           )}
 
+          <Link
+            to='/'
+            onClick={() => setIsMobileMenuOpen(false)}
+            className='block rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+          >
+            Home
+          </Link>
+          <Link
+            to='/about'
+            onClick={() => setIsMobileMenuOpen(false)}
+            className='block rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+          >
+            About Us
+          </Link>
+          <Link
+            to='/privacy'
+            onClick={() => setIsMobileMenuOpen(false)}
+            className='block rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+          >
+            Privacy Policy
+          </Link>
           {!isLoggedIn && (
             <>
               <Link

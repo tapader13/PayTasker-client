@@ -57,7 +57,7 @@ export default function BestWorker() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className='mb-12 text-center text-3xl font-bold text-gray-900 md:text-4xl'
+          className='mb-12 text-left text-3xl font-bold text-gray-900 md:text-4xl'
         >
           Our Top Performers
         </motion.h1>

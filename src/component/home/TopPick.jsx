@@ -1,102 +1,64 @@
 import { ArrowRight } from 'lucide-react';
 import SectionWrapper from '../wrapper/SectionWrapper';
-
-const topPicks = [
-  {
-    id: 1,
-    title: 'Surveys',
-    description: 'Share your opinion to earn',
-    icon: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-17%20224942-Um8sDyMucdJTpnUCh1eSBCwLe23KKA.png',
-    coins: '0.51',
-    amount: '$0.52',
-    bgColor: 'bg-purple-500',
-  },
-  {
-    id: 2,
-    title: 'Honeygain',
-    description: 'Share your spare internet',
-    icon: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-17%20224942-Um8sDyMucdJTpnUCh1eSBCwLe23KKA.png',
-    coins: '0.95',
-    amount: '$0.96',
-    bgColor: 'bg-blue-400',
-  },
-  {
-    id: 3,
-    title: 'Videos',
-    description: 'Watch videos & earn!',
-    icon: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-17%20224942-Um8sDyMucdJTpnUCh1eSBCwLe23KKA.png',
-    coins: '0.01978',
-    amount: '$0.02',
-    bgColor: 'bg-indigo-600',
-  },
-  {
-    id: 4,
-    title: 'World of Tanks',
-    description: 'Download World of Tanks',
-    icon: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-17%20224942-Um8sDyMucdJTpnUCh1eSBCwLe23KKA.png',
-    coins: '0.29',
-    amount: '$0.29',
-    bgColor: 'bg-gray-800',
-  },
-  {
-    id: 5,
-    title: 'Youtube',
-    description: 'Watch Youtube videos',
-    icon: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-17%20224942-Um8sDyMucdJTpnUCh1eSBCwLe23KKA.png',
-    coins: '0.07',
-    amount: '$0.07',
-    bgColor: 'bg-white',
-  },
-  {
-    id: 6,
-    title: 'Follow on X',
-    description: 'Follow projects on X (Twitter)',
-    icon: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-17%20224942-Um8sDyMucdJTpnUCh1eSBCwLe23KKA.png',
-    coins: '0.04',
-    amount: '$0.04',
-    bgColor: 'bg-cyan-400',
-  },
-];
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { useEffect, useState } from 'react';
 
 export function TopPick() {
+  const axiosPublic = useAxiosPublic();
+  const [tasks, setTasks] = useState([]);
+  const fetchTasks = async () => {
+    const res = await axiosPublic.get('/tasks-worker');
+    console.log(res, 45);
+    setTasks(res?.data?.data.slice(0, 3));
+  };
+  console.log(tasks, 12);
+  useEffect(() => {
+    fetchTasks();
+  }, []);
   return (
     <section className='w-full py-16 bg-gray-100'>
       <SectionWrapper>
         <div className='container mx-auto px-4 md:px-6'>
-          <div className='flex items-center justify-between mb-6'>
-            <h2 className='text-2xl font-bold text-white'>Top Picks</h2>
-            <button className='text-blue-400 hover:text-blue-300 flex items-center focus:outline-none'>
+          <div className='flex items-center justify-between mb-12'>
+            <h2 className='text-left text-3xl font-bold text-gray-900 md:text-4xl '>
+              Top Picks
+            </h2>
+            {/* <button className='text-tertiary hover:text-tertiaryhover flex items-center focus:outline-none'>
               View all
               <ArrowRight className='ml-2 h-4 w-4' />
-            </button>
+            </button> */}
           </div>
-          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 overflow-x-auto pb-4'>
-            {topPicks.map((pick) => (
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pb-4'>
+            {tasks?.map((pick) => (
               <div
                 key={pick.id}
-                className='bg-[#1a1d24] rounded-lg overflow-hidden hover:bg-[#22262f] transition-colors duration-200'
+                className='overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:shadow-xl'
               >
-                <div className='p-4'>
-                  <div className='aspect-square rounded-lg overflow-hidden mb-4'>
-                    <div
-                      className={`w-full h-full flex items-center justify-center ${pick.bgColor}`}
-                    >
+                <div className=''>
+                  <div className=''>
+                    <div className={` relative h-64 overflow-hidden`}>
                       <img
-                        src={pick.icon || '/placeholder.svg'}
-                        alt={pick.title}
-                        className='w-16 h-16 object-contain'
+                        src={pick.task_image_url || '/placeholder.svg'}
+                        alt={pick.task_title}
+                        className='h-full w-full object-cover transition-all duration-300 group-hover:scale-110'
                       />
                     </div>
                   </div>
-                  <h3 className='text-lg font-semibold text-white mb-1'>
-                    {pick.title}
-                  </h3>
-                  <p className='text-sm text-gray-400 mb-3 line-clamp-2'>
-                    {pick.description}
-                  </p>
-                  <div className='flex items-center space-x-2'>
-                    <span className='text-blue-400'>⟠ {pick.coins}</span>
-                    <span className='text-gray-500'>~{pick.amount}</span>
+                  <div className='p-6'>
+                    <h3 className='text-lg   mb-1  font-semibold text-gray-900'>
+                      {pick.task_title}
+                    </h3>
+                    <p className='text-sm text-gray-400 mb-3 line-clamp-2'>
+                      {pick.task_detail}
+                    </p>
+                    <div className='flex items-center space-x-2'>
+                      <span className='text-gray-500'>
+                        ⟠{pick.required_workers}
+                      </span>
+                      <span className='text-tertiary'>
+                        ~ ${pick.payable_amount}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
