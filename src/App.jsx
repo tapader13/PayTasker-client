@@ -30,6 +30,7 @@ import Success from './component/Success';
 import Fail from './component/Fail';
 import Cancel from './component/Cancel';
 import About from './component/About';
+import Privacy from './component/Privacy';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <About />,
+      },
+      {
+        path: '/privacy',
+        element: <Privacy />,
       },
       {
         path: '/register',
