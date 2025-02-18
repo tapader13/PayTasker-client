@@ -17,7 +17,7 @@ export default function CalculateEarning() {
       viewport={{ once: false, amount: 0.3 }}
       className=' py-16'
     >
-      <div className='container mx-auto px-4'>
+      <div className='w-10/12 mx-auto px-4 sm:px-6 lg:px-8'>
         <h2 className='mb-12 text-center text-3xl font-bold text-gray-900 md:text-4xl'>
           Calculate Your Potential Earnings
         </h2>

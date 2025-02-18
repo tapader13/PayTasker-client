@@ -64,7 +64,7 @@ const Testimonial = () => {
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: 'easeOut' }}
         viewport={{ once: false, amount: 0.3 }}
-        className=' py-16'
+        className='px-4 sm:px-6 lg:px-8 py-16'
       >
         <h2 className='mb-12 text-center text-3xl font-extrabold text-gray-900 md:text-4xl'>
           What Our Users Say

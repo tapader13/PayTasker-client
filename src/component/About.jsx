@@ -9,6 +9,8 @@ import {
   LayoutDashboard,
   Smartphone,
 } from 'lucide-react';
+import { Link } from 'react-router';
+import useAuth from '../hooks/useAuth';
 
 const features = [
   { icon: Users, text: 'Three distinct user roles: Worker, Buyer, and Admin' },
@@ -63,9 +65,10 @@ const roles = [
 ];
 
 export default function About() {
+  const { user } = useAuth();
   return (
     <div className='bg-gray-50 min-h-screen'>
-      <main className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24'>
+      <main className='w-10/12 mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24'>
         <div className='text-center'>
           <h1 className='text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl'>
             About PayTasker
@@ -140,13 +143,13 @@ export default function About() {
             to manage a thriving platform, PayTasker has a place for you.
           </p>
           <div className='mt-8'>
-            <a
-              href='/register'
+            <Link
+              to={`${user ? '/' : '/login'}`}
               className='inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-tertiary hover:bg-tertiaryhover'
             >
               Get Started
               <ArrowRight className='ml-2 -mr-1 h-5 w-5' />
-            </a>
+            </Link>
           </div>
         </div>
       </main>

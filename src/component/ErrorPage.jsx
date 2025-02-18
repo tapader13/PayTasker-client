@@ -1,4 +1,5 @@
 import { OctagonX } from 'lucide-react';
+import { Link } from 'react-router';
 
 const ErrorPage = () => {
   return (
@@ -9,6 +10,12 @@ const ErrorPage = () => {
         {' '}
         Sorry, the page you&apos;re looking for doesn&apos;t exist.
       </p>
+      <Link
+        to={'/'}
+        className='mt-4 px-6 py-2 text-sm font-medium text-white bg-red-500 hover:bg-red-600 rounded-md'
+      >
+        Go back to home
+      </Link>
     </div>
   );
 };

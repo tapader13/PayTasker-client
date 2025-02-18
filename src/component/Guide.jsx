@@ -48,7 +48,7 @@ export default function Guide() {
 
   return (
     <div className='bg-gray-50 min-h-screen'>
-      <main className='w-full lg:w-10/12 mx-auto  py-16 sm:py-24'>
+      <main className='w-10/12 mx-auto px-4 sm:px-6 lg:px-8  py-16 sm:py-24'>
         <div className='text-center'>
           <h1 className='text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl'>
             How to Use PayTasker
