@@ -51,10 +51,10 @@ export default function Navbar() {
           )}
           {isLoggedIn && (
             <Link
-              to='/alltask'
+              to='/guide'
               className='text-sm font-medium text-gray-600 transition-colors hover:text-tertiary'
             >
-              All Task
+              Guide
             </Link>
           )}
           {/* Available Coins for logged in users */}
@@ -167,11 +167,11 @@ export default function Navbar() {
 
           {isLoggedIn && (
             <Link
-              to='/alltask'
+              to='/guide'
               onClick={() => setIsMobileMenuOpen(false)}
               className='text-sm font-medium text-gray-600 transition-colors hover:text-tertiary'
             >
-              All Task
+              Guide
             </Link>
           )}
 

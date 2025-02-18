@@ -31,6 +31,7 @@ import Fail from './component/Fail';
 import Cancel from './component/Cancel';
 import About from './component/About';
 import AllTask from './component/AllTask';
+import Guide from './component/Guide';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register />,
+      },
+      {
+        path: '/guide',
+        element: <Guide />,
       },
       {
         path: '/login',
