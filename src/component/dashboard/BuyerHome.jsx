@@ -87,14 +87,16 @@ export default function BuyerHome() {
           />
         </svg>
         <h2 className='mt-4 text-xl font-semibold'>Error loading buyer data</h2>
-        <p className='mt-2 text-gray-600'>{error.message}</p>
+        <p className='mt-2 text-gray-600 dark:text-gray-300'>{error.message}</p>
       </div>
     );
   }
   // console.log(buyer_data);
   return (
     <div className='container mx-auto px-4 py-8'>
-      <h1 className='mb-6 text-2xl font-bold'>Buyer Dashboard</h1>
+      <h1 className='mb-6 text-2xl font-bold dark:text-white'>
+        Buyer Dashboard
+      </h1>
       <BuyerState stats={buyer_data?.states} />
       <TaskToReviewTable
         submissions={buyer_data?.submissions}

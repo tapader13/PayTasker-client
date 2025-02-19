@@ -72,19 +72,21 @@ export default function OverviewBuyer() {
 
   return (
     <div className='container mx-auto px-4 py-8'>
-      <h1 className='mb-6 text-2xl font-bold'>Buyer Dashboard Overview</h1>
+      <h1 className='mb-6 text-2xl font-bold dark:text-white'>
+        Buyer Dashboard Overview
+      </h1>
 
       <BuyerState stats={states} />
 
       <div className='grid gap-8 mt-8'>
-        <div className='bg-white p-6 rounded-lg shadow-md'>
-          <h3 className='text-sm font-medium text-gray-500 mb-4'>
+        <div className='bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md'>
+          <h3 className='text-sm font-medium text-gray-500 dark:text-gray-300 mb-4'>
             Data Visualization Guide for Buyers
           </h3>
           <ResponsiveContainer width='100%' height={300}>
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray='3 3' />
-              <XAxis dataKey='name' />
+              <XAxis tick={{ fill: 'red' }} dataKey='name' />
               <YAxis />
               <Tooltip />
               <Line type='monotone' dataKey='value' stroke='#00838C' />

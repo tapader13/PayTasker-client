@@ -62,57 +62,59 @@ export default function MySubmissionsPage() {
         <h2 className='mt-4 text-xl font-semibold'>
           Error loading submissions
         </h2>
-        <p className='mt-2 text-gray-600'>{error}</p>
+        <p className='mt-2 text-gray-600 dark:text-gray-400'>{error}</p>
       </div>
     );
   }
 
   return (
     <div className='container mx-auto px-4 py-8'>
-      <h1 className='mb-6 text-2xl font-bold'>My Submissions</h1>
+      <h1 className='mb-6 text-2xl font-bold dark:text-white'>
+        My Submissions
+      </h1>
       {submissions.length === 0 ? (
-        <div className='rounded-lg border border-gray-200 bg-white p-6 text-center'>
-          <p className='text-gray-600'>
+        <div className='rounded-lg border dark:bg-gray-950 border-gray-200 bg-white p-6 text-center'>
+          <p className='text-gray-600 dark:text-gray-300'>
             You haven&apos;t made any submissions yet.
           </p>
         </div>
       ) : (
         <>
-          <div className='overflow-x-auto rounded-lg border border-gray-200 bg-white'>
-            <table className='min-w-full divide-y divide-gray-200'>
-              <thead className='bg-gray-50'>
+          <div className='overflow-x-auto rounded-lg border border-gray-200 bg-white dark:bg-gray-700'>
+            <table className='min-w-full divide-y dark:divide-gray-600 divide-gray-200'>
+              <thead className='bg-gray-50 dark:bg-gray-400'>
                 <tr>
-                  <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'>
+                  <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300'>
                     Task Title
                   </th>
-                  <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'>
+                  <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300'>
                     Submission Date
                   </th>
-                  <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'>
+                  <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300'>
                     Reward
                   </th>
-                  <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'>
+                  <th className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300'>
                     Status
                   </th>
                 </tr>
               </thead>
-              <tbody className='divide-y divide-gray-200 bg-white'>
+              <tbody className='divide-y dark:divide-gray-600 divide-gray-200 dark:bg-gray-700 bg-white'>
                 {submissions.map((submission) => (
                   <tr key={submission.id}>
                     <td className='whitespace-nowrap px-6 py-4'>
-                      <div className='text-sm font-medium text-gray-900'>
+                      <div className='text-sm font-medium text-gray-900 dark:text-white'>
                         {submission.task_title}
                       </div>
                     </td>
                     <td className='whitespace-nowrap px-6 py-4'>
-                      <div className='text-sm text-gray-500'>
+                      <div className='text-sm dark:text-gray-300 text-gray-500'>
                         {moment(new Date(submission.current_date)).format(
                           'MMM d, yyyy'
                         )}
                       </div>
                     </td>
                     <td className='whitespace-nowrap px-6 py-4'>
-                      <div className='text-sm text-gray-900'>
+                      <div className='text-sm dark:text-white text-gray-900'>
                         {submission.payable_amount} coins
                       </div>
                     </td>

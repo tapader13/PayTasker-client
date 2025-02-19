@@ -46,7 +46,9 @@ const Payment = () => {
     <div className='max-w-xl space-y-20 mx-auto mt-10'>
       {' '}
       <div>
-        <h1 className='text-xl font-bold mb-5'>Payment Using Stripe</h1>
+        <h1 className='text-xl dark:text-white font-bold mb-5'>
+          Payment Using Stripe
+        </h1>
         <Elements stripe={stripePromise}>
           <CheckoutForm />
         </Elements>

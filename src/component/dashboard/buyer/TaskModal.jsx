@@ -22,14 +22,16 @@ const TaskModal = ({ isOpen, onClose, task, onUpdate }) => {
   return (
     <div className='fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none'>
       <div className='relative w-full mx-auto my-6 max-w-xl'>
-        <div className='relative flex w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none'>
+        <div className='relative flex w-full flex-col rounded-lg border-0 bg-white dark:bg-gray-950  shadow-lg outline-none focus:outline-none'>
           <div className='flex items-start justify-between rounded-t border-b border-solid border-gray-300 p-5'>
-            <h3 className='text-2xl font-semibold'>Update Task</h3>
+            <h3 className='text-2xl dark:text-white font-semibold'>
+              Update Task
+            </h3>
             <button
-              className='float-right ml-auto border-0 bg-transparent p-1 text-3xl font-semibold leading-none text-black opacity-5 outline-none focus:outline-none'
+              className='float-right ml-auto border-0 bg-transparent p-1 text-3xl font-semibold leading-none text-gray-800 opacity-5 outline-none focus:outline-none'
               onClick={onClose}
             >
-              <span className='block h-6 w-6 bg-transparent text-2xl text-black opacity-5 outline-none focus:outline-none'>
+              <span className='block h-6 w-6 bg-transparent text-2xl text-gray-800 opacity-5 outline-none focus:outline-none'>
                 ×
               </span>
             </button>
@@ -37,7 +39,7 @@ const TaskModal = ({ isOpen, onClose, task, onUpdate }) => {
           <form onSubmit={handleSubmit} className='relative flex-auto p-6'>
             <div className='mb-4'>
               <label
-                className='mb-2 block text-sm font-bold text-gray-700'
+                className='mb-2 block text-sm font-bold text-gray-700 dark:text-gray-300'
                 htmlFor='task_title'
               >
                 Title
@@ -48,13 +50,13 @@ const TaskModal = ({ isOpen, onClose, task, onUpdate }) => {
                 name='task_title'
                 value={updatedTask.task_title}
                 onChange={handleChange}
-                className='w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none'
+                className='w-full appearance-none rounded border px-3 py-2 leading-tight dark:bg-gray-700 dark:text-white text-gray-700 shadow focus:outline-none'
                 required
               />
             </div>
             <div className='mb-4'>
               <label
-                className='mb-2 block text-sm font-bold text-gray-700'
+                className='mb-2 block text-sm font-bold text-gray-700 dark:text-gray-300'
                 htmlFor='task_detail'
               >
                 Task Detail
@@ -64,14 +66,14 @@ const TaskModal = ({ isOpen, onClose, task, onUpdate }) => {
                 name='task_detail'
                 value={updatedTask.task_detail}
                 onChange={handleChange}
-                className='w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none'
+                className='w-full appearance-none rounded border px-3 py-2 leading-tight dark:bg-gray-700 dark:text-white text-gray-700 shadow focus:outline-none'
                 rows='4'
                 required
               ></textarea>
             </div>
             <div className='mb-4'>
               <label
-                className='mb-2 block text-sm font-bold text-gray-700'
+                className='mb-2 block text-sm font-bold text-gray-700 dark:text-gray-300'
                 htmlFor='submission_info'
               >
                 Submission Details
@@ -81,7 +83,7 @@ const TaskModal = ({ isOpen, onClose, task, onUpdate }) => {
                 name='submission_info'
                 value={updatedTask.submission_info}
                 onChange={handleChange}
-                className='w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none'
+                className='w-full appearance-none rounded border px-3 py-2 leading-tight dark:bg-gray-700 dark:text-white text-gray-700 shadow focus:outline-none'
                 rows='3'
                 required
               ></textarea>

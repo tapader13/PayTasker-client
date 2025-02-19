@@ -47,7 +47,7 @@ export default function TaskSubmissionForm({ taskInfo }) {
       <div>
         <label
           htmlFor='submission_details'
-          className='mb-2 block text-sm font-medium text-gray-700'
+          className='mb-2 block text-sm dark:text-gray-300 font-medium text-gray-700'
         >
           Submission Details
         </label>
@@ -55,7 +55,7 @@ export default function TaskSubmissionForm({ taskInfo }) {
           id='submission_details'
           name='submission_details'
           rows='6'
-          className='mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-[#00838C] focus:ring-[#00838C] sm:text-sm'
+          className='mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-600 dark:text-gray-300 shadow-sm focus:border-[#00838C] focus:ring-[#00838C] sm:text-sm'
           placeholder='Enter your submission details here...'
           value={submissionDetails}
           onChange={(e) => setSubmissionDetails(e.target.value)}

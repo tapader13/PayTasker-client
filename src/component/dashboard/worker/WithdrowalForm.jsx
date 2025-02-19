@@ -65,7 +65,7 @@ export default function WithdrowalForm({
       <div>
         <label
           htmlFor='coinsToWithdraw'
-          className='mb-2 block text-sm font-medium text-gray-700'
+          className='mb-2 block text-sm font-medium dark:text-gray-300 text-gray-700'
         >
           Coins to Withdraw
         </label>
@@ -76,14 +76,14 @@ export default function WithdrowalForm({
           onChange={handleCoinsChange}
           min={200}
           max={availableCoins}
-          className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-[#00838C] focus:outline-none focus:ring-1 focus:ring-[#00838C] sm:text-sm'
+          className='mt-1 block w-full dark:bg-gray-700 dark:text-white rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-[#00838C] focus:outline-none focus:ring-1 focus:ring-[#00838C] sm:text-sm'
           required
         />
       </div>
       <div>
         <label
           htmlFor='withdrawalAmount'
-          className='mb-2 block text-sm font-medium text-gray-700'
+          className='mb-2 block text-sm font-medium dark:text-gray-300 text-gray-700'
         >
           Withdrawal Amount ($)
         </label>
@@ -91,14 +91,14 @@ export default function WithdrowalForm({
           type='number'
           id='withdrawalAmount'
           value={withdrawalAmount}
-          className='mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 shadow-sm sm:text-sm'
+          className='mt-1 block w-full rounded-md border border-gray-300 dark:bg-gray-700 dark:text-white bg-gray-100 px-3 py-2 shadow-sm sm:text-sm'
           readOnly
         />
       </div>
       <div>
         <label
           htmlFor='paymentSystem'
-          className='mb-2 block text-sm font-medium text-gray-700'
+          className='mb-2 block text-sm dark:text-gray-300 font-medium text-gray-700'
         >
           Select Payment System
         </label>
@@ -106,7 +106,7 @@ export default function WithdrowalForm({
           id='paymentSystem'
           value={paymentSystem}
           onChange={(e) => setPaymentSystem(e.target.value)}
-          className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-[#00838C] focus:outline-none focus:ring-1 focus:ring-[#00838C] sm:text-sm'
+          className='mt-1 dark:bg-gray-700 dark:text-white block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-[#00838C] focus:outline-none focus:ring-1 focus:ring-[#00838C] sm:text-sm'
           required
         >
           <option value=''>Select a payment system</option>
@@ -120,7 +120,7 @@ export default function WithdrowalForm({
       <div>
         <label
           htmlFor='accountNumber'
-          className='mb-2 block text-sm font-medium text-gray-700'
+          className='mb-2 block dark:text-gray-300 text-sm font-medium text-gray-700'
         >
           Account Number
         </label>
@@ -129,7 +129,7 @@ export default function WithdrowalForm({
           id='accountNumber'
           value={accountNumber}
           onChange={(e) => setAccountNumber(e.target.value)}
-          className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-[#00838C] focus:outline-none focus:ring-1 focus:ring-[#00838C] sm:text-sm'
+          className='mt-1 dark:bg-gray-700 dark:text-white block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-[#00838C] focus:outline-none focus:ring-1 focus:ring-[#00838C] sm:text-sm'
           required
         />
       </div>

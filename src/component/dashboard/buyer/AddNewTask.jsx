@@ -101,16 +101,16 @@ const AddNewTask = () => {
       <div className='mx-auto max-w-3xl'>
         <h1 className='mb-6 text-2xl font-bold'>Create New Task</h1>
         <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
-          <div className='rounded-lg border bg-white p-6'>
+          <div className='rounded-lg border bg-white dark:bg-gray-800 p-6'>
             {/* Task Title */}
             <div className='mb-4'>
-              <label className='block text-sm font-medium text-gray-700'>
+              <label className='block text-sm font-medium text-gray-700 dark:text-gray-300'>
                 Task Title
               </label>
               <input
                 type='text'
                 {...register('task_title', { required: 'task title required' })}
-                className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
+                className='mt-1 block w-full rounded-md border border-gray-300 dark:bg-gray-700 dark:text-white px-3 py-2 text-sm'
                 placeholder='e.g., Watch my YouTube video and leave a comment'
               />
               {errors.task_title && (
@@ -122,7 +122,7 @@ const AddNewTask = () => {
 
             {/* Task Details */}
             <div className='mb-4'>
-              <label className='block text-sm font-medium text-gray-700'>
+              <label className='block text-sm font-medium text-gray-700 dark:text-gray-300'>
                 Task Details
               </label>
               <textarea
@@ -130,7 +130,7 @@ const AddNewTask = () => {
                   required: 'task details required',
                 })}
                 rows={4}
-                className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
+                className='mt-1 block w-full rounded-md border border-gray-300 dark:bg-gray-700 dark:text-white px-3 py-2 text-sm'
                 placeholder='Provide detailed instructions for the task'
               />
               {errors.task_detail && (
@@ -143,7 +143,7 @@ const AddNewTask = () => {
             {/* Required Workers & Payment */}
             <div className='mb-4 grid gap-4 sm:grid-cols-2'>
               <div>
-                <label className='block text-sm font-medium text-gray-700'>
+                <label className='block text-sm font-medium text-gray-700 dark:text-gray-300'>
                   Required Workers
                 </label>
                 <input
@@ -152,7 +152,7 @@ const AddNewTask = () => {
                     valueAsNumber: true,
                     required: 'worker is required',
                   })}
-                  className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
+                  className='mt-1 dark:bg-gray-700 dark:text-white block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
                 />
                 {errors.required_workers && (
                   <p className='mt-1 text-sm text-red-500'>
@@ -162,7 +162,7 @@ const AddNewTask = () => {
               </div>
 
               <div>
-                <label className='block text-sm font-medium text-gray-700'>
+                <label className='block text-sm font-medium text-gray-700 dark:text-gray-300'>
                   Payment per Worker (coins)
                 </label>
                 <input
@@ -171,7 +171,7 @@ const AddNewTask = () => {
                     valueAsNumber: true,
                     required: 'amount is required',
                   })}
-                  className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
+                  className='mt-1 dark:bg-gray-700 dark:text-white block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
                 />
                 {errors.payable_amount && (
                   <p className='mt-1 text-sm text-red-500'>
@@ -182,23 +182,23 @@ const AddNewTask = () => {
             </div>
 
             {/* Total Cost Display */}
-            <div className='mb-4 rounded-lg bg-gray-50 p-4'>
+            <div className='mb-4 rounded-lg bg-gray-50 dark:bg-gray-700 p-4'>
               <div className='flex items-center justify-between'>
-                <span className='text-sm font-medium text-gray-700'>
+                <span className='text-sm font-medium dark:text-gray-300 text-gray-700'>
                   Total Cost:
                 </span>
-                <span className='text-lg font-bold text-tertiary'>
+                <span className='text-lg font-bold dark:text-white text-tertiary'>
                   {totalCost} coins
                 </span>
               </div>
-              <div className='mt-1 text-xs text-gray-500'>
+              <div className='mt-1 text-xs dark:text-gray-300 text-gray-500'>
                 Your available balance: {userInfo?.coins} coins
               </div>
             </div>
 
             {/* Completion Date */}
             <div className='mb-4'>
-              <label className='block text-sm font-medium text-gray-700'>
+              <label className='block text-sm font-medium text-gray-700 dark:text-gray-300'>
                 Completion Date
               </label>
               <input
@@ -206,7 +206,7 @@ const AddNewTask = () => {
                 {...register('completion_date', {
                   required: 'date is required',
                 })}
-                className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
+                className='mt-1 block w-full rounded-md border border-gray-300 dark:bg-gray-700 dark:text-white px-3 py-2 text-sm'
               />
               {errors.completion_date && (
                 <p className='mt-1 text-sm text-red-500'>
@@ -217,7 +217,7 @@ const AddNewTask = () => {
 
             {/* Submission Info */}
             <div className='mb-4'>
-              <label className='block text-sm font-medium text-gray-700'>
+              <label className='block text-sm font-medium text-gray-700 dark:text-gray-300'>
                 Submission Requirements
               </label>
               <textarea
@@ -225,7 +225,7 @@ const AddNewTask = () => {
                   required: 'submission info required',
                 })}
                 rows={3}
-                className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
+                className='mt-1 block w-full rounded-md border border-gray-300 dark:bg-gray-700 dark:text-white px-3 py-2 text-sm'
                 placeholder='e.g., Provide a screenshot of your comment and your YouTube username'
               />
               {errors.submission_info && (
@@ -237,7 +237,7 @@ const AddNewTask = () => {
 
             {/* Image Upload */}
             <div className='mb-4'>
-              <label className='block text-sm font-medium text-gray-700'>
+              <label className='block text-sm font-medium text-gray-700 dark:text-gray-300'>
                 Task Image
               </label>
               <div className='mt-1 flex items-center gap-4'>
@@ -253,7 +253,7 @@ const AddNewTask = () => {
                 />
                 <label
                   htmlFor='image_upload'
-                  className='flex cursor-pointer items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50'
+                  className='flex cursor-pointer items-center gap-2 rounded-md border dark:text-gray-300 border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50'
                 >
                   {isUploading ? (
                     <Loader2 className='h-5 w-5 animate-spin' />

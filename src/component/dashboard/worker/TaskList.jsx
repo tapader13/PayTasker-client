@@ -50,7 +50,9 @@ export default function TaskList() {
 
   return (
     <div className='container mx-auto px-4 py-8'>
-      <h1 className='mb-6 text-2xl font-bold'>Available Tasks</h1>
+      <h1 className='mb-6 text-2xl font-bold dark:text-white'>
+        Available Tasks
+      </h1>
       {tasks.length === 0 ? (
         <div className='rounded-lg border border-gray-200 dark:bg-gray-950 bg-white p-6 text-center'>
           <p className='text-gray-600 dark:text-gray-300'>

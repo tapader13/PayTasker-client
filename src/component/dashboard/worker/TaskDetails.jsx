@@ -63,37 +63,43 @@ export default function TaskDetailsPage() {
   // console.log(task);
   return (
     <div className='container mx-auto px-4 py-8'>
-      <h1 className='mb-6 text-3xl font-bold'>{task.task_title}</h1>
+      <h1 className='mb-6 text-3xl font-bold dark:text-white'>
+        {task.task_title}
+      </h1>
       <div className='mb-8 grid gap-6 md:grid-cols-2'>
-        <div className='rounded-lg border bg-white p-6 shadow-sm'>
-          <h2 className='mb-4 text-xl font-semibold'>Task Details</h2>
-          <p className='mb-2'>
-            <span className='font-medium'>Posted by:</span> {task.username}
+        <div className='rounded-lg border bg-white dark:bg-gray-700 p-6 shadow-sm'>
+          <h2 className='mb-4 text-xl dark:text-gray-200 font-semibold'>
+            Task Details
+          </h2>
+          <p className='mb-2 dark:text-gray-300'>
+            <span className='font-medium '>Posted by:</span> {task.username}
           </p>
-          <p className='mb-2'>
+          <p className='mb-2 dark:text-gray-300'>
             <span className='font-medium'>Deadline:</span>{' '}
             {moment(new Date(task.completion_date)).format('MMMM d, yyyy')}
           </p>
-          <p className='mb-2'>
+          <p className='mb-2 dark:text-gray-300'>
             <span className='font-medium'>Reward:</span> {task.payable_amount}{' '}
             coins
           </p>
-          <p className='mb-2'>
+          <p className='mb-2 dark:text-gray-300'>
             <span className='font-medium'>Workers needed:</span>{' '}
             {task.required_workers}
           </p>
-          <p className='mb-4'>
+          <p className='mb-4 dark:text-gray-300'>
             <span className='font-medium'>Description:</span>
           </p>
-          <p className='whitespace-pre-wrap rounded-md bg-gray-50 p-3 text-sm'>
+          <p className='whitespace-pre-wrap rounded-md dark:bg-gray-600 dark:text-gray-200 bg-gray-50 p-3 text-sm'>
             {task.task_detail}
           </p>
         </div>
-        <div className='rounded-lg border bg-white p-6 shadow-sm'>
-          <h2 className='mb-4 text-xl font-semibold'>
+        <div className='rounded-lg border bg-white dark:bg-gray-700 p-6 shadow-sm'>
+          <h2 className='mb-4 dark:text-white text-xl font-semibold'>
             Submission Requirements
           </h2>
-          <p className='mb-4 whitespace-pre-wrap'>{task.submission_info}</p>
+          <p className='mb-4 dark:text-gray-300 whitespace-pre-wrap'>
+            {task.submission_info}
+          </p>
           <TaskSubmissionForm taskInfo={task} />
         </div>
       </div>

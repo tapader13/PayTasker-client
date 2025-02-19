@@ -33,28 +33,36 @@ export default function Withdrawals() {
 
   return (
     <div className='container mx-auto px-4 py-8'>
-      <h1 className='mb-6 text-2xl font-bold'>Withdrawals</h1>
+      <h1 className='mb-6 text-2xl font-bold dark:text-white'>Withdrawals</h1>
       <div className='mb-8 grid gap-6 md:grid-cols-2'>
-        <div className='rounded-lg border bg-white p-6 shadow-sm'>
-          <h2 className='mb-4 text-xl font-semibold'>Total Earnings</h2>
+        <div className='rounded-lg border bg-white dark:bg-gray-700 p-6 shadow-sm'>
+          <h2 className='mb-4 text-xl dark:text-gray-200 font-semibold'>
+            Total Earnings
+          </h2>
           <div className='flex items-center justify-between'>
             <div>
-              <p className='text-sm text-gray-600'>Available Coins</p>
-              <p className='text-2xl font-bold text-tertiary'>
+              <p className='text-sm text-gray-600 dark:text-gray-300'>
+                Available Coins
+              </p>
+              <p className='text-2xl font-bold dark:text-white text-tertiary'>
                 {userInfo?.coins}
               </p>
             </div>
             <div>
-              <p className='text-sm text-gray-600'>Withdrawal Amount</p>
-              <p className='text-2xl font-bold text-tertiary'>
+              <p className='text-sm dark:text-gray-300 text-gray-600'>
+                Withdrawal Amount
+              </p>
+              <p className='text-2xl font-bol dark:text-white text-tertiary'>
                 <DollarSign className='mr-1 inline h-6 w-6' />
                 {withdrawalAmount}
               </p>
             </div>
           </div>
         </div>
-        <div className='rounded-lg border bg-white p-6 shadow-sm'>
-          <h2 className='mb-4 text-xl font-semibold'>Withdrawal Form</h2>
+        <div className='rounded-lg border dark:bg-gray-700 bg-white p-6 shadow-sm'>
+          <h2 className='mb-4 text-xl dark:text-white font-semibold'>
+            Withdrawal Form
+          </h2>
           <WithdrowalForm
             workerEmail={userInfo?.email}
             workerName={userInfo?.name}

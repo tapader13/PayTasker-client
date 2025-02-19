@@ -1,9 +1,11 @@
 export default function BuyerState({ stats }) {
   return (
     <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-8'>
-      <div className='bg-white p-6 rounded-lg shadow-md'>
+      <div className='bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md'>
         <div className='flex items-center justify-between mb-2'>
-          <h3 className='text-sm font-medium text-gray-500'>Total Tasks</h3>
+          <h3 className='text-sm font-medium dark:text-gray-300 text-gray-500'>
+            Total Tasks
+          </h3>
           <svg
             className='h-4 w-4 text-gray-400'
             fill='none'
@@ -18,11 +20,15 @@ export default function BuyerState({ stats }) {
             />
           </svg>
         </div>
-        <p className='text-2xl font-bold'>{stats.totalTaskCount}</p>
+        <p className='text-2xl dark:text-white font-bold'>
+          {stats.totalTaskCount}
+        </p>
       </div>
-      <div className='bg-white p-6 rounded-lg shadow-md'>
+      <div className='bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md'>
         <div className='flex items-center justify-between mb-2'>
-          <h3 className='text-sm font-medium text-gray-500'>Pending Tasks</h3>
+          <h3 className='text-sm font-medium dark:text-gray-300 text-gray-500'>
+            Pending Tasks
+          </h3>
           <svg
             className='h-4 w-4 text-gray-400'
             fill='none'
@@ -37,11 +43,15 @@ export default function BuyerState({ stats }) {
             />
           </svg>
         </div>
-        <p className='text-2xl font-bold'>{stats.pendingTasks}</p>
+        <p className='text-2xl dark:text-white font-bold'>
+          {stats.pendingTasks}
+        </p>
       </div>
-      <div className='bg-white p-6 rounded-lg shadow-md'>
+      <div className='bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md'>
         <div className='flex items-center justify-between mb-2'>
-          <h3 className='text-sm font-medium text-gray-500'>Total Payments</h3>
+          <h3 className='text-sm font-medium dark:text-gray-300 text-gray-500'>
+            Total Payments
+          </h3>
           <svg
             className='h-4 w-4 text-gray-400'
             fill='none'
@@ -56,7 +66,9 @@ export default function BuyerState({ stats }) {
             />
           </svg>
         </div>
-        <p className='text-2xl font-bold'>${stats.totalPayment.toFixed(2)}</p>
+        <p className='text-2xl dark:text-white font-bold'>
+          ${stats.totalPayment.toFixed(2)}
+        </p>
       </div>
     </div>
   );

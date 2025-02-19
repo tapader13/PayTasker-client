@@ -67,7 +67,7 @@ const MyTask = () => {
   return (
     <div>
       <div className='container mx-auto px-4 py-8'>
-        <h1 className='mb-6 text-2xl font-bold'>My Tasks</h1>
+        <h1 className='mb-6 text-2xl dark:text-white font-bold'>My Tasks</h1>
         <TaskTable
           tasks={tasks}
           onUpdate={handleUpdate}

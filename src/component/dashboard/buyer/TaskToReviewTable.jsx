@@ -9,39 +9,39 @@ export default function TaskToReviewTable({
     <div className='mt-8'>
       <h2 className='text-xl font-semibold mb-4'>Tasks to Review</h2>
       <div className='overflow-x-auto'>
-        <table className='min-w-full bg-white border border-gray-300'>
+        <table className='min-w-full bg-white dark:bg-gray-700 border border-gray-300'>
           <thead>
-            <tr className='bg-gray-100'>
-              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+            <tr className='bg-gray-100 dark:bg-gray-600'>
+              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider'>
                 Worker Name
               </th>
-              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider'>
                 Task Title
               </th>
-              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider'>
                 Payable Amount
               </th>
-              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider'>
                 Actions
               </th>
             </tr>
           </thead>
-          <tbody className='divide-y divide-gray-200'>
+          <tbody className='divide-y divide-gray-200 dark:divide-gray-600'>
             {submissions?.map((submission) => (
               <tr key={submission.id}>
-                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
+                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white'>
                   {submission.worker_name}
                 </td>
-                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
+                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white'>
                   {submission.task_title}
                 </td>
-                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
+                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white'>
                   {submission.payable_amount} coins
                 </td>
                 <td className='px-6 py-4 whitespace-nowrap text-sm font-medium'>
                   <button
                     onClick={() => onViewSubmission(submission)}
-                    className='text-indigo-600 hover:text-indigo-900 mr-2'
+                    className='dark:text-white text-gray-800 hover:text-tertiary mr-2'
                   >
                     View
                   </button>

@@ -14,7 +14,7 @@ export default function PricingCard() {
       {pricingPlans.map((plan) => (
         <div
           key={plan.coins}
-          className={`relative rounded-lg border bg-white p-6 shadow-sm transition-transform hover:scale-105 ${
+          className={`relative rounded-lg border dark:bg-gray-700 dark:text-white bg-white p-6 shadow-sm transition-transform hover:scale-105 ${
             plan.popular
               ? 'border-[#00838C] ring-2 ring-[#00838C]'
               : 'border-gray-200'
@@ -29,14 +29,16 @@ export default function PricingCard() {
           <div className='text-center'>
             <Coins className='mx-auto h-8 w-8 text-tertiary' />
             <h3 className='mt-4 text-3xl font-bold'>{plan.coins}</h3>
-            <p className='text-sm text-gray-500'>coins</p>
+            <p className='text-sm text-gray-500 dark:text-gray-300'>coins</p>
           </div>
 
           <div className='my-6 border-t border-gray-100' />
 
           <div className='text-center'>
             <p className='text-4xl font-bold'>${plan.price}</p>
-            <p className='mt-1 text-sm text-gray-500'>one-time payment</p>
+            <p className='mt-1 text-sm text-gray-500 dark:text-gray-300'>
+              one-time payment
+            </p>
           </div>
 
           <Link

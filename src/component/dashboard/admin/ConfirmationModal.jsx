@@ -12,13 +12,15 @@ export default function ConfirmationModal({
       className='fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full'
       id='my-modal'
     >
-      <div className='relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white'>
+      <div className='relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white dark:bg-gray-950'>
         <div className='mt-3 text-center'>
-          <h3 className='text-lg leading-6 font-medium text-gray-900'>
+          <h3 className='text-lg leading-6 font-medium text-gray-900 dark:text-white'>
             {title}
           </h3>
           <div className='mt-2 px-7 py-3'>
-            <p className='text-sm text-gray-500'>{message}</p>
+            <p className='text-sm text-gray-500 dark:text-gray-300'>
+              {message}
+            </p>
           </div>
           <div className='items-center px-4 py-3'>
             <button
