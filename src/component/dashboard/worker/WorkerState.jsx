@@ -1,13 +1,13 @@
 export default function WorkerState({ stats }) {
   return (
     <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-8'>
-      <div className='bg-white p-6 rounded-lg shadow-md'>
+      <div className='bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md'>
         <div className='flex items-center justify-between mb-2'>
-          <h3 className='text-sm font-medium text-gray-500'>
+          <h3 className='text-sm font-medium dark:text-gray-200 text-gray-500'>
             Total Submissions
           </h3>
           <svg
-            className='h-4 w-4 text-gray-400'
+            className='h-4 w-4 text-gray-400 dark:text-gray-300'
             fill='none'
             viewBox='0 0 24 24'
             stroke='currentColor'
@@ -20,15 +20,17 @@ export default function WorkerState({ stats }) {
             />
           </svg>
         </div>
-        <p className='text-2xl font-bold'>{stats.totalSubmitCount}</p>
+        <p className='text-2xl dark:text-white font-bold'>
+          {stats.totalSubmitCount}
+        </p>
       </div>
-      <div className='bg-white p-6 rounded-lg shadow-md'>
+      <div className='bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md'>
         <div className='flex items-center justify-between mb-2'>
-          <h3 className='text-sm font-medium text-gray-500'>
+          <h3 className='text-sm font-medium dark:text-gray-200 text-gray-500'>
             Pending Submissions
           </h3>
           <svg
-            className='h-4 w-4 text-gray-400'
+            className='h-4 w-4 text-gray-400 dark:text-gray-300'
             fill='none'
             viewBox='0 0 24 24'
             stroke='currentColor'
@@ -41,13 +43,17 @@ export default function WorkerState({ stats }) {
             />
           </svg>
         </div>
-        <p className='text-2xl font-bold'>{stats.pendingSubmit}</p>
+        <p className='text-2xl font-bold dark:text-white'>
+          {stats.pendingSubmit}
+        </p>
       </div>
-      <div className='bg-white p-6 rounded-lg shadow-md'>
+      <div className='bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md'>
         <div className='flex items-center justify-between mb-2'>
-          <h3 className='text-sm font-medium text-gray-500'>Total Earnings</h3>
+          <h3 className='text-sm font-medium dark:text-gray-200 text-gray-500'>
+            Total Earnings
+          </h3>
           <svg
-            className='h-4 w-4 text-gray-400'
+            className='h-4 w-4 dark:text-gray-300 text-gray-400'
             fill='none'
             viewBox='0 0 24 24'
             stroke='currentColor'
@@ -60,7 +66,9 @@ export default function WorkerState({ stats }) {
             />
           </svg>
         </div>
-        <p className='text-2xl font-bold'>${stats.totalPayment.toFixed(2)}</p>
+        <p className='text-2xl dark:text-white font-bold'>
+          ${stats.totalPayment.toFixed(2)}
+        </p>
       </div>
     </div>
   );

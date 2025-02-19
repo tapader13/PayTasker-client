@@ -52,8 +52,10 @@ export default function TaskList() {
     <div className='container mx-auto px-4 py-8'>
       <h1 className='mb-6 text-2xl font-bold'>Available Tasks</h1>
       {tasks.length === 0 ? (
-        <div className='rounded-lg border border-gray-200 bg-white p-6 text-center'>
-          <p className='text-gray-600'>No tasks available at the moment.</p>
+        <div className='rounded-lg border border-gray-200 dark:bg-gray-950 bg-white p-6 text-center'>
+          <p className='text-gray-600 dark:text-gray-300'>
+            No tasks available at the moment.
+          </p>
         </div>
       ) : (
         <>
@@ -61,22 +63,22 @@ export default function TaskList() {
             {currentTasks.map((task) => (
               <div
                 key={task._id}
-                className='rounded-lg border border-gray-200 bg-white p-6 shadow-sm'
+                className='rounded-lg border border-gray-200 bg-white dark:bg-gray-700 p-6 shadow-sm'
               >
-                <h2 className='mb-2 text-xl font-semibold'>
+                <h2 className='mb-2 dark:text-white text-xl font-semibold'>
                   {task.task_title}
                 </h2>
-                <p className='mb-2 text-sm text-gray-600'>
+                <p className='mb-2 text-sm dark:text-gray-300 text-gray-600'>
                   Posted by: {task.username}
                 </p>
-                <p className='mb-2 text-sm text-gray-600'>
+                <p className='mb-2 text-sm dark:text-gray-300 text-gray-600'>
                   Deadline:{' '}
                   {moment(new Date(task.completion_date)).format('MMM d, YYYY')}
                 </p>
-                <p className='mb-2 text-sm font-medium text-tertiary'>
+                <p className='mb-2 dark:text-white text-sm font-medium text-tertiary'>
                   Reward: {task.payable_amount} coins
                 </p>
-                <p className='mb-4 text-sm text-gray-600'>
+                <p className='mb-4 text-sm dark:text-gray-300 text-gray-600'>
                   Workers needed: {task.required_workers}
                 </p>
                 <Link to={`/dashboard/task/${task._id}`}>

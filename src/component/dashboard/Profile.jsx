@@ -14,7 +14,7 @@ export default function Profile() {
 
   return (
     <div className='container mx-auto px-4 py-8'>
-      <div className='bg-white p-6 rounded-lg shadow-lg'>
+      <div className='bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg'>
         <div className='flex items-center space-x-1 sm:space-x-6'>
           <img
             src={user.profilePicture}
@@ -23,29 +23,37 @@ export default function Profile() {
           />
           <div>
             {/* User Info */}
-            <h2 className='text-3xl font-semibold text-gray-900'>
+            <h2 className='text-3xl font-semibold dark:text-white text-gray-900'>
               {user.name}
             </h2>
-            <p className='text-lg text-gray-600'>{user?.email}</p>
-            <p className='text-lg text-gray-600'>Role: {user?.role}</p>
-            <p className='text-lg text-gray-600'>Coins: {user?.coins}</p>
+            <p className='text-lg text-gray-600 dark:text-gray-300'>
+              {user?.email}
+            </p>
+            <p className='text-lg text-gray-600 dark:text-gray-300'>
+              Role: {user?.role}
+            </p>
+            <p className='text-lg text-gray-600 dark:text-gray-300'>
+              Coins: {user?.coins}
+            </p>
           </div>
         </div>
 
         <div className='mt-6'>
-          <h3 className='text-2xl font-semibold text-gray-900'>
+          <h3 className='text-2xl font-semibold text-gray-900 dark:text-white'>
             Additional Info
           </h3>
           <div className='mt-4 space-y-4'>
             <div className='flex justify-between'>
-              <span className='text-gray-600'>Phone Number:</span>
-              <span className='text-gray-900'>
+              <span className='text-gray-600 dark:text-gray-300'>
+                Phone Number:
+              </span>
+              <span className='text-gray-900 dark:text-white'>
                 {user.phoneNumber || 'Not Provided'}
               </span>
             </div>
             <div className='flex justify-between'>
-              <span className='text-gray-600'>Address:</span>
-              <span className='text-gray-900'>
+              <span className='text-gray-600 dark:text-gray-300'>Address:</span>
+              <span className='text-gray-900 dark:text-white'>
                 {user.address || 'Not Provided'}
               </span>
             </div>

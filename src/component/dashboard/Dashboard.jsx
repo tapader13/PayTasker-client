@@ -119,19 +119,23 @@ const Dashboard = () => {
       },
     });
   };
+
   return (
     <div className='flex'>
       {/* Top Navbar */}
-      <div className='fixed left-0 right-0 top-0 z-50 flex h-16 items-center border-b bg-white px-4'>
+      <div className='fixed left-0 right-0 top-0 z-50 flex h-16 items-center border-b bg-white dark:bg-gray-950 px-4'>
         {/* Mobile Menu Button */}
         <button
-          className='lg:hidden mr-4 text-gray-700'
+          className='lg:hidden mr-4 text-gray-700 dark:text-gray-300'
           onClick={() => setIsMobileOpen(true)}
         >
           <Menu className='w-6 h-6' />
         </button>
 
-        <Link to='/' className='text-xl font-bold text-tertiary'>
+        <Link
+          to='/'
+          className='text-xl font-bold dark:text-white text-tertiary'
+        >
           PayTasker
         </Link>
 
@@ -143,18 +147,18 @@ const Dashboard = () => {
               alt={userInfo.name}
               className='h-8 w-8 rounded-full'
             />
-            <p className='text-sm font-medium text-gray-900 capitalize'>
+            <p className='text-sm font-medium dark:text-white text-gray-900 capitalize'>
               {userInfo.role}
             </p>
           </div>
           <div className='hidden lg:flex flex-col items-end'>
             <div className='flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5'>
-              <span className='text-sm font-medium text-gray-600'>
+              <span className='text-sm font-medium  text-gray-600'>
                 Available Coins:
               </span>
               <span className='font-bold text-tertiary'>{userInfo.coins}</span>
             </div>
-            <p className='text-xs mt-1 hidden sm:block text-gray-500 capitalize'>
+            <p className='text-xs mt-1 hidden sm:block text-gray-500 dark:text-white capitalize'>
               {userInfo.role}
             </p>
           </div>
@@ -164,7 +168,7 @@ const Dashboard = () => {
               alt={userInfo.name}
               className='h-6 w-6 rounded-full'
             />
-            <p className='text-sm uppercase font-medium text-gray-900'>
+            <p className='text-sm uppercase font-medium text-gray-900 dark:text-white'>
               {userInfo.name}
             </p>
           </div>
@@ -186,13 +190,13 @@ const Dashboard = () => {
 
       {/* Sidebar for Large Screens */}
       <nav
-        className={`hidden lg:flex fixed bottom-0 left-0 top-16 z-40 bg-white transition-all duration-300 ${
+        className={`hidden lg:flex fixed bottom-0 left-0 top-16 z-40 bg-white dark:bg-gray-950 transition-all duration-300 ${
           isOpen ? 'lg:w-64 ' : 'lg:w-20 '
         }`}
       >
         <button
           onClick={() => setIsOpen((prevState) => !prevState)}
-          className='absolute z-10 -right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-500 shadow-md hover:bg-gray-50'
+          className='absolute z-10 -right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-500  shadow-md hover:bg-gray-50'
         >
           {isOpen ? (
             <ChevronLeft className='h-5 w-5' />
@@ -213,7 +217,7 @@ const Dashboard = () => {
         </div>
 
         {/* Navigation Items */}
-        <div className='h-full space-y-1 w-full border-r p-4'>
+        <div className='h-full space-y-1 w-full border-r dark:border-gray-700 p-4'>
           {items?.map((item) => (
             <Link
               key={item.name}
@@ -221,7 +225,7 @@ const Dashboard = () => {
               className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                 pathname === item.href
                   ? 'bg-tertiary text-white'
-                  : 'text-gray-700 hover:bg-gray-100'
+                  : 'text-gray-700 dark:hover:text-gray-900 dark:text-gray-300 hover:bg-gray-100'
               }`}
             >
               <item.icon className='h-5 w-5 shrink-0' />

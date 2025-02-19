@@ -72,21 +72,23 @@ export default function OverviewWorker() {
 
   return (
     <div className='container mx-auto px-4 py-8'>
-      <h1 className='mb-6 text-2xl font-bold'>Worker Dashboard Overview</h1>
+      <h1 className='mb-6 text-2xl font-bold dark:text-white'>
+        Worker Dashboard Overview
+      </h1>
 
       {/* Display Worker State */}
       <WorkerState stats={states} />
 
       {/* Charts */}
       <div className='grid gap-8  mt-8'>
-        <div className='bg-white p-6 rounded-lg shadow-md'>
-          <h3 className='text-sm font-medium text-gray-500 mb-4'>
+        <div className='bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md'>
+          <h3 className='text-sm font-medium text-gray-500 dark:text-gray-300 mb-4'>
             Data Visualization Guide for Workers
           </h3>
           <ResponsiveContainer width='100%' height={300}>
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray='3 3' />
-              <XAxis dataKey='name' />
+              <XAxis tick={{ fill: 'red' }} dataKey='name' />
               <YAxis />
               <Tooltip />
               <Line type='monotone' dataKey='value' stroke='#00838C' />
