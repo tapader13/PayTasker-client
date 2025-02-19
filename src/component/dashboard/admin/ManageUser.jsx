@@ -76,14 +76,14 @@ export default function ManageUser() {
       <div className='flex h-[60vh] flex-col items-center justify-center text-center'>
         <AlertCircle className='h-10 w-10 text-red-500' />
         <h2 className='mt-4 text-xl font-semibold'>Error loading users</h2>
-        <p className='mt-2 text-gray-600'>{error.message}</p>
+        <p className='mt-2 text-gray-600 dark:text-gray-300'>{error.message}</p>
       </div>
     );
   }
 
   return (
     <div className='container mx-auto px-4 py-8'>
-      <h1 className='mb-6 text-2xl font-bold'>Manage Users</h1>
+      <h1 className='mb-6 text-2xl font-bold dark:text-white'>Manage Users</h1>
       <UserTable
         users={allUsers}
         onRemoveUser={handleRemoveUser}
