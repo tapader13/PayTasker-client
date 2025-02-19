@@ -66,7 +66,7 @@ const Testimonial = () => {
         viewport={{ once: false, amount: 0.3 }}
         className='px-4 sm:px-6 lg:px-8 py-16'
       >
-        <h2 className='mb-12 text-center text-3xl font-extrabold text-gray-900 md:text-4xl'>
+        <h2 className='mb-12 text-center text-3xl font-extrabold text-gray-900 dark:text-white md:text-4xl'>
           What Our Users Say
         </h2>
         <div>
@@ -87,7 +87,7 @@ const Testimonial = () => {
           >
             {testimonials.map((testimonial, index) => (
               <SwiperSlide key={index}>
-                <div className='rounded-lg bg-white p-8 shadow-lg'>
+                <div className='rounded-lg bg-white dark:bg-gray-700 p-8 shadow-lg'>
                   <div className='mb-4 flex items-center'>
                     <img
                       src={testimonial.avatar}
@@ -95,13 +95,13 @@ const Testimonial = () => {
                       className='mr-4 h-16 w-16 rounded-full object-cover'
                     />
                     <div>
-                      <h3 className='text-lg font-semibold text-gray-900'>
+                      <h3 className='text-lg font-semibold text-gray-900 dark:text-white'>
                         {testimonial.name}
                       </h3>
                       {/* <p className='text-sm text-gray-600'>{testimonial.role}</p> */}
                     </div>
                   </div>
-                  <p className='mb-4 text-gray-700'>
+                  <p className='mb-4 text-gray-700 dark:text-gray-300'>
                     &ldquo;{testimonial.quote}&rdquo;
                   </p>
                   <div className='flex'>

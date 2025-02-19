@@ -2,13 +2,13 @@ import { Link } from 'react-router';
 import { Facebook, Linkedin, Github } from 'lucide-react';
 export default function Footer() {
   return (
-    <footer className='bg-gray-100'>
+    <footer className='bg-gray-100 dark:bg-gray-900'>
       <div className='mx-auto w-10/12 py-12 px-4 sm:px-6 lg:px-8'>
         <div className='flex flex-col items-center justify-between md:flex-row'>
           {/* Logo */}
           <div className='mb-6 md:mb-0'>
             <Link href='/' className='flex items-center'>
-              <span className='text-2xl font-bold text-tertiary'>
+              <span className='text-2xl font-bold text-tertiary dark:text-white'>
                 PayTasker
               </span>
             </Link>
