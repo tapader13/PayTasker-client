@@ -239,10 +239,10 @@ const Dashboard = () => {
 
       {/* Mobile Sidebar (Drawer) */}
       {isMobileOpen && (
-        <div className='fixed left-0 top-0 z-50 h-full w-64 bg-white shadow-lg p-4'>
+        <div className='fixed left-0 top-0 z-50 h-full w-64 bg-white dark:bg-gray-950 shadow-lg p-4'>
           {/* Close Button */}
           <button
-            className='absolute top-2 right-2 p-2 text-gray-600 hover:text-gray-800'
+            className='absolute top-2 right-2 p-2 dark:text-white text-gray-600 hover:text-gray-800'
             onClick={() => setIsMobileOpen(false)}
           >
             <X className='w-6 h-6' />
@@ -261,7 +261,7 @@ const Dashboard = () => {
                   {userInfo.coins}
                 </span>
               </div>
-              <p className='text-sm mt-2 font-medium text-gray-900'>
+              <p className='text-sm mt-2 dark:text-gray-200 font-medium text-gray-900'>
                 Name: {userInfo.name}
               </p>
             </div>
@@ -269,7 +269,7 @@ const Dashboard = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className='flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100'
+                className='flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium dark:text-gray-300 text-gray-700 hover:bg-gray-100'
                 onClick={() => setIsMobileOpen(false)}
               >
                 <item.icon className='h-5 w-5 shrink-0' />

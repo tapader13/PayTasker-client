@@ -4,12 +4,6 @@
 
 Welcome to **PayTasker**, a micro-task and earning platform that enables users to complete small tasks and earn money. The platform accommodates three distinct roles: **Worker, Buyer, and Admin**, each with specific functionalities to manage tasks, coins, and system operations.
 
-<<<<<<< HEAD
-- [Live Site URL](http://localhost:5001)
-=======
----
->>>>>>> 35b77b6cf1d1f32ef9ff4c12cb1f3b3a061d9727
-
 ## 🔗 Live Demo  
 
 🌍 **Live Site:** [PayTasker Live](https://as12-ea931.web.app/)  
