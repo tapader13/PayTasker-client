@@ -3,6 +3,7 @@ import { Github, LogOut, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import useAuth from '../../hooks/useAuth';
+import ToggleTheme from '../ToggleTheme';
 
 // Simulating authentication state
 
@@ -14,15 +15,17 @@ export default function Navbar() {
   const { user: isLoggedIn, logoutUser } = useAuth();
   const navigate = useNavigate();
   return (
-    <header className='sticky top-0 z-50 w-full border-b bg-white'>
+    <header className='sticky top-0 z-50 w-full border-b bg-white dark:bg-gray-950 '>
       <div className='mx-auto  flex h-16 w-10/12 items-center justify-between px-4 sm:px-6 lg:px-8'>
         {/* Logo */}
         <Link to='/' className='flex items-center'>
-          <span className='text-2xl font-bold text-tertiary'>PayTasker</span>
+          <span className='text-2xl font-bold text-tertiary dark:text-white'>
+            PayTasker
+          </span>
         </Link>
         <div className='flex items-center gap-3'>
           {isLoggedIn && (
-            <button className='flex xl:hidden h-8 w-8 overflow-hidden items-center justify-center rounded-full bg-gray-200 text-sm font-medium text-gray-600'>
+            <button className='flex xl:hidden h-8 w-8 overflow-hidden items-center justify-center rounded-full bg-gray-200 text-sm font-medium text-gray-600 '>
               <img
                 className='h-full w-full'
                 src={isLoggedIn?.photoURL}
@@ -31,20 +34,25 @@ export default function Navbar() {
             </button>
           )}
           {/* Mobile Menu Button */}
+
           <button
-            className='xl:hidden flex items-center'
+            className='xl:hidden dark:text-gray-300 flex items-center'
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
+          <div className='dark:text-gray-300 ml-5 text-tertiary'>
+            <ToggleTheme />
+          </div>
         </div>
         {/* Desktop Navigation */}
+
         <div className='hidden  xl:flex items-center gap-4'>
           {/* Navigation for logged in users */}
           {isLoggedIn && (
             <Link
               to='/dashboard'
-              className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+              className='rounded-md px-4 py-2 text-sm font-medium text-gray-600  dark:text-gray-300 transition-colors hover:bg-gray-100 dark:hover:text-tertiary'
             >
               Dashboard
             </Link>
@@ -52,7 +60,7 @@ export default function Navbar() {
           {isLoggedIn && (
             <Link
               to='/guide'
-              className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+              className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors hover:bg-gray-100 dark:hover:text-tertiary'
             >
               Guide
             </Link>
@@ -68,19 +76,19 @@ export default function Navbar() {
           )}
           <Link
             to='/'
-            className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+            className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors hover:bg-gray-100 dark:hover:text-tertiary'
           >
             Home
           </Link>
           <Link
             to='/alltask'
-            className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+            className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors hover:bg-gray-100 dark:hover:text-tertiary'
           >
             All Task
           </Link>
           <Link
             to='/about'
-            className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+            className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors hover:bg-gray-100 dark:hover:text-tertiary'
           >
             About Us
           </Link>
@@ -90,13 +98,13 @@ export default function Navbar() {
             <>
               <Link
                 to='/login'
-                className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+                className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors hover:bg-gray-100 dark:hover:text-tertiary'
               >
                 Login
               </Link>
               <Link
                 to='/register'
-                className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+                className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors hover:bg-gray-100 dark:hover:text-tertiary'
               >
                 Register
               </Link>
@@ -125,7 +133,7 @@ export default function Navbar() {
                     Profile
                   </Link> */}
                   <button
-                    className=' w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-gray-100 flex items-center gap-2'
+                    className=' w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-gray-100 dark:hover:text-tertiary flex items-center gap-2'
                     onClick={() => {
                       logoutUser();
                       setIsDropdownOpen(false);
@@ -154,12 +162,12 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className='xl:hidden absolute top-16 left-0 w-full bg-white shadow-md px-6 py-4 flex flex-col gap-4'>
+        <div className='xl:hidden absolute top-16 left-0 w-full bg-white dark:bg-gray-950 shadow-md px-6 py-4 flex flex-col gap-4'>
           {isLoggedIn && (
             <Link
               to='/dashboard'
               onClick={() => setIsMobileMenuOpen(false)}
-              className='text-sm font-medium text-gray-600 transition-colors hover:text-tertiary'
+              className='text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors hover:text-tertiary'
             >
               Dashboard
             </Link>
@@ -169,7 +177,7 @@ export default function Navbar() {
             <Link
               to='/guide'
               onClick={() => setIsMobileMenuOpen(false)}
-              className='text-sm font-medium text-gray-600 transition-colors hover:text-tertiary'
+              className='text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors hover:text-tertiary'
             >
               Guide
             </Link>
@@ -187,21 +195,21 @@ export default function Navbar() {
           <Link
             to='/'
             onClick={() => setIsMobileMenuOpen(false)}
-            className='block rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+            className='block rounded-md px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors hover:bg-gray-100 dark:hover:text-tertiary'
           >
             Home
           </Link>
           <Link
             to='/alltask'
             onClick={() => setIsMobileMenuOpen(false)}
-            className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+            className='rounded-md px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors hover:bg-gray-100 dark:hover:text-tertiary'
           >
             All Task
           </Link>
           <Link
             to='/about'
             onClick={() => setIsMobileMenuOpen(false)}
-            className='block rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+            className='block rounded-md px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors hover:bg-gray-100 dark:hover:text-tertiary'
           >
             About Us
           </Link>
@@ -211,14 +219,14 @@ export default function Navbar() {
               <Link
                 to='/login'
                 onClick={() => setIsMobileMenuOpen(false)}
-                className='block rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+                className='block rounded-md px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors hover:bg-gray-100 dark:hover:text-tertiary'
               >
                 Login
               </Link>
               <Link
                 to='/register'
                 onClick={() => setIsMobileMenuOpen(false)}
-                className='block rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100'
+                className='block rounded-md px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors hover:bg-gray-100 dark:hover:text-tertiary'
               >
                 Register
               </Link>
@@ -229,7 +237,7 @@ export default function Navbar() {
             <Link
               to='/profile'
               onClick={() => setIsMobileMenuOpen(false)}
-              className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+              className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:text-tertiary'
             >
               Profile
             </Link>
@@ -237,7 +245,7 @@ export default function Navbar() {
 
           {isLoggedIn && (
             <button
-              className=' w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-gray-100 flex items-center gap-2'
+              className=' w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-gray-100 dark:hover:text-tertiary flex items-center gap-2'
               onClick={() => {
                 logoutUser();
                 setIsMobileMenuOpen(false);
