@@ -2,10 +2,10 @@ import SectionWrapper from '../wrapper/SectionWrapper';
 
 const MakingMoney = () => {
   return (
-    <div className='bg-gray-100  py-16'>
+    <div className='bg-gray-100 dark:bg-gray-950 py-16'>
       <SectionWrapper>
         <div className='px-4 sm:px-6 lg:px-8'>
-          <h2 className='mb-12 text-center text-3xl font-extrabold text-gray-900 md:text-4xl'>
+          <h2 className='mb-12 text-center text-3xl font-extrabold text-gray-900 dark:text-white md:text-4xl'>
             Making money online is easy with PayTasker surveys
           </h2>
           <div className='flex gap-12 lg:flex-row flex-col'>
@@ -16,7 +16,7 @@ const MakingMoney = () => {
                 alt=''
               />
             </div>
-            <div className='lg:w-1/2 text-[18px] leading-10 flex flex-col justify-between'>
+            <div className='lg:w-1/2 text-[18px] dark:text-gray-300 leading-10 flex flex-col justify-between'>
               <p>
                 Earning money online from PayTasker Micro Task is easy and fun.
                 We offer a free lifetime membership to all. Anyone can join and

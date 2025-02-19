@@ -17,15 +17,15 @@ export function TopPick() {
     fetchTasks();
   }, []);
   return (
-    <section className='w-full py-16 bg-gray-100'>
+    <section className='w-full py-16 bg-gray-100 dark:bg-gray-950'>
       <SectionWrapper>
         <div className='container mx-auto px-4 md:px-6'>
           <div className='flex items-center justify-between mb-12'>
-            <h2 className='text-left text-3xl font-bold text-gray-900 md:text-4xl '>
+            <h2 className='text-left text-3xl font-bold dark:text-white text-gray-900 md:text-4xl '>
               Top Picks
             </h2>
             <Link to={'/alltask'}>
-              <button className='text-tertiary hover:text-tertiaryhover flex items-center focus:outline-none'>
+              <button className='text-tertiary dark:text-white hover:text-tertiaryhover flex items-center focus:outline-none'>
                 View all
                 <ArrowRight className='ml-2 h-4 w-4' />
               </button>
@@ -35,7 +35,7 @@ export function TopPick() {
             {tasks?.map((pick) => (
               <div
                 key={pick.id}
-                className='overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:shadow-xl'
+                className='overflow-hidden rounded-lg bg-white dark:bg-gray-700 shadow-lg transition-all duration-300 hover:shadow-xl'
               >
                 <div className=''>
                   <div className=''>
@@ -48,17 +48,17 @@ export function TopPick() {
                     </div>
                   </div>
                   <div className='p-6'>
-                    <h3 className='text-lg   mb-1  font-semibold text-gray-900'>
+                    <h3 className='text-lg   mb-1  font-semibold text-gray-900 dark:text-white'>
                       {pick.task_title}
                     </h3>
-                    <p className='text-sm text-gray-400 mb-3 line-clamp-2'>
+                    <p className='text-sm text-gray-400 dark:text-gray-300 mb-3 line-clamp-2'>
                       {pick.task_detail}
                     </p>
                     <div className='flex items-center space-x-2'>
-                      <span className='text-gray-500'>
+                      <span className='text-gray-500 dark:text-gray-300'>
                         ⟠{pick.required_workers}
                       </span>
-                      <span className='text-tertiary'>
+                      <span className='text-tertiary dark:text-gray-300'>
                         ~ ${pick.payable_amount}
                       </span>
                     </div>

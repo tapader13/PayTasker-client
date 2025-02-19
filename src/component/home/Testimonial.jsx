@@ -10,7 +10,7 @@ const testimonials = [
     name: 'Emily Rodriguez',
     role: 'Marketing Specialist',
     quote:
-      'This platform is perfect for earning cash in my free time. The tasks are quick, simple, and the payments are always on time.',
+      'This platform is perfect for earning cash. The tasks are quick, simple, and the payments are always on time.',
     avatar: '/my-profit-tutor-ZfRWq1bRisE-unsplash.jpg',
     rating: 4,
   },
@@ -18,7 +18,7 @@ const testimonials = [
     name: 'John Doe',
     role: 'Web Developer',
     quote:
-      "The platform is intuitive, and I’ve been able to complete tasks effortlessly. It's a fantastic way to use my downtime productively.",
+      "The platform is intuitive, and I’ve been able to complete tasks effortlessly. It's a fantastic way to use my downtime.",
     avatar: '/images.jpeg',
     rating: 5,
   },

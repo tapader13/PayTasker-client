@@ -57,7 +57,7 @@ export default function BestWorker() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className='mb-12 text-left text-3xl font-bold text-gray-900 md:text-4xl'
+          className='mb-12 text-left text-3xl font-bold text-gray-900 dark:text-white md:text-4xl'
         >
           Our Top Performers
         </motion.h1>
@@ -69,7 +69,7 @@ export default function BestWorker() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className='group relative overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:shadow-xl'>
+              <div className='group relative overflow-hidden rounded-lg bg-white dark:bg-gray-700 shadow-lg transition-all duration-300 hover:shadow-xl'>
                 <div className='absolute -right-16 -top-16 h-40 w-40 rounded-full bg-tertiary transition-all duration-300 group-hover:scale-150'></div>
                 <div className='relative h-64 overflow-hidden'>
                   <img
@@ -79,13 +79,13 @@ export default function BestWorker() {
                   />
                 </div>
                 <div className='p-6'>
-                  <h2 className='mb-2 text-xl font-semibold text-gray-900'>
+                  <h2 className='mb-2 text-xl font-semibold text-gray-900 dark:text-white'>
                     {worker.name}
                   </h2>
-                  <p className='mb-2 text-sm text-gray-600'>
+                  <p className='mb-2 text-sm text-gray-600 dark:text-gray-300'>
                     {worker.specialty}
                   </p>
-                  <p className='mb-4 flex items-center text-sm text-gray-500'>
+                  <p className='mb-4 flex items-center text-sm text-gray-500 dark:text-gray-400'>
                     <Mail className='mr-2 h-4 w-4' />
                     {worker.email}
                   </p>

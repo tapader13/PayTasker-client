@@ -221,7 +221,7 @@ const router = createBrowserRouter([
 const queryClient = new QueryClient();
 function App() {
   return (
-    <div>
+    <div className='dark:bg-gray-950'>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <RouterProvider router={router} />

@@ -13,7 +13,7 @@ const Works = () => {
         className='py-16'
       >
         <div className=''>
-          <h2 className='mb-12 text-center text-3xl font-extrabold text-gray-900 md:text-4xl'>
+          <h2 className='mb-12 text-center text-3xl font-extrabold text-gray-900 dark:text-white md:text-4xl'>
             How PayTasker Works
           </h2>
           <div className='grid gap-8 md:grid-cols-3'>
@@ -22,10 +22,10 @@ const Works = () => {
               <div className='mb-4 rounded-full bg-tertiary p-4 text-white'>
                 <UserCircle2 className='h-8 w-8' />
               </div>
-              <h3 className='mb-2 text-xl font-semibold'>
+              <h3 className='mb-2 text-xl dark:text-white font-semibold'>
                 Create Your Profile
               </h3>
-              <p className='text-gray-600'>
+              <p className='text-gray-600 dark:text-gray-300'>
                 Sign up and create your professional profile. Showcase your
                 skills and experience to stand out.
               </p>
@@ -36,8 +36,10 @@ const Works = () => {
               <div className='mb-4 rounded-full bg-tertiary p-4 text-white'>
                 <CheckCircle2 className='h-8 w-8' />
               </div>
-              <h3 className='mb-2 text-xl font-semibold'>Complete Tasks</h3>
-              <p className='text-gray-600'>
+              <h3 className='mb-2 text-xl dark:text-white font-semibold'>
+                Complete Tasks
+              </h3>
+              <p className='text-gray-600 dark:text-gray-300'>
                 Browse available tasks that match your skills. Accept tasks and
                 deliver quality work.
               </p>
@@ -48,8 +50,10 @@ const Works = () => {
               <div className='mb-4 rounded-full bg-tertiary p-4 text-white'>
                 <CreditCard className='h-8 w-8' />
               </div>
-              <h3 className='mb-2 text-xl font-semibold'>Get Paid</h3>
-              <p className='text-gray-600'>
+              <h3 className='mb-2 text-xl font-semibold dark:text-white'>
+                Get Paid
+              </h3>
+              <p className='text-gray-600 dark:text-gray-300'>
                 Receive secure payments for completed tasks. Transfer earnings
                 to your bank account anytime.
               </p>

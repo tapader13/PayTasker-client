@@ -45,15 +45,15 @@ export function FeaturesCompare() {
   ];
 
   return (
-    <section className='w-full py-16 bg-gray-100'>
+    <section className='w-full py-16 bg-gray-100 dark:bg-gray-950'>
       <SectionWrapper>
         <div className='w-full px-4 sm:px-6 lg:px-8'>
           <div className='flex flex-col items-center justify-center space-y-4 text-center'>
             <div className='space-y-2'>
-              <h2 className='text-3xl font-bold tracking-tighter sm:text-5xl'>
+              <h2 className='text-3xl dark:text-white font-bold tracking-tighter sm:text-5xl'>
                 Choose Your Role
               </h2>
-              <p className='max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed'>
+              <p className='max-w-[900px] text-gray-500 dark:text-gray-300 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed'>
                 Compare features across different user roles and find the
                 perfect fit for you
               </p>
@@ -63,13 +63,13 @@ export function FeaturesCompare() {
             {roles.map((role) => (
               <div
                 key={role.title}
-                className='bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200'
+                className='bg-white dark:bg-gray-700 rounded-lg shadow-sm overflow-hidden border border-gray-200 dark:border-gray-800'
               >
                 <div className='p-6 border-b border-gray-200'>
-                  <h3 className='text-xl font-bold text-gray-900'>
+                  <h3 className='text-xl dark:text-white font-bold text-gray-900'>
                     {role.title}
                   </h3>
-                  <p className='mt-1 text-sm text-gray-500'>
+                  <p className='mt-1 text-sm dark:text-gray-300 text-gray-500'>
                     {role.description}
                   </p>
                 </div>
@@ -85,7 +85,7 @@ export function FeaturesCompare() {
                         ) : (
                           <X className='w-5 h-5 text-red-500 flex-shrink-0' />
                         )}
-                        <span className='text-sm text-gray-600'>
+                        <span className='text-sm dark:text-gray-300 text-gray-600'>
                           {feature.name}
                         </span>
                       </li>
