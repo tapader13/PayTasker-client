@@ -63,15 +63,17 @@ export default function AllTask() {
         <select
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
-          className='border rounded px-3 py-2 bg-white text-gray-700 shadow-sm'
+          className='border rounded px-3 py-2 bg-white dark:bg-gray-950 text-gray-700 dark:text-gray-300 shadow-sm'
         >
           <option value='asc'>Sort by Price: Low to High</option>
           <option value='desc'>Sort by Price: High to Low</option>
         </select>
       </div>
       {tasks.length === 0 ? (
-        <div className='rounded-lg border border-gray-200 bg-white p-6 text-center'>
-          <p className='text-gray-600'>No tasks available at the moment.</p>
+        <div className='rounded-lg border border-gray-200 bg-white dark:bg-gray-700 p-6 text-center'>
+          <p className='text-gray-600 dark:text-gray-300'>
+            No tasks available at the moment.
+          </p>
         </div>
       ) : (
         <>
@@ -79,30 +81,30 @@ export default function AllTask() {
             {currentTasks.map((task) => (
               <div
                 key={task._id}
-                className='flex flex-col justify-between rounded-lg border border-gray-200 bg-white p-6 shadow-sm'
+                className='flex flex-col justify-between rounded-lg border border-gray-200 bg-white dark:bg-gray-700 p-6 shadow-sm'
               >
                 <div>
-                  <h2 className='mb-2 text-xl font-semibold'>
+                  <h2 className='mb-2 text-xl dark:text-white font-semibold'>
                     {task.task_title}
                   </h2>
-                  <p className='mb-2 text-sm text-gray-600'>
+                  <p className='mb-2 text-sm text-gray-600 dark:text-gray-300'>
                     Posted by: {task.username}
                   </p>
-                  <p className='mb-2 text-sm text-gray-600'>
+                  <p className='mb-2 text-sm text-gray-600 dark:text-gray-300'>
                     Deadline:{' '}
                     {moment(new Date(task.completion_date)).format(
                       'MMM D, YYYY'
                     )}
                   </p>
-                  <p className='mb-2 text-sm font-medium text-tertiary'>
+                  <p className='mb-2 text-sm font-medium dark:text-white text-tertiary'>
                     Reward: {task.payable_amount} coins
                   </p>
-                  <p className='mb-4 text-sm text-gray-600'>
+                  <p className='mb-4 text-sm text-gray-600 dark:text-gray-300'>
                     Workers needed: {task.required_workers}
                   </p>
                 </div>
                 <Link to={`/dashboard/task/${task._id}`}>
-                  <button className='w-full rounded-md bg-tertiary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-tertiaryhover'>
+                  <button className='w-full rounded-md bg-tertiary px-4 py-2 text-sm font-medium text-white dark:bg-gray-800 transition-colors hover:bg-tertiaryhover'>
                     View Details
                   </button>
                 </Link>
