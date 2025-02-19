@@ -137,20 +137,24 @@ const Register = () => {
     <div>
       <div className='mx-auto max-w-md space-y-6 p-6'>
         <div className='space-y-2 text-center'>
-          <h1 className='text-3xl font-bold'>Create an Account</h1>
-          <p className='text-gray-500'>Enter your information to get started</p>
+          <h1 className='text-3xl font-bold dark:text-white'>
+            Create an Account
+          </h1>
+          <p className='text-gray-500 dark:text-gray-300'>
+            Enter your information to get started
+          </p>
         </div>
 
         <form onSubmit={handleSubmit(handleRegister)} className='space-y-4'>
           {/* Name Field */}
           <div>
-            <label className='block text-sm font-medium text-gray-700'>
+            <label className='block text-sm font-medium dark:text-gray-300 text-gray-700'>
               Name
             </label>
             <input
               type='text'
               {...register('name', { required: 'Name is required' })}
-              className={`mt-1 block w-full rounded-md border px-3 py-2 text-sm ${
+              className={`mt-1 dark:bg-gray-700 dark:text-white block w-full rounded-md border px-3 py-2 text-sm ${
                 errors.name ? 'border-red-500' : 'border-gray-300'
               }`}
             />
@@ -163,7 +167,7 @@ const Register = () => {
 
           {/* Email Field */}
           <div>
-            <label className='block text-sm font-medium text-gray-700'>
+            <label className='block text-sm font-medium dark:text-gray-300 text-gray-700'>
               Email
             </label>
             <input
@@ -175,7 +179,7 @@ const Register = () => {
                   message: 'Invalid email address',
                 },
               })}
-              className={`mt-1 block w-full rounded-md border px-3 py-2 text-sm ${
+              className={`mt-1 dark:bg-gray-700 dark:text-white block w-full rounded-md border px-3 py-2 text-sm ${
                 errors.email ? 'border-red-500' : 'border-gray-300'
               }`}
             />
@@ -188,7 +192,7 @@ const Register = () => {
 
           {/* Profile Picture Upload */}
           <div>
-            <label className='block text-sm font-medium text-gray-700'>
+            <label className='block dark:text-gray-300 text-sm font-medium text-gray-700'>
               Profile Picture
             </label>
             <div className='mt-1 flex items-center'>
@@ -201,7 +205,7 @@ const Register = () => {
               />
               <label
                 htmlFor='profile-picture-upload'
-                className='cursor-pointer rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                className='cursor-pointer rounded-md border border-gray-300 bg-white dark:bg-gray-700 dark:text-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
               >
                 <Upload className='mr-2 inline-block h-5 w-5' />
                 Upload Image
@@ -225,7 +229,7 @@ const Register = () => {
 
           {/* Password Field */}
           <div>
-            <label className='block text-sm font-medium text-gray-700'>
+            <label className='block text-sm dark:text-gray-300 font-medium text-gray-700'>
               Password
             </label>
             <div className='relative'>
@@ -243,7 +247,7 @@ const Register = () => {
                       'Password must contain at least one uppercase letter, one lowercase letter',
                   },
                 })}
-                className={`mt-1 block w-full rounded-md border px-3 py-2 pr-10 text-sm ${
+                className={`mt-1 dark:bg-gray-700 dark:text-white block w-full rounded-md border px-3 py-2 pr-10 text-sm ${
                   errors.password ? 'border-red-500' : 'border-gray-300'
                 }`}
               />
@@ -268,13 +272,13 @@ const Register = () => {
 
           {/* Role Selection */}
           <div>
-            <label className='block text-sm font-medium text-gray-700'>
+            <label className='block text-sm font-medium dark:text-gray-300 text-gray-700'>
               I want to
             </label>
             <select
               {...register('role', { required: 'Role is required' })}
               defaultValue='worker'
-              className='mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
+              className='mt-1 block dark:bg-gray-700 dark:text-white w-full rounded-md border border-gray-300 px-3 py-2 text-sm'
             >
               <option value='buyer'>Hire for Tasks (Buyer)</option>
               <option value='worker'>Work on Tasks (Worker)</option>
@@ -303,14 +307,14 @@ const Register = () => {
             <span className='w-full border-t' />
           </div>
           <div className='relative flex justify-center text-xs uppercase'>
-            <span className='bg-white px-2 text-gray-500'>
+            <span className='bg-white dark:bg-gray-700 px-2 text-gray-500 dark:text-gray-300'>
               Or continue with
             </span>
           </div>
         </div>
         <button
           onClick={handleGoogleSignIn}
-          className='flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50'
+          className='flex w-full items-center justify-center rounded-md border border-gray-300 dark:border-gray-800 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 shadow-sm hover:bg-gray-50'
         >
           <svg
             className='mr-2 h-5 w-5'
@@ -322,7 +326,7 @@ const Register = () => {
           </svg>
           Sign in with Google
         </button>
-        <span className='mt-6 block text-center text-sm text-gray-500'>
+        <span className='mt-6 block text-center text-sm text-gray-500 dark:text-gray-400'>
           Already have an account? <Link href='/login'>Login</Link>
         </span>
       </div>
