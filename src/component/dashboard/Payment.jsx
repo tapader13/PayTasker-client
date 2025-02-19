@@ -54,10 +54,12 @@ const Payment = () => {
         </Elements>
       </div>
       <div>
-        <h1 className='text-xl font-bold mb-5'>Payment Using SSLCOMMERZ</h1>
+        <h1 className='text-xl dark:text-white font-bold mb-5'>
+          Payment Using SSLCOMMERZ
+        </h1>
         <div className='border p-4'>
           <input
-            className='w-full p-2 border'
+            className='w-full dark:text-white dark:bg-gray-800 p-2 border'
             type='email'
             name='email'
             readOnly

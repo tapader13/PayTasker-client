@@ -76,8 +76,8 @@ export default function PaymentHistoryPage() {
   return (
     <div className='container mx-auto px-4 py-8'>
       <div className='mb-8'>
-        <h1 className='text-2xl font-bold'>Payment History</h1>
-        <p className='mt-2 text-gray-600'>
+        <h1 className='text-2xl dark:text-white font-bold'>Payment History</h1>
+        <p className='mt-2 text-gray-600 dark:text-gray-300'>
           View all your coin purchase transactions
         </p>
       </div>
@@ -95,22 +95,22 @@ export default function PaymentHistoryPage() {
       </div> */}
 
       {/* Payment Table */}
-      <div className='rounded-lg border bg-white'>
+      <div className='rounded-lg border bg-white dark:bg-gray-700 '>
         <div className='overflow-x-auto'>
           <table className='min-w-full overflow-x-auto divide-y divide-gray-200'>
-            <thead className='bg-gray-50'>
+            <thead className='bg-gray-50 dark:bg-gray-600'>
               <tr>
                 <th
-                  className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'
+                  className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300'
                   //   onClick={() => handleSort('date')}
                 >
-                  <div className='flex cursor-pointer items-center gap-2'>
+                  <div className='flex dark:text-gray-300 cursor-pointer items-center gap-2'>
                     Date
                     {/* <ArrowUpDown className='h-4 w-4' /> */}
                   </div>
                 </th>
                 <th
-                  className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'
+                  className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300'
                   //   onClick={() => handleSort('email')}
                 >
                   <div className='flex cursor-pointer items-center gap-2'>
@@ -119,7 +119,7 @@ export default function PaymentHistoryPage() {
                   </div>
                 </th>
                 <th
-                  className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'
+                  className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300'
                   //   onClick={() => handleSort('transactionId')}
                 >
                   <div className='flex cursor-pointer items-center gap-2'>
@@ -128,7 +128,7 @@ export default function PaymentHistoryPage() {
                   </div>
                 </th>
                 <th
-                  className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'
+                  className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300'
                   //   onClick={() => handleSort('price')}
                 >
                   <div className='flex cursor-pointer items-center gap-2'>
@@ -137,7 +137,7 @@ export default function PaymentHistoryPage() {
                   </div>
                 </th>
                 <th
-                  className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'
+                  className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300'
                   //   onClick={() => handleSort('coins')}
                 >
                   <div className='flex cursor-pointer items-center gap-2'>
@@ -146,7 +146,7 @@ export default function PaymentHistoryPage() {
                   </div>
                 </th>
                 <th
-                  className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500'
+                  className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300'
                   //   onClick={() => handleSort('status')}
                 >
                   <div className='flex cursor-pointer items-center gap-2'>
@@ -156,38 +156,38 @@ export default function PaymentHistoryPage() {
                 </th>
               </tr>
             </thead>
-            <tbody className='divide-y divide-gray-200 bg-white'>
+            <tbody className='divide-y divide-gray-200 dark:bg-gray-700 bg-white'>
               {isLoading ? (
                 <tr>
                   <td colSpan='6' className='px-6 py-4 text-center'>
-                    <Loader2 className='mx-auto h-8 w-8 animate-spin text-gray-400' />
+                    <Loader2 className='mx-auto h-8 w-8 animate-spin text-gray-400 dark:text-gray-200' />
                   </td>
                 </tr>
               ) : payments.length === 0 ? (
                 <tr>
                   <td
                     colSpan='6'
-                    className='px-6 py-4 text-center text-gray-500'
+                    className='px-6 py-4 text-center dark:text-gray-300 text-gray-500'
                   >
                     No payment records found
                   </td>
                 </tr>
               ) : (
                 payments.map((payment) => (
-                  <tr key={payment.id} className='hover:bg-gray-50'>
-                    <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-900'>
+                  <tr key={payment.id} className='hover:bg-gray-50 '>
+                    <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-900 dark:text-white'>
                       {moment(new Date(payment.date)).format('MMM d, yyyy')}
                     </td>
-                    <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-900'>
+                    <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-900 dark:text-white'>
                       {payment.email}
                     </td>
-                    <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-500'>
+                    <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-500 dark:text-gray-300'>
                       {payment.transactionId}
                     </td>
-                    <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-900'>
+                    <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-900 dark:text-white'>
                       ${payment.price}
                     </td>
-                    <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-900'>
+                    <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-900 dark:text-white'>
                       {payment.coins}
                     </td>
                     <td className='whitespace-nowrap px-6 py-4 text-sm'>
