@@ -69,8 +69,8 @@ const Login = () => {
     <div>
       <div className='mx-auto max-w-md space-y-6 p-6'>
         <div className='space-y-2 text-center'>
-          <h1 className='text-3xl font-bold'>Sign In</h1>
-          <p className='text-gray-500'>
+          <h1 className='text-3xl dark:text-white font-bold'>Sign In</h1>
+          <p className='text-gray-500 dark:text-gray-400'>
             Welcome back! Please sign in to your account
           </p>
         </div>
@@ -78,7 +78,7 @@ const Login = () => {
         <form onSubmit={handleSubmit(handleLogin)} className='space-y-4'>
           {/* Email Field */}
           <div>
-            <label className='block text-sm font-medium text-gray-700'>
+            <label className='block text-sm font-medium dark:text-gray-300 text-gray-700'>
               Email
             </label>
             <input
@@ -87,7 +87,7 @@ const Login = () => {
               {...register('email', {
                 required: 'Email is required',
               })}
-              className={`mt-1 block w-full rounded-md border px-3 py-2 text-sm ${
+              className={`mt-1 dark:bg-gray-700 dark:text-white block w-full rounded-md border px-3 py-2 text-sm ${
                 errors.email ? 'border-red-500' : 'border-gray-300'
               }`}
             />
@@ -100,7 +100,7 @@ const Login = () => {
 
           {/* Password Field */}
           <div>
-            <label className='block text-sm font-medium text-gray-700'>
+            <label className='block text-sm font-medium dark:text-gray-300 text-gray-700'>
               Password
             </label>
             <div className='relative'>
@@ -110,7 +110,7 @@ const Login = () => {
                 {...register('password', {
                   required: 'Password is required',
                 })}
-                className={`mt-1 block w-full rounded-md border px-3 py-2 pr-10 text-sm ${
+                className={`mt-1 block dark:bg-gray-700 dark:text-white w-full rounded-md border px-3 py-2 pr-10 text-sm ${
                   errors.password ? 'border-red-500' : 'border-gray-300'
                 }`}
               />
@@ -151,7 +151,7 @@ const Login = () => {
             <span className='w-full border-t' />
           </div>
           <div className='relative flex justify-center text-xs uppercase'>
-            <span className='bg-white px-2 text-gray-500'>
+            <span className='bg-white dark:bg-gray-700 px-2 text-gray-500 dark:text-gray-300'>
               Or continue with
             </span>
           </div>
@@ -159,7 +159,7 @@ const Login = () => {
 
         <button
           onClick={handleGoogleSignIn}
-          className='flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50'
+          className='flex w-full items-center justify-center rounded-md border border-gray-300 dark:border-gray-800 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 shadow-sm hover:bg-gray-50'
         >
           <svg
             className='mr-2 h-5 w-5'
@@ -171,7 +171,7 @@ const Login = () => {
           </svg>
           Sign in with Google
         </button>
-        <span className='mt-6 block text-center text-sm text-gray-500'>
+        <span className='mt-6 block text-center text-sm text-gray-500 dark:text-gray-400'>
           Don&apos;t have an account? <Link to='/register'>Sign up</Link>
         </span>
       </div>
