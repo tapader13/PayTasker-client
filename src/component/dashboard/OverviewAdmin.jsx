@@ -76,7 +76,9 @@ export default function OverviewAdmin() {
   console.log(chartData);
   return (
     <div className='container mx-auto px-4 py-8'>
-      <h1 className='mb-6 text-2xl font-bold'>Admin Dashboard Overview</h1>
+      <h1 className='mb-6 text-2xl font-bold dark:text-white'>
+        Admin Dashboard Overview
+      </h1>
 
       {/* Admin Stats */}
       <AdminStat stats={states} />
@@ -84,14 +86,14 @@ export default function OverviewAdmin() {
       {/* Charts for Withdrawal Requests */}
       <div className='grid gap-8 mt-8'>
         {/* Withdrawal Requests Chart */}
-        <div className='bg-white p-6 rounded-lg shadow-md'>
-          <h3 className='text-sm font-medium text-gray-500 mb-4'>
+        <div className='bg-white dark:bg-gray-700  p-6 rounded-lg shadow-md'>
+          <h3 className='text-sm font-medium dark:text-gray-200 text-gray-500 mb-4'>
             Withdrawal Requests
           </h3>
           <ResponsiveContainer width='100%' height={300}>
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray='3 3' />
-              <XAxis dataKey='name' />
+              <XAxis tick={{ fill: 'red' }} dataKey='name' />
               <YAxis />
               <Tooltip />
               <Line type='monotone' dataKey='value' fill='#00838C' />

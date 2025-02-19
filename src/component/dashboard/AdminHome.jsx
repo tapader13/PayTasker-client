@@ -64,7 +64,9 @@ export default function AdminHome() {
 
   return (
     <div className='container mx-auto px-4 py-8'>
-      <h1 className='mb-6 text-2xl font-bold'>Admin Dashboard</h1>
+      <h1 className='mb-6 text-2xl font-bold dark:text-white'>
+        Admin Dashboard
+      </h1>
       <AdminStat stats={adminData?.states} />
       <WithdrowalRequest
         requests={adminData?.withdrowReq}

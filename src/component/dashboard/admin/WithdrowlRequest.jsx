@@ -13,35 +13,35 @@ export default function WithdrowalRequest({ requests, onApprovePayment }) {
   };
   return (
     <div className='mt-8'>
-      <h2 className='mb-4 text-xl font-semibold'>
+      <h2 className='mb-4 dark:text-white text-xl font-semibold'>
         Pending Withdrawal Requests
       </h2>
       <div className='overflow-x-auto'>
-        <table className='min-w-full bg-white border border-gray-300'>
+        <table className='min-w-full bg-white dark:bg-gray-700 dark:text-white border border-gray-300'>
           <thead>
-            <tr className='bg-gray-100'>
-              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+            <tr className='bg-gray-100 dark:bg-gray-600'>
+              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider'>
                 Worker Name
               </th>
-              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider'>
                 Email
               </th>
-              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider'>
                 Coins
               </th>
-              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider'>
                 Amount ($)
               </th>
-              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider'>
                 Payment System
               </th>
-              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider'>
                 Account Number
               </th>
-              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider'>
                 Date
               </th>
-              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+              <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider'>
                 Action
               </th>
             </tr>
@@ -49,22 +49,22 @@ export default function WithdrowalRequest({ requests, onApprovePayment }) {
           <tbody className='divide-y divide-gray-200'>
             {requests.map((request) => (
               <tr key={request.id}>
-                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
+                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white'>
                   {request.worker_name}
                 </td>
-                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
+                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white'>
                   {request.worker_email}
                 </td>
-                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
+                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white'>
                   {request.withdrawal_coin}
                 </td>
-                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
+                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white'>
                   ${request.withdrawal_amount}
                 </td>
-                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
+                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white'>
                   {request.payment_system}
                 </td>
-                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
+                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white'>
                   <td className={`px-6 py-4 whitespace-nowrap text-sm `}>
                     <span
                       className={`inline-flex rounded-full px-2 py-1 text-xs font-semibold ${getStatusColor(
@@ -75,7 +75,7 @@ export default function WithdrowalRequest({ requests, onApprovePayment }) {
                     </span>
                   </td>
                 </td>
-                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900'>
+                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white'>
                   {new Date(request.withdraw_date).toLocaleDateString()}
                 </td>
                 <td className='px-6 py-4 whitespace-nowrap text-sm font-medium'>
@@ -87,7 +87,7 @@ export default function WithdrowalRequest({ requests, onApprovePayment }) {
                         request.worker_email
                       )
                     }
-                    className='bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out'
+                    className='bg-tertiaryhover hover:bg-tertiaryhover text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out'
                   >
                     Approve Payment
                   </button>

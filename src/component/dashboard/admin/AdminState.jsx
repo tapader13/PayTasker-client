@@ -2,7 +2,7 @@ import { Users, UserCheck, Coins, DollarSign } from 'lucide-react';
 
 export default function AdminStat({ stats }) {
   return (
-    <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
+    <div className='grid gap-4 dark:text-white md:grid-cols-2 lg:grid-cols-4'>
       <div className='border p-5 shadow-sm rounded-md'>
         <div className='flex  flex-row items-center justify-between space-y-0 pb-2'>
           <h1 className='text-sm font-medium'>Total Workers</h1>
