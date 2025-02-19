@@ -38,7 +38,7 @@ export default function Guide() {
     return steps[role].map((step, index) => (
       <div key={index} className='flex items-start mt-4'>
         <CheckCircle className='h-5 w-5 text-green-500 mr-2' />
-        <span className='text-sm text-gray-700'>{step}</span>
+        <span className='text-sm text-gray-700 dark:text-gray-200'>{step}</span>
       </div>
     ));
   };
@@ -47,28 +47,28 @@ export default function Guide() {
   }
 
   return (
-    <div className='bg-gray-50 min-h-screen'>
+    <div className='bg-gray-50 dark:bg-gray-950 min-h-screen'>
       <main className='w-10/12 mx-auto px-4 sm:px-6 lg:px-8  py-16 sm:py-24'>
         <div className='text-center'>
-          <h1 className='text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl'>
+          <h1 className='text-4xl font-extrabold dark:text-white text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl'>
             How to Use PayTasker
           </h1>
-          <p className='mt-5 max-w-xl mx-auto text-xl text-gray-500'>
+          <p className='mt-5 max-w-xl mx-auto text-xl dark:text-gray-300 text-gray-500'>
             Step-by-step instructions for {userInfo?.role} users
           </p>
         </div>
 
         {userInfo?.role && (
           <div className='mt-16'>
-            <h2 className='text-3xl font-extrabold text-gray-900'>
+            <h2 className='text-3xl font-extrabold dark:text-white text-gray-900'>
               {userInfo?.role} User Guide
             </h2>
-            <div className='mt-6'>{renderSteps(userInfo?.role)}</div>
+            <div className='mt-6 '>{renderSteps(userInfo?.role)}</div>
           </div>
         )}
 
         <div className='mt-16 text-center'>
-          <h2 className='text-3xl font-extrabold text-gray-900'>
+          <h2 className='text-3xl font-extrabold dark:text-white text-gray-900'>
             Ready to get started?
           </h2>
           <div className='mt-8'>
