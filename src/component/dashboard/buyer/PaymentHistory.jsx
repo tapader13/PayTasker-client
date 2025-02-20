@@ -176,7 +176,7 @@ export default function PaymentHistoryPage() {
                 payments.map((payment) => (
                   <tr
                     key={payment.id}
-                    className='hover:bg-gray-50 dark:hover:text-gray-800'
+                    className='hover:bg-gray-50 dark:hover:bg-gray-800'
                   >
                     <td className='whitespace-nowrap px-6 py-4 text-sm text-gray-900 dark:text-white'>
                       {moment(new Date(payment.date)).format('MMM d, yyyy')}
